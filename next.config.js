@@ -8,7 +8,12 @@ const nextConfig = {
         hostname: "localhost",
         pathname: "/Pak_Travel/wp-content/uploads/**",
       },
-
+  // Live WordPress (current)
+      {
+        protocol: "https",
+        hostname: "paktravel.hammanitechdemos.com",
+        pathname: "/wp-content/uploads/**",
+      },
       // Live WordPress
       {
         protocol: "https",
