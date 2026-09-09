@@ -1,0 +1,9 @@
+/* app/provinces/[provinceSlug]/[divisionSlug]/division.module.css
+   ---------------------------------------------------------------------------
+   Sirf outer wrapper ke liye — hero/banner/search/grid ki poori styling
+   ProvinceExplorer.module.css mein hai (wahi component render karta hai).
+--------------------------------------------------------------------------- */
+
+.page {
+  overflow-x: hidden;
+}

@@ -1,0 +1,25 @@
+/* components/ImageCollage/ImageCollage.module.css */
+
+.section {
+  padding: 80px 0 60px;
+}
+
+.frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1240 / 400; /* designer ke asset ka original ratio */
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--color-border-light, #e5e5e5);
+}
+
+.image {
+  object-fit: cover;
+}
+
+@media (max-width: 600px) {
+  .frame {
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+  }
+}

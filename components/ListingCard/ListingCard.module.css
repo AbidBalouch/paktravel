@@ -1,0 +1,117 @@
+.card {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  aspect-ratio: 3 / 4;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+.card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.iconFallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 20px;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.35) 45%,
+    rgba(0, 0, 0, 0) 70%
+  );
+}
+
+.info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 14px 16px;
+  color: #fff;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 500;
+  color: #eee;
+  margin-bottom: 6px;
+}
+
+.ratingStar {
+  color: #ffc23c; /* gold — rating hamesha visible rahe */
+  font-weight: 700;
+}
+
+.address {
+  font-size: 12px;
+  color: #ddd;
+  margin-bottom: 8px;
+}
+
+.excerpt {
+  font-size: 12px;
+  color: #ddd;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.footer {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  color: #fff;
+  font-weight: 600;
+}

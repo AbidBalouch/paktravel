@@ -1,0 +1,173 @@
+/* components/Attractions/Attractions.module.css
+   ---------------------------------------------------------------------------
+   Sab colors + font globals.css ke CSS variables se (koi hardcoded brand
+   color nahi). Container width bhi globals.css ki ".container" (1250px).
+--------------------------------------------------------------------------- */
+
+.section {
+  background: transparent;
+  padding: 80px 0;
+}
+
+/* Arrows ko absolute position dene ke liye */
+.inner {
+  position: relative;
+}
+
+/* ---------- Heading ---------- */
+.head {
+  max-width: 760px;
+  margin-bottom: 50px;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 30%;
+  color: var(--color-primary);
+  margin-bottom: 14px;
+}
+
+.heading {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 100%;
+  color: #1E1E1E;
+}
+
+/* ---------- Arrows (heading ke saamne right side) ---------- */
+.arrows {
+  position: absolute;
+  top: 20px;
+  right: var(--container-padding);
+  display: flex;
+  gap: 12px;
+}
+
+.arrow {
+  width: 71px;
+  height: 71px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+/* Prev — outlined (design ke mutabiq) */
+.arrowGhost {
+  border: 1px solid var(--color-primary);
+  background: var(--color-white);
+  color: var(--color-primary);
+}
+
+.arrowGhost:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Next — solid green */
+.arrowSolid {
+  border: 1px solid var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.arrowSolid:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+
+.arrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ---------- Track + cards ---------- */
+.track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;   /* IE/Edge scrollbar hide */
+  scrollbar-width: none;      /* Firefox scrollbar hide */
+}
+
+.track::-webkit-scrollbar {
+  display: none;              /* Chrome/Safari scrollbar hide */
+}
+
+/* 4 cards per view: (100% - 3 gaps) / 4 */
+.card {
+  position: relative;
+  flex: 0 0 calc((100% - 60px) / 4);
+  height: 451px;
+  border-radius: 14px;
+  overflow: hidden;
+  scroll-snap-align: start;
+  background: var(--color-border-light);
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.card:hover .image {
+  transform: scale(1.06);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+background: linear-gradient(180.04deg, rgba(159, 159, 159, 0) 0.04%, rgba(0, 0, 0, 0.6) 89.68%);
+}
+
+.cardText {
+  position: absolute;
+  left: 30px;
+  bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cardTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-white);
+  line-height: 100%;
+  text-transform: capitalize;
+}
+
+/* Location line — halka transparent white */
+.cardMeta {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-white);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .card { flex: 0 0 calc((100% - 40px) / 3); }   /* 3 per view */
+  .heading { font-size: 30px; }
+}
+
+@media (max-width: 768px) {
+    .section { padding: 50px 0; }
+  .card { flex: 0 0 calc((100% - 20px) / 2); }   /* 2 per view */
+  .card { height: 301px; }
+  .heading { font-size: 24px; }
+  .badge {font-size: 16px;letter-spacing: 8%;margin-bottom: 10px;}
+  .head {margin-bottom: 20px;}
+  .arrow {height: 48px;width: 48px;}
+  .cardMeta {font-size: 14px;}
+  .cardTitle{font-size: 18px;}
+}
+
+@media (max-width: 600px) {
+  .arrows { position: static; margin-bottom: 18px; }
+  .card { flex: 0 0 78%; }                       /* 1 card + peek */
+}

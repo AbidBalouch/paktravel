@@ -1,0 +1,31 @@
+/* app/provinces/[provinceSlug]/[divisionSlug]/[districtSlug]/district.module.css
+   ---------------------------------------------------------------------------
+   Sirf page wrapper aur breadcrumb ke liye — hero/tabs/grid ki saari styling
+   ab components/DistrictExplorer/DistrictExplorer.module.css mein hai.
+--------------------------------------------------------------------------- */
+
+.page {
+  overflow-x: hidden;
+}
+
+.breadcrumb {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px var(--container-padding, 20px);
+  font-size: 13px;
+  color: #777;
+}
+
+.breadcrumb a {
+  color: #777;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbCurrent {
+  color: var(--color-primary-dark, #1a5d1a);
+  font-weight: 600;
+}

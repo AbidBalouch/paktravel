@@ -1,0 +1,120 @@
+/* components/FilterBar/FilterBar.module.css
+   ---------------------------------------------------------------------------
+   Figma-match colors: green outline pill (--color-primary-dark), filled
+   green background when active/selected, "Clear filters" greyed-out until
+   a filter is active.
+--------------------------------------------------------------------------- */
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.dropdownWrap {
+  position: relative;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid var(--color-primary, #1a5d1a);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--color-primary, #1a5d1a);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.chip:hover {
+  background: #f0f7f0;
+}
+
+.chipActive {
+  background: var(--color-primary, #1a5d1a);
+  color: #fff;
+}
+
+.chipActive:hover {
+  background: var(--color-primary, #1a5d1a);
+  opacity: 0.92;
+}
+
+.chipIcon {
+  font-size: 13px;
+  line-height: 1;
+}
+
+.chipCaret {
+  font-size: 10px;
+  margin-left: 2px;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 180px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  padding: 6px;
+  z-index: 10;
+}
+
+.dropdownItem {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 12px;
+  border: none;
+  background: none;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background: #f5f5f5;
+  color: #1a5d1a;
+}
+
+.dropdownItemActive {
+  background: var(--color-primary-dark, #1a5d1a);
+  color: #fff;
+}
+
+.dropdownEmpty {
+  padding: 8px 12px;
+  font-size: 13px;
+  color: #999;
+}
+
+/* "Clear filters" — greyed-out/disabled by default, active once a filter is set */
+.clearBtn {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: not-allowed;
+  color: #9D9D9D;
+  padding: 8px 4px;
+}
+
+.clearBtnActive {
+  color: var(--color-primary-dark, #1a5d1a);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.clearBtnActive:hover {
+  opacity: 0.8;
+}

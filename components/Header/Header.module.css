@@ -1,0 +1,178 @@
+/* components/Header/Header.module.css */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: transparent;      /* shuru me transparent */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.headerScrolled {
+  background: var(--color-white);
+  box-shadow: 0 4px 16px var(--color-shadow);
+}
+
+.inner {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logoWrap {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logoImg {
+  height: 32px;
+  width: auto;
+}
+
+/* ---------- Desktop nav ---------- */
+.nav {
+  display: flex;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: 70px;
+}
+
+.navLink {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1C1C1C;
+  transition: color 0.2s ease;
+}
+
+.navLink:hover {
+  color: var(--color-primary);
+}
+
+/* ---------- Desktop actions ---------- */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.loginLink {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  padding: 16px 34px;
+}
+
+.signupBtn {
+  background: var(--color-primary-dark);
+  color: var(--color-white);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 16px 34px;
+  border-radius: 30px;
+  transition: opacity 0.2s ease;
+}
+
+.signupBtn:hover {
+  opacity: 0.9;
+}
+
+/* ---------- Mobile burger button ---------- */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.burgerLine,
+.burgerLineOpenTop,
+.burgerLineOpenMid,
+.burgerLineOpenBottom {
+  height: 2px;
+  width: 100%;
+  background: var(--color-text-dark);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.burgerLineOpenTop {
+  transform: translateY(7px) rotate(45deg);
+}
+.burgerLineOpenMid {
+  opacity: 0;
+}
+.burgerLineOpenBottom {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---------- Mobile menu panel ---------- */
+.mobileMenu {
+  max-height: 0;
+  overflow: hidden;
+  background: var(--color-white);
+  box-shadow: 0 8px 16px var(--color-shadow);
+  transition: max-height 0.3s ease;
+}
+
+.mobileMenuOpen {
+  max-height: 400px;
+}
+
+.mobileNavList {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 24px 0;
+}
+
+.mobileNavList li {
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.mobileNavList a {
+  display: block;
+  padding: 14px 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.mobileActions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px 24px 24px;
+}
+
+.mobileActions .loginLink,
+.mobileActions .signupBtn {
+  text-align: center;
+}
+
+/* ---------- Responsive breakpoint ---------- */
+@media (max-width: 900px) {
+  .nav,
+  .actions {
+    display: none;
+  }
+
+  .burger {
+    display: flex;
+  }
+}
+
+@media (min-width: 901px) {
+  .mobileMenu {
+    display: none;
+  }
+}

@@ -1,0 +1,72 @@
+/* components/BrandsCarousel/BrandsCarousel.module.css
+   ---------------------------------------------------------------------------
+   Background transparent rakha hai (globals.css ke page background ke sath
+   blend hone ke liye), container width globals.css ke ".container" class se
+   hi aa rahi hai (1250px) — koi hardcoded value nahi.
+--------------------------------------------------------------------------- */
+
+.section {
+  background: transparent;
+  padding: 32px 0;
+}
+
+/* Container ke andar overflow hidden — track jab side me move hoga to
+   uska overflow hone wala hissa yahan chup jayega */
+.inner {
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  width: max-content; /* content jitni chahiye utni width le */
+  animation: scroll 25s linear infinite;
+}
+
+/* Hover par pura track pause ho jaye — better UX */
+.track:hover {
+  animation-play-state: paused;
+}
+
+.logoWrap {
+  flex-shrink: 0; /* logos ko squeeze hone se bachata hai */
+  display: flex;
+  align-items: center;
+  opacity: 0.65;
+  transition: opacity 0.2s ease;
+}
+
+.logoWrap:hover {
+  opacity: 1;
+}
+
+.logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* List duplicate hai isliye -50% shift = ek poori original list ke
+       barabar move karna — is point par visually kuch change nahi hota,
+       toh loop seamlessly restart ho jata hai */
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .track {
+    gap: 40px;
+    animation-duration: 18s;
+  }
+
+  .logo {
+    height: 24px;
+  }
+}
