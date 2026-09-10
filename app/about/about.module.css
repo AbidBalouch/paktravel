@@ -414,7 +414,8 @@
   .hero {
     padding: 120px 0 50px;
   }
-
+.featureTitle {margin-top: 20px;}
+.featureCard{padding: 30px 20px;}
   /* All other sections: 50px top/bottom, 20px left/right */
   .story,
   .features {
@@ -484,8 +485,9 @@
     width: 58px;
     height: 58px;
     border-radius: 16px;
+    padding: 10px;
   }
-
+.standIcon img{width: auto;height: auto;}
   .standItemTitle {
     font-size: 17px;
     line-height: 1.3;

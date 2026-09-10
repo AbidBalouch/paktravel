@@ -87,15 +87,25 @@ export default async function AboutPage() {
 
         {/* ---------------- Our Story ---------------- */}
         <section className={`${styles.story} container`}>
-          <div>
-            {story.badge && <p className={styles.eyebrow}>{story.badge}</p>}
-            {story.heading && <h2 className={styles.storyHeading}>{story.heading}</h2>}
-            {story.paragraphs.map((para, i) => (
-              <p key={i} className={styles.storyText}>
-                {para}
-              </p>
-            ))}
-          </div>
+<div>
+  {story.badge && (
+    <p className={styles.eyebrow}>
+      {stripHtml(story.badge)}
+    </p>
+  )}
+
+  {story.heading && (
+    <h2 className={styles.storyHeading}>
+      {stripHtml(story.heading)}
+    </h2>
+  )}
+
+  {story.paragraphs.map((para, i) => (
+    <p key={i} className={styles.storyText}>
+      {stripHtml(para)}
+    </p>
+  ))}
+</div>
 
           <div className={styles.storyMedia}>
             <div className={styles.dotGrid} />

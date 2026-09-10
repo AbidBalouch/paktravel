@@ -78,10 +78,10 @@ export default function ProvinceExplorer({ province }) {
         <div className="container">
           {divisions.length === 0 ? (
             <p className={styles.noResults}>
-              Is province ke liye abhi koi division add nahi hua.
+              “No divisions have been added for this province yet.”
             </p>
           ) : filtered.length === 0 ? (
-            <p className={styles.noResults}>Koi destination is naam se nahi mila.</p>
+            <p className={styles.noResults}>“No destination was found with this name.”</p>
           ) : (
             <div className={styles.grid}>
               {filtered.map((division) => (

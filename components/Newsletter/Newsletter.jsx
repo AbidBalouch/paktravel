@@ -2,6 +2,20 @@
 
 import { useState } from "react";
 import styles from "./Newsletter.module.css";
+
+// ---------------------------------------------------------------------------
+// CF7 form details (from wp-admin → Contact → Newsletter form):
+//   Edit URL: .../wp-admin/admin.php?page=wpcf7&post=467&action=edit
+//   -> Numeric form ID = 467  (REST endpoint isi ID se banta hai, shortcode
+//      wala hash "3cebdc9" REST API me kaam nahi karta)
+//
+// IMPORTANT: "your-email" ko apne CF7 form (Form tab) ke actual email field
+// tag se match karein, e.g. [email* your-email]. Agar tag ka naam different
+// hai to sirf CF7_EMAIL_FIELD_NAME change karein.
+// ---------------------------------------------------------------------------
+const CF7_FORM_ID = 467;
+const CF7_EMAIL_FIELD_NAME = "your-email";
+
 export default function Newsletter({
   badge = "SUBSCRIBE TO OUR NEWSLETTER",
   heading = "Prepare yourself and let’s explore the beauty of the Pakistan",
@@ -10,7 +24,7 @@ export default function Newsletter({
   const [status, setStatus] = useState("idle");
   const [message, setMessage] = useState("");
 
-  const endpoint = `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/simple-newsletter/v1/subscribe`;
+  const endpoint = `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/contact-form-7/v1/contact-forms/${CF7_FORM_ID}/feedback`;
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -25,35 +39,42 @@ export default function Newsletter({
     setMessage("");
 
     try {
+      // CF7 ka REST endpoint JSON accept nahi karta — isko multipart/form-data
+      // (FormData) chahiye hoti hai, bilkul waise jaise normal CF7 <form>
+      // browser me submit hota hai.
+      const formData = new FormData();
+      formData.append(CF7_EMAIL_FIELD_NAME, email);
+
+      // CF7 ke internal hidden fields — inke bina bhi kai baar chal jata hai,
+      // lekin inhein bhejna zyada reliable hai (spam-check / unit-tag ke liye).
+      formData.append("_wpcf7", CF7_FORM_ID);
+      formData.append("_wpcf7_version", "5.9");
+      formData.append("_wpcf7_locale", "en_US");
+      formData.append("_wpcf7_unit_tag", `wpcf7-f${CF7_FORM_ID}-p0-o1`);
+      formData.append("_wpcf7_container_post", "0");
+
       const res = await fetch(endpoint, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          source: "homepage",
-        }),
+        body: formData,
       });
 
       const data = await res.json();
 
-      if (!res.ok || !data.success) {
-        setStatus("error");
-        setMessage(
-          data.message || "Something went wrong. Please try again."
-        );
+      // CF7 REST response shape:
+      // { status: "mail_sent" | "validation_failed" | "mail_failed" | "spam", message, invalid_fields: [...] }
+      if (data.status === "mail_sent") {
+        setStatus("success");
+        setMessage(data.message || "Thank you — you're subscribed!");
+        setEmail("");
         return;
       }
 
-      setStatus("success");
-      setMessage(data.message);
-      setEmail("");
+      setStatus("error");
+      const fieldError = data.invalid_fields?.[0]?.message;
+      setMessage(fieldError || data.message || "Something went wrong. Please try again.");
     } catch (error) {
       setStatus("error");
-      setMessage(
-        "Unable to subscribe right now. Please try again later."
-      );
+      setMessage("Unable to subscribe right now. Please try again later.");
     }
   }
 
