@@ -51,7 +51,7 @@ function Dropdown({ label, icon, options, selected, onChange }) {
             All
           </button>
           {options.length === 0 ? (
-            <p className={styles.dropdownEmpty}>Koi options nahi mile</p>
+            <p className={styles.dropdownEmpty}>No options were found.</p>
           ) : (
             options.map((opt) => (
               <button
