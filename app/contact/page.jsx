@@ -12,7 +12,7 @@ import Newsletter from "@/components/Newsletter/Newsletter";
 import styles from "./contact.module.css";
 
 // TODO: move to an ACF field once one exists for it — hardcoded for now
-const CF7_FORM_ID = 347;
+const CF7_FORM_ID = 372;
 
 export default async function ContactPage() {
     const [data, formSchema, newsletter] = await Promise.all([
