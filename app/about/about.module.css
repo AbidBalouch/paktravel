@@ -417,11 +417,12 @@
 
   /* All other sections: 50px top/bottom, 20px left/right */
   .story,
-  .features,
-  .standFor {
+  .features {
     padding: 50px 20px;
   }
-
+  .standFor {
+    padding: 50px 0px;
+  }
   /* Badges */
   .heroBadge,
   .eyebrow {
@@ -464,7 +465,7 @@
 
   /* What We Stand For — scaled down like Plan.module.css .listItem */
   .standCard {
-    margin: 20px;
+    margin: 0px;
     padding: 28px;
   }
 
