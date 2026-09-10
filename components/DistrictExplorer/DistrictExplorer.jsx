@@ -189,7 +189,7 @@ export default function DistrictExplorer({ district }) {
           />
         ) : (
           <p className={styles.noResults}>
-            {title} ke baare mein tafseel abhi add nahi hui.
+            Details about {title} have not been added yet.
           </p>
         )}
       </div>
@@ -200,7 +200,7 @@ export default function DistrictExplorer({ district }) {
 
         {filteredList.length === 0 ? (
           <p className={styles.noResults}>
-            Is category mein abhi {title} ke liye koi entry maujood nahi.
+            There is currently no entry available for {title} in this category.
           </p>
         ) : (
           <>
