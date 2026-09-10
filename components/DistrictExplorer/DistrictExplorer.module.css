@@ -256,7 +256,7 @@ z-index: 9;
   }
   .heroInner,.heroInner{margin-top: 20px;}
 .tab {font-size: 14px;}
-.section{padding-left: 20px;padding-right: 20px;}
+.section{padding-left: 0px;padding-right: 0px;}
   .heroTitle {
     font-size: 36px;
   }
@@ -267,5 +267,29 @@ z-index: 9;
 
   .tabBar {
     gap: 12px;
-  }
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  /* Firefox */
+  scrollbar-color: #003F0E transparent;
+  scrollbar-width: thin;
+}
+
+/* Chrome, Edge, Safari */
+.tabBar::-webkit-scrollbar {
+  height: 6px;
+}
+
+.tabBar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tabBar::-webkit-scrollbar-thumb {
+  background: #003F0E;
+  border-radius: 10px;
+}
+
+.tabBar::-webkit-scrollbar-thumb:hover {
+  background: #002F0A;
+}
 }
