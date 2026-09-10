@@ -1,0 +1,168 @@
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 572px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  color: #fff;
+}
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    0deg,
+    #fbf9f4 0%,
+    rgba(0, 50, 21, 0.3) 50%,
+    rgba(0, 50, 21, 0.1) 100%
+  );
+  z-index: 0;
+}
+.heroBadge,
+.heroTitle,
+.heroSubtitle {
+  position: relative;
+  z-index: 1;
+}
+.heroBadge {
+  width: 100%;
+  max-width: 270px;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  border: 2px solid #003f0e;
+  border-radius: 999px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  color: #003f0e;
+}
+.heroTitle {
+  font-family: var(--font-heading);
+  font-size: 70px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: capitalize;
+  margin-bottom: 28px;
+}
+.heroSubtitle {
+  max-width: 870px;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 30px;
+}
+
+/* Content grid */
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  max-width: 1280px;
+  margin: auto;
+  padding: 80px 20px 0px;
+  align-items: start;
+  position: relative;
+  z-index: 2;
+}
+@media (max-width: 900px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.formCard {
+  background: #fff;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0px 1.13px 2.25px 0px #0000000d;
+}
+
+.sideImageWrap {
+  position: relative;
+  min-height: 586px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.sideImage {
+  object-fit: contain;
+}
+
+/* Form */
+.formTitle {
+  font-family: var(--font-heading);
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 49.5px;
+  color: #003f0e;
+  margin-bottom: 36px;
+}
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 27px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 27px;
+}
+.field label {
+  font-family: var(--font-heading);
+  font-size: 15.75px;
+  font-weight: 600;
+  line-height: 22.5px;
+  letter-spacing: 0.79px;
+  margin-bottom: 8px;
+}
+.field input,
+.field select,
+.field textarea {
+  background: #f0eee9;
+  border: 1px solid #c0c9be;
+  border-radius: 10px;
+  padding: 15px 18px;
+  font-family: var(--font-heading);
+  font-size: 18px;
+}
+.field textarea {
+  resize: vertical;
+}
+
+.submitBtn {
+  font-family: var(--font-heading);
+  font-size: 15.75px;
+  font-weight: 600;
+  line-height: 22.5px;
+  letter-spacing: 0.79px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #00821c;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 18px 45px;
+  cursor: pointer;
+}
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.successMsg {
+  color: #00821c;
+  margin-top: 12px;
+  font-family: var(--font-heading);
+  font-size: 14px;
+}
+.errorMsg {
+  color: #d92d20;
+  margin-top: 12px;
+  font-family: var(--font-heading);
+  font-size: 14px;
+}
