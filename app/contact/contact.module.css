@@ -1,7 +1,6 @@
 /* Hero */
 .hero {
   position: relative;
-  min-height: 572px;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -9,7 +8,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 20px;
+  padding: 160px 20px;
   color: #fff;
 }
 .heroOverlay {
@@ -47,6 +46,13 @@
   text-align: center;
   text-transform: capitalize;
   margin-bottom: 28px;
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 48px;
+    line-height: 58px;
+  }
 }
 .heroSubtitle {
   max-width: 870px;
@@ -165,4 +171,65 @@
   margin-top: 12px;
   font-family: var(--font-heading);
   font-size: 14px;
+}
+
+/* ---- Responsive (Tablet) ---- */
+@media (max-width: 900px) {
+  .sideImageWrap {
+    min-height: 320px;
+  }
+}
+
+/* ---- Responsive (Mobile) ---- */
+@media (max-width: 600px) {
+  .hero {
+    padding: 100px 16px 60px;
+  }
+  .heroTitle {
+    font-size: 36px;
+    line-height: 44px;
+  }
+  .heroSubtitle {
+    font-size: 15px;
+    line-height: 24px;
+  }
+
+  .contentGrid {
+    padding: 40px 16px 0;
+    gap: 24px;
+  }
+  .formCard {
+    padding: 24px;
+  }
+  .formTitle {
+    font-size: 26px;
+    line-height: 32px;
+    margin-bottom: 20px;
+  }
+
+  /* Sabse zaroori fix — 2-column fields ko 1-column mein stack karein */
+  .row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .field {
+    margin-bottom: 18px;
+  }
+  .field input,
+  .field select,
+  .field textarea {
+    font-size: 16px;
+    padding: 12px 14px;
+  }
+
+  .submitBtn {
+    width: 100%;
+    justify-content: center;
+    padding: 16px 24px;
+  }
+
+  .sideImageWrap {
+    min-height: 240px;
+  }
 }
