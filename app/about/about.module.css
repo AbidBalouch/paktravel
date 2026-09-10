@@ -202,7 +202,11 @@
   margin: 0 auto;
 }
 
-
+.storyMedia img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
 
 /* ---------------- Features / Handpicked ---------------- */
 
@@ -362,9 +366,12 @@
   color: var(--color-text-gray);
 }
 
-/* ---------------- Responsive ---------------- */
+/* ============================================================
+   Responsive — breakpoints mirror Plan.module.css (991 / 768 / 480)
+   ============================================================ */
 
-@media (max-width: 960px) {
+/* ---------- Tablet ---------- */
+@media (max-width: 991px) {
   .story {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -376,24 +383,151 @@
 
   .standCard {
     max-width: none;
+    padding: 40px;
+  }
+
+  .standIcon {
+    width: 80px;
+    height: 80px;
+    border-radius: 22px;
+  }
+
+  .standItem {
+    gap: 22px;
+    padding: 22px;
+    border-radius: 24px;
+  }
+
+  .standItemTitle {
+    font-size: 21px;
+  }
+
+  .standItemText {
+    font-size: 16px;
+    line-height: 26px;
   }
 }
 
-@media (max-width: 560px) {
+/* ---------- Mobile ---------- */
+@media (max-width: 768px) {
+  /* Banner: top 120px, sides 0px, bottom 50px */
+  .hero {
+    padding: 120px 0 50px;
+  }
+
+  /* All other sections: 50px top/bottom, 20px left/right */
+  .story,
+  .features,
+  .standFor {
+    padding: 50px 20px;
+  }
+
+  /* Badges */
+  .heroBadge,
+  .eyebrow {
+    font-size: 16px;
+  }
+
+  /* Headings */
   .heroTitle {
-    font-size: 34px;
+    font-size: 36px;
+  }
+
+  .storyHeading,
+  .featuresHeading,
+  .standHeading {
+    font-size: 24px;
+  }
+
+  /* Gaps */
+  .story {
+    gap: 24px;
+  }
+
+  .heroActions {
+    gap: 12px;
   }
 
   .featureGrid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
+  /* Story media — auto height, image scales naturally */
   .storyMedia {
-    height: 320px;
+    height: auto;
   }
 
+  .storyMedia img {
+    height: auto;
+  }
+
+  /* What We Stand For — scaled down like Plan.module.css .listItem */
   .standCard {
     margin: 20px;
     padding: 28px;
+  }
+
+  .standList {
+    gap: 15px;
+  }
+
+  .standItem {
+    gap: 15px;
+    padding: 16px 14px;
+    border-radius: 18px;
+  }
+
+  .standIcon {
+    flex: 0 0 58px;
+    width: 58px;
+    height: 58px;
+    border-radius: 16px;
+  }
+
+  .standItemTitle {
+    font-size: 17px;
+    line-height: 1.3;
+    margin-bottom: 5px;
+  }
+
+  .standItemText {
+    font-size: 14px;
+    line-height: 21px;
+  }
+}
+
+/* ---------- Small Mobile ---------- */
+@media (max-width: 480px) {
+  .standCard {
+    padding: 20px;
+  }
+
+  .standList {
+    gap: 12px;
+  }
+
+  .standItem {
+    gap: 12px;
+    padding: 13px 10px;
+    border-radius: 15px;
+  }
+
+  .standIcon {
+    flex: 0 0 50px;
+    width: 50px;
+    height: 50px;
+    border-radius: 13px;
+  }
+
+  .standItemTitle {
+    font-size: 16px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+
+  .standItemText {
+    font-size: 13px;
+    line-height: 20px;
   }
 }

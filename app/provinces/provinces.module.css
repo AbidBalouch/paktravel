@@ -381,13 +381,19 @@
   .standCard {
     max-width: none;
   }
+
+}
+
+@media(max-width:768px){
+  .hero {
+  padding: 120px 0 50px;
+}
+  .heroTitle {
+    font-size: 36px;
+  }
 }
 
 @media (max-width: 560px) {
-  .heroTitle {
-    font-size: 34px;
-  }
-
   .featureGrid {
     grid-template-columns: 1fr;
   }
@@ -400,4 +406,5 @@
     margin: 20px;
     padding: 28px;
   }
+
 }
