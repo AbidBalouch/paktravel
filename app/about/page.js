@@ -4,7 +4,7 @@ import Newsletter from "@/components/Newsletter/Newsletter";
 // Header/Footer yahan import nahi karne — ye pehle se app/layout.js mein
 // globally render ho rahe hain (sab pages ko wrap karte hain), dobara yahan
 // laga dete to page par Header/Footer 2x dikhta.
-import { getAboutPageData, safe } from "@/lib/api";
+import { getAboutPageData, safe, stripHtml } from "@/lib/api";
 import styles from "./about.module.css";
 
 export const revalidate = 60; // WordPress se har 60s baad fresh data (ISR)
