@@ -252,9 +252,10 @@ z-index: 9;
 
 @media (max-width: 560px) {
   .hero {
-    padding: 140px 0 50px;
+    padding: 120px 0 50px;
   }
-
+.tab {font-size: 14px;}
+.section{padding-left: 20px;padding-right: 20px;}
   .heroTitle {
     font-size: 36px;
   }

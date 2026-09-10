@@ -181,7 +181,11 @@
   .hero {
     padding: 120px 0 50px;
   }
-
+.section{padding: 50px 0px;}
+.heroInner,.searchBarWrap {margin-top: 20px;}
+.heroText {
+  margin: 10px auto 0;
+}
   .heroTitle {
     font-size: 36px;
   }
