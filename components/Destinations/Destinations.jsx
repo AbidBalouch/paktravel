@@ -30,9 +30,17 @@ export default async function Destinations() {
           {cards.map((item, index) => {
             const isFeatured = index === 0;
 
+            // lib/api.js ab already ready-made headless "link"
+            // (/provinces/<slug>) bhej raha hai — DivisionCard jaisa
+            // reliable pattern. Fallback sirf tab chalega agar kabhi
+            // "link" field missing ho.
+            const href = item.link || (item.slug ? `/provinces/${item.slug}` : null);
+
+            if (!href) return null;
+
             return (
               <Link
-                href={`/provinces/${item.slug}`}
+                href={href}
                 key={item.id}
                 className={`${styles.card} ${
                   isFeatured ? styles.featuredCard : ""
