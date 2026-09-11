@@ -6,7 +6,7 @@ import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 
-import { getSiteSettings } from "@/lib/api";
+import { getSiteSettings, safe } from "@/lib/api";
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -21,16 +21,20 @@ const plusJakarta = Plus_Jakarta_Sans({
 // ---------------------------------------------------------------------------
 
 export async function generateMetadata() {
-  const site = await getSiteSettings();
+  // safe() ke bina agar WordPress ka fetch fail ho (timeout/downtime), to
+  // poori build crash ho jati hai — chahe koi bhi page ho, kyunke ye
+  // root layout ka hissa hai. Fallback null milne par neeche defaults
+  // use ho jayenge.
+  const site = await safe(getSiteSettings, null);
 
   return {
-    title: site.title || "Travel Pakistan",
+    title: site?.title || "Travel Pakistan",
 
     description:
-      site.tagline ||
+      site?.tagline ||
       "Discover the beauty of Pakistan with curated destinations, local experiences, and seamless travel planning.",
 
-    icons: site.favicon
+    icons: site?.favicon
       ? {
           icon: site.favicon,
           shortcut: site.favicon,
