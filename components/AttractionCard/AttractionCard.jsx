@@ -17,7 +17,7 @@ export default function AttractionCard({ item }) {
   return (
     <ListingCard
       href={item.link}
-      external={Boolean(item.link)} // jab internal single-attraction route banega, external={false} kar dein
+      external={false} // jab internal single-attraction route banega, external={false} kar dein
       image={item.image}
       alt={item.alt || item.title}
       badge={item.category}
