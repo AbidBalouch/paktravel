@@ -5,6 +5,8 @@ import "./globals.css";
 
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import { AuthStatusProvider } from "@/components/AuthStatus/AuthStatusContext";
+import { getLoginStatus } from "@/lib/auth";
 
 import { getSiteSettings, safe } from "@/lib/api";
 
@@ -48,18 +50,21 @@ export async function generateMetadata() {
 // Root Layout
 // ---------------------------------------------------------------------------
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  // Isko bhi safe() se wrap kiya — login-status check bhi har page ke
+  // sath chalta hai, is liye yahan koi bhi temporary failure poori build
+  // crash kar sakta tha. Fallback null se AuthStatusProvider "logged out"
+  // jaisa hi treat kar lega.
+  const loginStatus = await safe(getLoginStatus, null);
+
   return (
     <html lang="en">
-      <body
-        className={plusJakarta.variable}
-        suppressHydrationWarning
-      >
-        <Header />
-
-        <main>{children}</main>
-
-        <Footer />
+      <body className={plusJakarta.variable} suppressHydrationWarning>
+        <AuthStatusProvider initialStatus={loginStatus}>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </AuthStatusProvider>
       </body>
     </html>
   );
