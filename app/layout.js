@@ -6,7 +6,6 @@ import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import { AuthStatusProvider } from "@/components/AuthStatus/AuthStatusContext";
-import { getLoginStatus } from "@/lib/auth";
 
 import { getSiteSettings, safe } from "@/lib/api";
 
@@ -23,10 +22,6 @@ const plusJakarta = Plus_Jakarta_Sans({
 // ---------------------------------------------------------------------------
 
 export async function generateMetadata() {
-  // safe() ke bina agar WordPress ka fetch fail ho (timeout/downtime), to
-  // poori build crash ho jati hai — chahe koi bhi page ho, kyunke ye
-  // root layout ka hissa hai. Fallback null milne par neeche defaults
-  // use ho jayenge.
   const site = await safe(getSiteSettings, null);
 
   return {
@@ -49,18 +44,21 @@ export async function generateMetadata() {
 // ---------------------------------------------------------------------------
 // Root Layout
 // ---------------------------------------------------------------------------
+// NOTE: getLoginStatus() (jo next/headers ka cookies() use karta hai) ab
+// yahan call NAHI ho raha — isi wajah se deeply nested dynamic routes
+// (/provinces/[province]/[division]/[district]) "Page changed from static
+// to dynamic at runtime" crash de rahe the. Login status ab
+// AuthStatusProvider khud client-side mount hote hi /api/auth/status se
+// fetch karta hai (dekhein components/AuthStatus/AuthStatusContext.jsx).
+// Isse layout — aur is se wrapped har page — hamesha static/ISR-safe rehta
+// hai.
+// ---------------------------------------------------------------------------
 
-export default async function RootLayout({ children }) {
-  // Isko bhi safe() se wrap kiya — login-status check bhi har page ke
-  // sath chalta hai, is liye yahan koi bhi temporary failure poori build
-  // crash kar sakta tha. Fallback null se AuthStatusProvider "logged out"
-  // jaisa hi treat kar lega.
-  const loginStatus = await safe(getLoginStatus, null);
-
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={plusJakarta.variable} suppressHydrationWarning>
-        <AuthStatusProvider initialStatus={loginStatus}>
+        <AuthStatusProvider>
           <Header />
           <main>{children}</main>
           <Footer />
