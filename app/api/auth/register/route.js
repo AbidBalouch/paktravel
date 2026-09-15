@@ -12,7 +12,16 @@ const COOKIE_NAME = process.env.JWT_COOKIE_NAME || "travel_pak_token";
 
 export async function POST(request) {
   try {
-    const { email, password, name, social } = await request.json();
+    const {
+      email,
+      password,
+      name,
+      phone,
+      facebook,
+      instagram,
+      youtube,
+      tiktok,
+    } = await request.json();
 
     if (!email || !password) {
       return Response.json(
@@ -38,7 +47,6 @@ export async function POST(request) {
           email,
           password,
           display_name: name.trim(),
-          user_url: social?.trim() || "",
           AUTH_KEY: process.env.SIMPLE_JWT_REGISTER_AUTH_CODE,
         }),
       },
@@ -90,14 +98,27 @@ export async function POST(request) {
       );
     }
 
+    // Phone + socials apne reliable endpoint se save karein (plugin ka
+    // user_meta feature buggy hai, is liye use nahi kar rahe)
+    try {
+      await fetch(`${WP_BASE_URL}/wp-json/travel-pakistan/v1/profile`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authData.data.jwt}`,
+        },
+        body: JSON.stringify({ phone, facebook, instagram, youtube, tiktok }),
+      });
+    } catch (err) {
+      console.error("[api/auth/register] profile save failed:", err.message);
+      // Registration fail nahi karte is wajah se — profile baad mein bhi update ho sakta hai
+    }
+
     const response = Response.json({
       success: true,
       email,
       name: name.trim(),
-      social: social?.trim() || "",
     });
-    response2Body: {
-    } // (ignore — just showing where to add name to response)
     response.headers.set(
       "Set-Cookie",
       `${COOKIE_NAME}=${authData.data.jwt}; HttpOnly; Path=/; SameSite=Lax; Max-Age=2592000${

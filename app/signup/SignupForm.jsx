@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { FaFacebook, FaInstagram, FaYoutube, FaTiktok } from "react-icons/fa6";
+import { Phone } from "lucide-react";
 import styles from "./signup.module.css";
 
 export default function SignupForm() {
@@ -8,7 +10,11 @@ export default function SignupForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [social, setSocial] = useState("");
+    const [phone, setPhone] = useState("");
+    const [facebook, setFacebook] = useState("");
+    const [instagram, setInstagram] = useState("");
+    const [youtube, setYoutube] = useState("");
+    const [tiktok, setTiktok] = useState("");
     const [status, setStatus] = useState("idle");
     const [error, setError] = useState("");
 
@@ -27,7 +33,7 @@ export default function SignupForm() {
             const res = await fetch("/api/auth/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password, name, social }),
+                body: JSON.stringify({ email, password, name, phone, facebook, instagram, youtube, tiktok }),
             });
             const data = await res.json();
 
@@ -51,59 +57,54 @@ export default function SignupForm() {
                 <p className={styles.subtitle}>Join Travel Pakistan to submit your discoveries.</p>
 
                 <form onSubmit={handleSubmit}>
-                    <div className={styles.field}>
-                        <label>Full Name</label>
-                        <input
-                            type="text"
-                            placeholder="Exp. John Carter"
-                            required
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
+                    <div className={styles.row2}>
+                        <div className={styles.field}>
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Exp. Ali Ahmad" required value={name} onChange={(e) => setName(e.target.value)} />
+                        </div>
+                        <div className={styles.field}>
+                            <label>Email</label>
+                            <input type="email" placeholder="you@example.com" required value={email} onChange={(e) => setEmail(e.target.value)} />
+                        </div>
                     </div>
-                    <div className={styles.field}>
-                        <label>Email</label>
-                        <input
-                            type="email"
-                            placeholder="you@example.com"
-                            required
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
+
+                    <div className={styles.row2}>
+                        <div className={styles.field}>
+                            <label>Password</label>
+                            <input type="password" placeholder="Enter your password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+                        </div>
+                        <div className={styles.field}>
+                            <label>Confirm Password</label>
+                            <input type="password" placeholder="Re-enter your password" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                        </div>
                     </div>
+
                     <div className={styles.field}>
-                        <label>Password</label>
-                        <input
-                            type="password"
-                            placeholder="Enter your password"
-                            required
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
+                        <label>Phone Number <span className={styles.optional}>(optional, kept private)</span></label>
+                        <div className={styles.iconInput}>
+                            <Phone size={16} className={styles.inputIcon} />
+                            <input type="tel" placeholder="Exp. +92 300 1234567" value={phone} onChange={(e) => setPhone(e.target.value)} />
+                        </div>
                     </div>
-                    <div className={styles.field}>
-                        <label>Confirm Password</label>
-                        <input
-                            type="password"
-                            placeholder="Re-enter your password"
-                            required
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                        />
-                    </div>
-                    <div className={styles.field}>
-                        <label>Social Media Link <span className={styles.optional}>(optional)</span></label>
-                        <input
-                            type="text"
-                            placeholder="Exp. https://instagram.com/yourhandle"
-                            value={social}
-                            onChange={(e) => setSocial(e.target.value)}
-                            onBlur={() => {
-                                if (social && !/^https?:\/\//i.test(social)) {
-                                    setSocial(`https://${social}`);
-                                }
-                            }}
-                        />
+
+                    <p className={styles.sectionLabel}>Social links <span className={styles.optional}>(optional)</span></p>
+                    <div className={styles.socialGrid}>
+                        <div className={styles.iconInput}>
+                            <FaFacebook size={16} className={styles.inputIcon} style={{ color: "#1877f2" }} />
+                            <input type="text" placeholder="Facebook" value={facebook} onChange={(e) => setFacebook(e.target.value)} />
+                        </div>
+                        <div className={styles.iconInput}>
+                            <FaInstagram size={16} className={styles.inputIcon} style={{ color: "#dc2743" }} />
+                            <input type="text" placeholder="Instagram" value={instagram} onChange={(e) => setInstagram(e.target.value)} />
+                        </div>
+                        <div className={styles.iconInput}>
+                            <FaYoutube size={16} className={styles.inputIcon} style={{ color: "#ff0000" }} />
+                            <input type="text" placeholder="YouTube" value={youtube} onChange={(e) => setYoutube(e.target.value)} />
+                        </div>
+                        <div className={styles.iconInput}>
+                            <FaTiktok size={16} className={styles.inputIcon} />
+                            <input type="text" placeholder="TikTok" value={tiktok} onChange={(e) => setTiktok(e.target.value)} />
+                        </div>
                     </div>
 
                     {error && <p className={styles.error}>{error}</p>}

@@ -43,10 +43,29 @@ async function verifyCustomerSession() {
       JSON.stringify(data),
     );
     if (!res.ok || !data.success) return null;
+
+    let profile = {
+      phone: "",
+      facebook: "",
+      instagram: "",
+      youtube: "",
+      tiktok: "",
+    };
+    try {
+      const profileRes = await fetch(
+        `${WP_BASE_URL}/wp-json/travel-pakistan/v1/profile`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          cache: "no-store",
+        },
+      );
+      if (profileRes.ok) profile = await profileRes.json();
+    } catch {}
+
     return {
       email: data.data?.user?.user_email || null,
       name: data.data?.user?.display_name || null,
-      social: data.data?.user?.user_url || null,
+      ...profile,
     };
   } catch {
     console.log("[api/contribute] validate error:", err.message);
@@ -130,7 +149,6 @@ export async function POST(request) {
     // taake koi customer login kar ke bhi kisi aur ka email spoof na kar sake.
     const yourName = customer.name;
     const yourEmail = customer.email;
-    const socialLink = customer.social || "";
 
     // Required-field validation (server-side — client-side already checked,
     // lekin never trust client alone)
@@ -194,7 +212,11 @@ export async function POST(request) {
       })(),
       submitter_name: yourName,
       submitter_email: yourEmail,
-      submitter_social: socialLink || "",
+      submitter_phone: customer.phone || "", // Show in REST OFF rakhein — kabhi public nahi
+      submitter_facebook: customer.facebook || "",
+      submitter_instagram: customer.instagram || "",
+      submitter_youtube: customer.youtube || "",
+      submitter_tiktok: customer.tiktok || "",
     };
 
     // 3. Post create karein — "pending" status, taxonomies, ACF, meta sab ek saath

@@ -710,3 +710,66 @@
   color: #fff;
   border-color: #00821c;
 }
+
+.submittedByRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.submittedByAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #00821c;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.submittedByLabel {
+  font-size: 12px;
+  color: #888;
+}
+.submittedByName {
+  font-weight: 700;
+  font-size: 15px;
+}
+.submittedBySocials {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+.submittedBySocials a {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: opacity 0.2s ease;
+}
+.submittedBySocials a:hover {
+  opacity: 0.85;
+}
+.socialIconFb {
+  background: #1877f2;
+}
+.socialIconIg {
+  background: linear-gradient(
+    45deg,
+    #f09433,
+    #e6683c,
+    #dc2743,
+    #cc2366,
+    #bc1888
+  );
+}
+.socialIconYt {
+  background: #ff0000;
+}
+.socialIconTt {
+  background: #000;
+}

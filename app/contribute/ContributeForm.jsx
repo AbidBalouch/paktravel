@@ -95,10 +95,10 @@ export default function ContributeForm({ destinationTerms, attractionTypes, init
         await performSubmit();
     }
 
-    function handleAuthSuccess(email, name, social) {
+    function handleAuthSuccess(email, name) {
         setShowAuthModal(false);
-        updateForm({ yourEmail: email, yourName: name || "", socialLink: social || form.socialLink });
-        setAuthStatus({ loggedIn: true, email, name: name || null, social: social || null });
+        updateForm({ yourEmail: email, yourName: name || "" });
+        setAuthStatus({ loggedIn: true, email, name: name || null });
     }
 
     async function handleLogout() {

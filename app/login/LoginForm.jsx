@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { Mail, Lock } from "lucide-react";
 import styles from "./login.module.css";
 
 export default function LoginForm() {
@@ -28,7 +29,7 @@ export default function LoginForm() {
                 return;
             }
 
-            window.location.href = "/"; // full reload — Header ko naya login status milega
+            window.location.href = "/";
         } catch {
             setStatus("error");
             setError("Network error — please try again.");
@@ -44,23 +45,17 @@ export default function LoginForm() {
                 <form onSubmit={handleSubmit}>
                     <div className={styles.field}>
                         <label>Email</label>
-                        <input
-                            type="email"
-                            placeholder="you@example.com"
-                            required
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
+                        <div className={styles.iconInput}>
+                            <Mail size={16} className={styles.inputIcon} />
+                            <input type="email" placeholder="you@example.com" required value={email} onChange={(e) => setEmail(e.target.value)} />
+                        </div>
                     </div>
                     <div className={styles.field}>
                         <label>Password</label>
-                        <input
-                            type="password"
-                            placeholder="Enter your password"
-                            required
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
+                        <div className={styles.iconInput}>
+                            <Lock size={16} className={styles.inputIcon} />
+                            <input type="password" placeholder="Enter your password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+                        </div>
                     </div>
 
                     {error && <p className={styles.error}>{error}</p>}
@@ -69,6 +64,10 @@ export default function LoginForm() {
                         {status === "submitting" ? "Please wait..." : "Log In"}
                     </button>
                 </form>
+
+                <p className={styles.forgotLink}>
+                    <Link href="/forgot-password">Forgot password?</Link>
+                </p>
 
                 <p className={styles.switchMode}>
                     Don't have an account? <Link href="/signup">Sign up</Link>

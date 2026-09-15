@@ -1,29 +1,38 @@
 .wrapper {
-  min-height: 70vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 160px 20px 60px;
+  padding: 160px 16px 60px;
 }
 .card {
   background: #fff;
   border: 1px solid #eee;
-  border-radius: 16px;
-  padding: 36px;
+  border-radius: 20px;
+  padding: 40px;
   width: 100%;
-  max-width: 420px;
+  max-width: 580px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
 }
 .title {
   font-family: var(--font-heading);
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 700;
   margin-bottom: 6px;
+  color: #003f0e;
 }
 .subtitle {
   font-size: 14px;
   color: #666;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
+
+.row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
 .field {
   margin-bottom: 16px;
   display: flex;
@@ -33,45 +42,122 @@
 .field label {
   font-size: 13px;
   font-weight: 600;
-}
-.optional {
-  font-weight: 400;
-  color: #999;
-  font-size: 12px;
+  font-family: var(--font-heading);
 }
 .field input {
   border: 1px solid #e2e2e0;
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 12px 14px;
   font-size: 15px;
+  font-family: var(--font-heading);
 }
+.field input:focus {
+  outline: none;
+  border-color: #00821c;
+}
+
+.optional {
+  font-weight: 400;
+  color: #999;
+  font-size: 11px;
+}
+
+.sectionLabel {
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  margin: 4px 0 10px;
+}
+
+.socialGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 14px;
+  margin-bottom: 20px;
+}
+
+.iconInput {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.socialGrid .iconInput {
+  margin-bottom: 0;
+}
+.inputIcon {
+  position: absolute;
+  left: 14px;
+  color: #888;
+  pointer-events: none;
+}
+.iconInput input {
+  width: 100%;
+  border: 1px solid #e2e2e0;
+  border-radius: 10px;
+  padding: 12px 14px 12px 40px;
+  font-size: 14px;
+  font-family: var(--font-heading);
+}
+.iconInput input:focus {
+  outline: none;
+  border-color: #00821c;
+}
+
 .error {
   color: #d92d20;
   font-size: 13px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
+
 .submitBtn {
   width: 100%;
   background: #00821c;
   color: #fff;
   border: none;
   border-radius: 30px;
-  padding: 13px;
-  font-weight: 600;
+  padding: 14px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 15px;
   cursor: pointer;
-  margin-top: 8px;
+  margin-top: 6px;
+}
+.submitBtn:hover {
+  opacity: 0.92;
 }
 .submitBtn:disabled {
   opacity: 0.6;
+  cursor: not-allowed;
 }
+
 .switchMode {
   text-align: center;
   font-size: 13px;
-  margin-top: 20px;
+  margin-top: 22px;
   color: #666;
 }
 .switchMode a {
   color: #00821c;
   font-weight: 600;
   text-decoration: underline;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 560px) {
+  .card {
+    padding: 24px;
+    border-radius: 16px;
+  }
+  .title {
+    font-size: 22px;
+  }
+  .row2,
+  .socialGrid {
+    grid-template-columns: 1fr;
+  }
+  .field input,
+  .iconInput input {
+    font-size: 16px; /* iOS auto-zoom se bachne ke liye */
+  }
 }

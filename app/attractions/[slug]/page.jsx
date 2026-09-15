@@ -1,5 +1,6 @@
 import { getAttractionBySlug, weatherCodeLabel } from "@/lib/api";
 import { notFound } from "next/navigation";
+import { FaFacebook, FaInstagram, FaYoutube, FaTiktok } from "react-icons/fa6";
 import Image from "next/image";
 import AttractionMap from "@/components/AttractionMap/AttractionMap";
 import NearbyEssentialsTabs from "@/components/NearbyEssentialsTabs/NearbyEssentialsTabs";
@@ -249,6 +250,35 @@ export default async function AttractionDetailPage({ params }) {
                 </div>
                 <div className={styles.nearbyEssentialsWrapper}>
                     <div className={styles.nearbyEssentials}>
+
+                        {/* Submitted By — Nearby Essentials se pehle */}
+                        {attraction.submittedBy && (
+                            <section className={styles.card}>
+                                <div className={styles.submittedByRow}>
+                                    <div className={styles.submittedByAvatar}>
+                                        {attraction.submittedBy.name.charAt(0).toUpperCase()}
+                                    </div>
+                                    <div>
+                                        <p className={styles.submittedByLabel}>Submitted by</p>
+                                        <p className={styles.submittedByName}>{attraction.submittedBy.name}</p>
+                                    </div>
+                                    <div className={styles.submittedBySocials}>
+                                        {attraction.submittedBy.facebook && (
+                                            <a href={attraction.submittedBy.facebook} target="_blank" rel="noopener noreferrer" title="Facebook" className={styles.socialIconFb}><FaFacebook size={18} /></a>
+                                        )}
+                                        {attraction.submittedBy.instagram && (
+                                            <a href={attraction.submittedBy.instagram} target="_blank" rel="noopener noreferrer" title="Instagram" className={styles.socialIconIg}><FaInstagram size={18} /></a>
+                                        )}
+                                        {attraction.submittedBy.youtube && (
+                                            <a href={attraction.submittedBy.youtube} target="_blank" rel="noopener noreferrer" title="YouTube" className={styles.socialIconYt}><FaYoutube size={18} /></a>
+                                        )}
+                                        {attraction.submittedBy.tiktok && (
+                                            <a href={attraction.submittedBy.tiktok} target="_blank" rel="noopener noreferrer" title="TikTok" className={styles.socialIconTt}><FaTiktok size={18} /></a>
+                                        )}
+                                    </div>
+                                </div>
+                            </section>
+                        )}
 
                         {/* 9. Nearby Essentials */}
                         {attraction.nearbyEssentials.length > 0 && (
