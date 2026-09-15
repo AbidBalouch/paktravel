@@ -6,8 +6,10 @@
   left: 0;
   width: 100%;
   z-index: 100;
-  background: transparent;      /* shuru me transparent */
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background: transparent; /* shuru me transparent */
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .headerScrolled {
@@ -48,7 +50,7 @@
 .navLink {
   font-size: 14px;
   font-weight: 600;
-  color: #1C1C1C;
+  color: #1c1c1c;
   transition: color 0.2s ease;
 }
 
@@ -85,6 +87,72 @@
   opacity: 0.9;
 }
 
+.accountWrap {
+  position: relative;
+}
+.accountBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 30px;
+}
+.accountBtn:hover {
+  background: var(--color-border-light);
+}
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-primary-dark);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.accountName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px var(--color-shadow);
+  min-width: 180px;
+  padding: 6px;
+  z-index: 200;
+}
+.dropdownItem {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-dark);
+  border-radius: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.dropdownItem:hover {
+  background: var(--color-border-light);
+}
+
 /* ---------- Mobile burger button ---------- */
 .burger {
   display: none;
@@ -104,7 +172,9 @@
   width: 100%;
   background: var(--color-text-dark);
   border-radius: 2px;
-  transition: transform 0.25s ease, opacity 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
 }
 
 .burgerLineOpenTop {

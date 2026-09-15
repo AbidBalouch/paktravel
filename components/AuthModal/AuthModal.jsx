@@ -40,11 +40,12 @@ export default function AuthModal({ prefillName, prefillEmail, prefillSocial, in
                 return;
             }
 
+
             // Success state dikhayein, phir thodi dair baad submission continue karein
             setStatus("success");
             setTimeout(() => {
                 onSuccess(data.email, data.name, data.social);
-            }, 1200);
+            }, 500);
         } catch (err) {
             setStatus("error");
             setError("Network error — please try again.");
@@ -84,6 +85,7 @@ export default function AuthModal({ prefillName, prefillEmail, prefillSocial, in
                                         value={name}
                                         readOnly={!!prefillName}
                                         className={prefillName ? styles.readOnlyInput : ""}
+                                        onChange={(e) => !prefillName && setName(e.target.value)}
                                     />
                                 </div>
                             )}
@@ -116,6 +118,7 @@ export default function AuthModal({ prefillName, prefillEmail, prefillSocial, in
                                     value={email}
                                     readOnly={!!prefillEmail}
                                     className={prefillEmail ? styles.readOnlyInput : ""}
+                                    onChange={(e) => !prefillEmail && setEmail(e.target.value)}
                                 />
                             </div>
 

@@ -1,0 +1,147 @@
+.hero {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 160px 20px;
+  color: #fff;
+}
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    178.75deg,
+    rgba(255, 255, 255, 0) 1.07%,
+    rgba(169, 191, 171, 0.14) 27.84%,
+    rgba(181, 212, 180, 0.28) 54.61%,
+    rgba(145, 165, 140, 0.42) 81.39%,
+    rgba(152, 234, 102, 0.56) 108.16%
+  );
+
+  z-index: 0;
+}
+.heroBadge,
+.heroTitle,
+.heroSubtitle {
+  position: relative;
+  z-index: 1;
+}
+.heroBadge {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  padding: 8px 20px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+.heroTitle {
+  font-family: var(--font-heading);
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.heroSubtitle {
+  max-width: 500px;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.wrapper {
+  max-width: 1140px;
+  margin: 0px auto 60px;
+  padding: 60px 20px 0px;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.pageTitle {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 700;
+}
+.addBtn {
+  background: #00821c;
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 30px;
+  white-space: nowrap;
+}
+.loading,
+.error,
+.empty {
+  text-align: center;
+  color: #666;
+  margin-top: 60px;
+}
+.error {
+  color: #d92d20;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+@media (max-width: 700px) {
+  .list {
+    grid-template-columns: 1fr;
+  }
+}
+.card {
+  display: flex;
+  gap: 16px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  padding: 16px;
+}
+.thumb {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.info {
+  flex: 1;
+}
+.info h3 {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.statusBadge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+.rejectionReason {
+  font-size: 13px;
+  color: #666;
+  margin-top: 6px;
+}
+.viewLink {
+  font-size: 13px;
+  color: #00821c;
+  font-weight: 600;
+}
+.myContributionsLink {
+  font-size: 12px;
+  font-weight: 600;
+  color: #00821c;
+  text-decoration: underline;
+}

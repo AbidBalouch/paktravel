@@ -1,30 +1,26 @@
 "use client";
 
-// components/Header/HeaderClient.jsx
-// ---------------------------------------------------------------------------
-
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+import { useAuthStatus } from "@/components/AuthStatus/AuthStatusContext";
 import styles from "./Header.module.css";
 
 export default function HeaderClient({ logo, menu, buttons }) {
+  const { authStatus: loginStatus, setAuthStatus } = useAuthStatus();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
-  // Scroll position track karke header ka background toggle karte hain
   useEffect(() => {
     function handleScroll() {
       setIsScrolled(window.scrollY > 20);
     }
-
     window.addEventListener("scroll", handleScroll, { passive: true });
-    // Page reload hote hi agar already scrolled ho to state sahi set ho
     handleScroll();
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Mobile menu khula ho to body scroll lock kar dete hain
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
     return () => {
@@ -32,13 +28,32 @@ export default function HeaderClient({ logo, menu, buttons }) {
     };
   }, [isMobileMenuOpen]);
 
-  const loginButton = buttons?.find((b) => b.name.toLowerCase() === "login");
-  const signupButton = buttons?.find((b) => b.name.toLowerCase() === "sign up");
+  // Dropdown ke bahar click hone pe band ho jaye
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setIsDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const loginButtonLabel = buttons?.find((b) => b.name.toLowerCase() === "login")?.name || "Login";
+  const signupButtonLabel = buttons?.find((b) => b.name.toLowerCase() === "sign up")?.name || "Sign Up";
+
+  async function handleLogout() {
+    await fetch("/api/auth/logout", { method: "POST" });
+    setAuthStatus({ loggedIn: false, email: null, name: null, social: null }); // instant update
+  }
+
+  const initials = loginStatus?.name
+    ? loginStatus.name.trim().charAt(0).toUpperCase()
+    : loginStatus?.email?.charAt(0).toUpperCase() || "?";
 
   return (
     <header className={`${styles.header} ${isScrolled ? styles.headerScrolled : ""}`}>
       <div className={`container ${styles.inner}`}>
-        {/* Logo */}
         <a href="/" className={styles.logoWrap}>
           {logo && (
             <Image
@@ -52,7 +67,6 @@ export default function HeaderClient({ logo, menu, buttons }) {
           )}
         </a>
 
-        {/* Desktop nav */}
         <nav className={styles.nav}>
           <ul className={styles.navList}>
             {menu?.items?.map((item) => (
@@ -65,21 +79,42 @@ export default function HeaderClient({ logo, menu, buttons }) {
           </ul>
         </nav>
 
-        {/* Desktop buttons */}
+        {/* Desktop buttons / account dropdown */}
         <div className={styles.actions}>
-          {loginButton && (
-            <a href={loginButton.url} className={styles.loginLink}>
-              {loginButton.name}
-            </a>
-          )}
-          {signupButton && (
-            <a href={signupButton.url} className={styles.signupBtn}>
-              {signupButton.name}
-            </a>
+          {loginStatus?.loggedIn ? (
+            <div className={styles.accountWrap} ref={dropdownRef}>
+              <button
+                type="button"
+                className={styles.accountBtn}
+                onClick={() => setIsDropdownOpen((v) => !v)}
+              >
+                <span className={styles.avatar}>{initials}</span>
+                <span className={styles.accountName}>{loginStatus.name || loginStatus.email}</span>
+              </button>
+
+              {isDropdownOpen && (
+                <div className={styles.dropdown}>
+                  <a href="/my-contributions" className={styles.dropdownItem}>
+                    My Contributions
+                  </a>
+                  <button type="button" className={styles.dropdownItem} onClick={handleLogout}>
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <>
+              <a href="/login" className={styles.loginLink}>
+                {loginButtonLabel}
+              </a>
+              <a href="/signup" className={styles.signupBtn}>
+                {signupButtonLabel}
+              </a>
+            </>
           )}
         </div>
 
-        {/* Mobile hamburger */}
         <button
           className={styles.burger}
           aria-label="Toggle menu"
@@ -92,13 +127,12 @@ export default function HeaderClient({ logo, menu, buttons }) {
         </button>
       </div>
 
-      {/* Mobile menu panel */}
       <div className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.mobileMenuOpen : ""}`}>
         <ul className={styles.mobileNavList}>
           {menu?.items?.map((item) => (
             <li key={item.id}>
-              <a
-                href={item.url}
+
+              <a href={item.url}
                 target={item.target || "_self"}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -108,15 +142,24 @@ export default function HeaderClient({ logo, menu, buttons }) {
           ))}
         </ul>
         <div className={styles.mobileActions}>
-          {loginButton && (
-            <a href={loginButton.url} className={styles.loginLink}>
-              {loginButton.name}
-            </a>
-          )}
-          {signupButton && (
-            <a href={signupButton.url} className={styles.signupBtn}>
-              {signupButton.name}
-            </a>
+          {loginStatus?.loggedIn ? (
+            <>
+              <a href="/my-contributions" className={styles.loginLink} onClick={() => setIsMobileMenuOpen(false)}>
+                My Contributions
+              </a>
+              <button type="button" className={styles.signupBtn} onClick={handleLogout}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <a href="/login" className={styles.loginLink}>
+                {loginButtonLabel}
+              </a>
+              <a href="/signup" className={styles.signupBtn}>
+                {signupButtonLabel}
+              </a>
+            </>
           )}
         </div>
       </div>
