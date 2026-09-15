@@ -14,7 +14,9 @@
   border-radius: 16px;
   padding: 32px;
   width: 100%;
-  max-width: 400px;
+  max-width: 580px;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 .closeBtn {
   position: absolute;
@@ -52,6 +54,35 @@
   border-radius: 8px;
   padding: 10px 12px;
   font-size: 14px;
+}
+
+.iconInput {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.inputIcon {
+  position: absolute;
+  left: 12px;
+  color: #888;
+  pointer-events: none;
+}
+.iconInput input {
+  width: 100%;
+  border: 1px solid #e2e2e0;
+  border-radius: 8px;
+  padding: 10px 12px 10px 36px;
+  font-size: 14px;
+}
+.iconInput input:focus {
+  outline: none;
+  border-color: #00821c;
+}
+
+.socialGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 12px;
 }
 .error {
   color: #d92d20;
@@ -118,4 +149,22 @@
   font-weight: 400;
   color: #999;
   font-size: 12px;
+}
+
+.socialGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 14px;
+}
+
+@media (max-width: 480px) {
+  .modal {
+    padding: 20px;
+  }
+  .socialGrid {
+    grid-template-columns: 1fr;
+  }
+  .iconInput input {
+    font-size: 16px; /* iOS auto-zoom se bachne ke liye */
+  }
 }
