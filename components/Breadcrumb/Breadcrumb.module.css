@@ -1,0 +1,48 @@
+/* components/Breadcrumb/Breadcrumb.module.css */
+
+.breadcrumb {
+  padding: 16px var(--container-padding) 0;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.link {
+  color: var(--color-text-gray);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.link:hover {
+  color: var(--color-primary-dark);
+}
+
+.current {
+  color: var(--color-text-dark);
+  font-weight: 600;
+}
+
+.separator {
+  color: var(--color-text-gray);
+  opacity: 0.6;
+}
+
+@media (max-width: 480px) {
+  .list {
+    font-size: 12px;
+  }
+}
