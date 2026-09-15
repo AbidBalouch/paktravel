@@ -39,21 +39,6 @@ export default function Step4YourInfo({ form, updateForm, onBack, onSubmit, stat
                 </div>
             </div>
 
-            <div className={styles.field}>
-                <label>Social media link</label>
-                <input
-                    type="text"
-                    placeholder="Exp. https://instagram.com/yourhandle"
-                    value={form.socialLink}
-                    onChange={(e) => updateForm({ socialLink: e.target.value })}
-                    readOnly={isLoggedIn}
-                    className={isLoggedIn ? styles.readOnlyInput : ""}
-                />
-                {isLoggedIn && (
-                    <p className={styles.hint}>This is your account's social link — contact us to change it.</p>
-                )}
-            </div>
-
             {status === "error" && <p className={styles.errorMsg}>{errorMsg}</p>}
 
             <div className={styles.actions}>

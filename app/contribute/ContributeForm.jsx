@@ -39,7 +39,6 @@ const EMPTY_FORM = {
     // Step 4
     yourName: "",
     yourEmail: "",
-    socialLink: "",
 };
 
 export default function ContributeForm({ destinationTerms, attractionTypes, initialLoggedIn, initialEmail, initialName, initialSocial }) {
