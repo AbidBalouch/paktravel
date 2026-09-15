@@ -6,7 +6,6 @@
 import { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
 import ImageCollage from "@/components/ImageCollage/ImageCollage";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import FilterBar from "@/components/FilterBar/FilterBar";
 import AttractionCard from "@/components/AttractionCard/AttractionCard";
 import StayCard from "@/components/StayCard/StayCard";
@@ -44,7 +43,6 @@ export default function DistrictExplorer({ district }) {
     collageImage,
     aboutHtml,
     tabs,
-    breadcrumb,
   } = district;
 
   const [activeTab, setActiveTab] = useState("about");
@@ -100,22 +98,6 @@ export default function DistrictExplorer({ district }) {
 
   return (
     <>
-      {/* ================= Breadcrumb ================= */}
-      <Breadcrumb
-        items={[
-          { label: "Home", href: "/" },
-          breadcrumb?.province && {
-            label: breadcrumb.province.name,
-            href: `/provinces/${breadcrumb.province.slug}`,
-          },
-          breadcrumb?.division && {
-            label: breadcrumb.division.name,
-            href: `/provinces/${breadcrumb.province?.slug || ""}/${breadcrumb.division.slug}`,
-          },
-          { label: title },
-        ].filter(Boolean)}
-      />
-
       {/* ================= Hero / Banner (search bar included) ================= */}
       <section className={styles.hero}>
         <div className={styles.heroBg}>
