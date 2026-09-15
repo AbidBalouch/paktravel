@@ -101,20 +101,6 @@ export default function DistrictExplorer({ district }) {
   return (
     <>
       {/* ================= Breadcrumb ================= */}
-      <Breadcrumb
-        items={[
-          { label: "Home", href: "/" },
-          breadcrumb?.province && {
-            label: breadcrumb.province.name,
-            href: `/provinces/${breadcrumb.province.slug}`,
-          },
-          breadcrumb?.division && {
-            label: breadcrumb.division.name,
-            href: `/provinces/${breadcrumb.province?.slug || ""}/${breadcrumb.division.slug}`,
-          },
-          { label: title },
-        ].filter(Boolean)}
-      />
 
       {/* ================= Hero / Banner (search bar included) ================= */}
       <section className={styles.hero}>
@@ -130,7 +116,20 @@ export default function DistrictExplorer({ district }) {
             />
           )}
         </div>
-
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/" },
+          breadcrumb?.province && {
+            label: breadcrumb.province.name,
+            href: `/provinces/${breadcrumb.province.slug}`,
+          },
+          breadcrumb?.division && {
+            label: breadcrumb.division.name,
+            href: `/provinces/${breadcrumb.province?.slug || ""}/${breadcrumb.division.slug}`,
+          },
+          { label: title },
+        ].filter(Boolean)}
+      />
         {badge && (
           <div className={styles.heroTop}>
             <span className={styles.heroBadge}>{badge}</span>
