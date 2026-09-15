@@ -116,20 +116,6 @@ export default function DistrictExplorer({ district }) {
             />
           )}
         </div>
-      <Breadcrumb
-        items={[
-          { label: "Home", href: "/" },
-          breadcrumb?.province && {
-            label: breadcrumb.province.name,
-            href: `/provinces/${breadcrumb.province.slug}`,
-          },
-          breadcrumb?.division && {
-            label: breadcrumb.division.name,
-            href: `/provinces/${breadcrumb.province?.slug || ""}/${breadcrumb.division.slug}`,
-          },
-          { label: title },
-        ].filter(Boolean)}
-      />
         {badge && (
           <div className={styles.heroTop}>
             <span className={styles.heroBadge}>{badge}</span>
@@ -180,6 +166,20 @@ export default function DistrictExplorer({ district }) {
 <section className={styles.section}>
   <div className="container">
     {/* ---------------- Tab bar ---------------- */}
+          <Breadcrumb
+        items={[
+          { label: "Home", href: "/" },
+          breadcrumb?.province && {
+            label: breadcrumb.province.name,
+            href: `/provinces/${breadcrumb.province.slug}`,
+          },
+          breadcrumb?.division && {
+            label: breadcrumb.division.name,
+            href: `/provinces/${breadcrumb.province?.slug || ""}/${breadcrumb.division.slug}`,
+          },
+          { label: title },
+        ].filter(Boolean)}
+      />
     <div className={styles.tabBar} role="tablist">
       {TABS.map((tab) => (
         <button
