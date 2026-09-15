@@ -5,7 +5,6 @@
 import { useState, useMemo } from "react";
 import Image from "next/image";
 import DivisionCard from "@/components/DivisionCard/DivisionCard";
-import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import styles from "./ProvinceExplorer.module.css";
 
 export default function ProvinceExplorer({ province }) {
@@ -77,16 +76,7 @@ export default function ProvinceExplorer({ province }) {
       {/* ================= Divisions Grid (separate section, plain bg) ================= */}
       <section className={styles.section}>
         <div className="container">
-                <Breadcrumb
-                  items={[
-                    { label: "Home", href: "/" },
-                    breadcrumb?.province && {
-                      label: breadcrumb.province.name,
-                      href: `/provinces/${breadcrumb.province.slug}`,
-                    },
-                    { label: title },
-                  ].filter(Boolean)}
-                />
+          
           {divisions.length === 0 ? (
             <p className={styles.noResults}>
               “No divisions have been added for this province yet.”
