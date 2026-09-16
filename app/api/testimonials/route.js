@@ -1,6 +1,5 @@
 // app/api/testimonials/route.js
 // ---------------------------------------------------------------------------
-
 // ---------------------------------------------------------------------------
 
 const WP_BASE_URL =
@@ -44,6 +43,7 @@ export async function POST(request) {
 
     const name = formData.get("name")?.toString().trim();
     const designation = formData.get("designation")?.toString().trim() || "";
+    const review = formData.get("review")?.toString().trim() || "";
     const ratingRaw = formData.get("rating")?.toString();
     const rating = Number(ratingRaw);
     const image = formData.get("image"); // File | null — optional
@@ -73,6 +73,7 @@ export async function POST(request) {
     // 2. Testimonial post create karein — "pending" status
     const postBody = {
       title: name,
+      content: review,
       status: "pending",
       acf: {
         designation,

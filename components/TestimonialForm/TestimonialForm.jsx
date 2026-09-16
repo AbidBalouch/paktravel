@@ -1,9 +1,6 @@
 "use client";
 // components/TestimonialForm/TestimonialForm.jsx
-// ---------------------------------------------------------------------------
-// Reusable testimonial-submission form — Home page aur Attraction detail
-// page dono par use hoti hai. Submit hone par /api/testimonials ko POST
-// karta hai, jo WordPress mein ek "pending" testimonial post banata hai.
+
 // ---------------------------------------------------------------------------
 
 import { useState, useRef, useEffect } from "react";
@@ -14,6 +11,7 @@ const STARS = [1, 2, 3, 4, 5];
 export default function TestimonialForm() {
   const [name, setName] = useState("");
   const [designation, setDesignation] = useState("");
+  const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
   const [image, setImage] = useState(null);
@@ -47,6 +45,7 @@ export default function TestimonialForm() {
   function resetForm() {
     setName("");
     setDesignation("");
+    setReview("");
     setRating(0);
     removeImage();
   }
@@ -57,6 +56,11 @@ export default function TestimonialForm() {
     if (!name.trim()) {
       setStatus("error");
       setMessage("Please enter your name.");
+      return;
+    }
+    if (!review.trim()) {
+      setStatus("error");
+      setMessage("Please write your review.");
       return;
     }
     if (rating < 1) {
@@ -72,6 +76,7 @@ export default function TestimonialForm() {
       const formData = new FormData();
       formData.append("name", name.trim());
       formData.append("designation", designation.trim());
+      formData.append("review", review.trim());
       formData.append("rating", String(rating));
       if (image) formData.append("image", image);
 
@@ -177,6 +182,22 @@ export default function TestimonialForm() {
                 />
               </div>
             </div>
+          </div>
+
+          {/* ---------------- Review text ---------------- */}
+          <div className={styles.field}>
+            <label htmlFor="testimonial-review" className={styles.label}>
+              Your review
+            </label>
+            <textarea
+              id="testimonial-review"
+              value={review}
+              onChange={(e) => setReview(e.target.value)}
+              placeholder="Tell fellow travelers about your experience…"
+              className={styles.textarea}
+              rows={4}
+              required
+            />
           </div>
 
           {/* ---------------- Star rating ---------------- */}
