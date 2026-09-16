@@ -2,6 +2,7 @@
 const WP_BASE_URL =
   process.env.NEXT_PUBLIC_WP_API_URL || "http://localhost/travel-pak";
 const COOKIE_NAME = process.env.JWT_COOKIE_NAME || "travel_pak_token";
+const LOGIN_HINT_COOKIE = "tp_logged_in";
 
 export async function POST(request) {
   try {
@@ -45,12 +46,26 @@ export async function POST(request) {
     const social = validateData.data?.user?.user_url || "";
 
     const response = Response.json({ success: true, email, name, social });
-    response.headers.set(
+
+    // Asal JWT — httpOnly, JS se readable nahi (security ke liye sahi)
+    response.headers.append(
       "Set-Cookie",
       `${COOKIE_NAME}=${authData.data.jwt}; HttpOnly; Path=/; SameSite=Lax; Max-Age=2592000${
         process.env.NODE_ENV === "production" ? "; Secure" : ""
       }`,
     );
+
+    // Chhoti "hint" cookie — httpOnly NAHI, sirf UI ko turant batati hai ke
+    // user logged in hai (koi sensitive data nahi). Isse client-side
+    // AuthStatusContext turant sahi button dikha sakta hai, bina fetch ka
+    // wait kiye — Login/Signup button ka "flash" khatam ho jata hai.
+    response.headers.append(
+      "Set-Cookie",
+      `${LOGIN_HINT_COOKIE}=1; Path=/; SameSite=Lax; Max-Age=2592000${
+        process.env.NODE_ENV === "production" ? "; Secure" : ""
+      }`,
+    );
+
     return response;
   } catch (err) {
     console.error("[api/auth/login] failed:", err.message);

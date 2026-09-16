@@ -10,13 +10,25 @@ const LOGGED_OUT_DEFAULT = {
   social: null,
 };
 
+//  non-sensitive "hint" cookie hai (httpOnly NAHI) 
+
+const LOGIN_HINT_COOKIE = "tp_logged_in";
+
+function readLoginHintCookie() {
+  if (typeof document === "undefined") return false;
+  return document.cookie
+    .split("; ")
+    .some((row) => row.startsWith(`${LOGIN_HINT_COOKIE}=1`));
+}
+
 export function AuthStatusProvider({ initialStatus, children }) {
-  // initialStatus ab layout se nahi aati (server-side cookies() read hata
-  // di gayi hai) — is liye "logged out" default se shuru karte hain, phir
-  // mount hote hi client-side /api/auth/status se asal status fetch karte
-  // hain. Isse koi bhi page render (chahe kitna bhi nested/static ho) is
-  // fetch se bilkul unaffected rehta hai.
-  const [authStatus, setAuthStatus] = useState(initialStatus || LOGGED_OUT_DEFAULT);
+
+  const [authStatus, setAuthStatus] = useState(() => {
+    if (initialStatus) return initialStatus;
+    return readLoginHintCookie()
+      ? { ...LOGGED_OUT_DEFAULT, loggedIn: true }
+      : LOGGED_OUT_DEFAULT;
+  });
 
   useEffect(() => {
     let cancelled = false;
