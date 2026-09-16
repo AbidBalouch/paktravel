@@ -15,12 +15,12 @@
 .header {
   position: relative;
   z-index: 1;
-  margin-bottom: 36px;
+  margin-bottom: 14px;
 }
 
 .heading {
   font-family: var(--font-heading);
-  font-size: 14px;
+  font-size: 32px;
   font-weight: 700;
   line-height: 1.2;
   color: #fff;
