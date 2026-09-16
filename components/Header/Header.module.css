@@ -11,7 +11,10 @@
     background-color 0.3s ease,
     box-shadow 0.3s ease;
 }
-
+.authPlaceholder {
+  width: 160px; /* Login + Sign Up buttons ki approx combined width */
+  height: 40px;
+}
 .headerScrolled {
   background: var(--color-white);
   box-shadow: 0 4px 16px var(--color-shadow);
