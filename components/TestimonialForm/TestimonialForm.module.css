@@ -20,7 +20,7 @@
 
 .heading {
   font-family: var(--font-heading);
-  font-size: 32px;
+  font-size: 14px;
   font-weight: 700;
   line-height: 1.2;
   color: #fff;
@@ -209,7 +209,7 @@
   padding: 15px 36px;
   border: none;
   border-radius: 999px;
-  background: var(--color-primary-light);
+  background: #00821c;
   color: var(--color-white);
   font-size: 15px;
   font-weight: 700;
