@@ -1,4 +1,5 @@
 import { getAttractionBySlug, weatherCodeLabel } from "@/lib/api";
+import TestimonialForm from "@/components/TestimonialForm/TestimonialForm";
 import { notFound } from "next/navigation";
 import { FaFacebook, FaInstagram, FaYoutube, FaTiktok } from "react-icons/fa6";
 import Image from "next/image";
@@ -302,7 +303,7 @@ export default async function AttractionDetailPage({ params }) {
                     </div>
                 </div>
             </div>
-
+            <TestimonialForm />
             {/* 11. Newsletter */}
             <Newsletter />
         </div>

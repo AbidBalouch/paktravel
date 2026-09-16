@@ -1,0 +1,310 @@
+/* components/TestimonialForm/TestimonialForm.module.css
+   ---------------------------------------------------------------------------
+   Existing site tokens (globals.css) use hote hain — koi naya arbitrary
+   palette introduce nahi kiya, taake baaki site ke sath consistent rahe.
+--------------------------------------------------------------------------- */
+
+.section {
+  padding: 80px var(--container-padding);
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 100%;
+  max-width: 720px;
+  background: var(--color-white);
+  border-radius: 28px;
+  padding: 48px;
+  box-shadow: 0 12px 40px var(--color-shadow);
+  border: 1px solid var(--color-border-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  opacity: 0.08;
+}
+
+.header {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 36px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--color-primary-dark);
+  margin-bottom: 10px;
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-dark);
+  margin: 0;
+  max-width: 480px;
+}
+
+.subheading {
+  margin: 12px 0 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text-gray);
+  max-width: 460px;
+}
+
+.form {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.topRow {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+/* ---------- Avatar / photo upload ---------- */
+
+.avatarField {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 96px;
+}
+
+.avatarInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.avatarLabel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  border: 2px dashed var(--color-border-light);
+  background: rgba(0, 0, 0, 0.02);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+  overflow: hidden;
+}
+
+.avatarLabel:hover {
+  border-color: var(--color-primary);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.avatarPlaceholder {
+  color: var(--color-text-gray);
+  display: flex;
+}
+
+.avatarPreview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatarBadge {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-primary-dark);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  border: 2px solid var(--color-white);
+}
+
+.avatarHint {
+  font-size: 12px;
+  color: var(--color-text-gray);
+}
+
+.removePhoto {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 12px;
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ---------- Text fields ---------- */
+
+.fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-dark);
+}
+
+.input {
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border-light);
+  font-size: 15px;
+  color: var(--color-text-dark);
+  background: var(--color-white);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input:focus {
+  border-color: var(--color-primary-dark);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.04);
+}
+
+.input::placeholder {
+  color: var(--color-text-gray);
+  opacity: 0.7;
+}
+
+/* ---------- Star rating ---------- */
+
+.ratingField {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stars {
+  display: flex;
+  gap: 6px;
+}
+
+.starBtn {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: var(--color-border-light);
+  transition: transform 0.12s ease;
+  line-height: 0;
+}
+
+.starBtn:hover,
+.starBtn:focus-visible {
+  transform: scale(1.12);
+}
+
+.starFilled {
+  color: var(--color-primary-dark);
+}
+
+.starEmpty {
+  color: var(--color-border-light);
+}
+
+/* ---------- Submit ---------- */
+
+.submitBtn {
+  align-self: flex-start;
+  padding: 15px 36px;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-primary-dark);
+  color: var(--color-white);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.submitBtn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.submitBtn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.note {
+  margin: 0;
+  font-size: 14px;
+}
+
+.noteSuccess {
+  color: var(--color-primary-dark);
+}
+
+.noteError {
+  color: #c0392b;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+  .card {
+    padding: 32px 24px;
+  }
+
+  .heading {
+    font-size: 26px;
+  }
+
+  .topRow {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .fields {
+    width: 100%;
+  }
+
+  .submitBtn {
+    align-self: stretch;
+    text-align: center;
+  }
+}
