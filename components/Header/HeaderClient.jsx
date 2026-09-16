@@ -12,6 +12,18 @@ export default function HeaderClient({ logo, menu, buttons }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
+  // Server hamesha "logged out" HTML bhejta hai (server ko cookie ka pata
+  // nahi hota). Client par turant hi sahi state pata chal jati hai, lekin
+  // agar hum use turant render kar dein to React ka hydration pehle wale
+  // (galat) HTML ke sath match nahi karega — isi mismatch ki wajah se
+  // "pehle Login/Signup, phir Account" wala flash dikhta hai. "mounted"
+  // gate lagane se hum tab tak kuch bhi render nahi karte jab tak client
+  // fully mount na ho jaye — isse flash khatam ho jata hai.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     function handleScroll() {
       setIsScrolled(window.scrollY > 20);
@@ -81,7 +93,12 @@ export default function HeaderClient({ logo, menu, buttons }) {
 
         {/* Desktop buttons / account dropdown */}
         <div className={styles.actions}>
-          {loginStatus?.loggedIn ? (
+          {!mounted ? (
+            // Server/client hydration match karne ke liye — koi bhi button
+            // decide karne se pehle khali jagah (fixed width taake layout
+            // shift na ho)
+            <div className={styles.authPlaceholder} aria-hidden="true" />
+          ) : loginStatus?.loggedIn ? (
             <div className={styles.accountWrap} ref={dropdownRef}>
               <button
                 type="button"
@@ -142,7 +159,7 @@ export default function HeaderClient({ logo, menu, buttons }) {
           ))}
         </ul>
         <div className={styles.mobileActions}>
-          {loginStatus?.loggedIn ? (
+          {!mounted ? null : loginStatus?.loggedIn ? (
             <>
               <a href="/my-contributions" className={styles.loginLink} onClick={() => setIsMobileMenuOpen(false)}>
                 My Contributions
