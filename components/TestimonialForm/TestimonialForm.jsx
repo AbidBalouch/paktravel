@@ -106,11 +106,7 @@ export default function TestimonialForm() {
   return (
       <div className={styles.card}>
         <div className={styles.header}>
-          <span className={styles.eyebrow}>Share Your Experience</span>
-          <h2 className={styles.heading}>Leave a review for fellow travelers</h2>
-          <p className={styles.subheading}>
-            Your story helps others plan their next trip across Pakistan.
-          </p>
+          <h2 className={styles.heading}>Rate Us</h2>
         </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>

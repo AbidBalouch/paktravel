@@ -10,17 +10,7 @@
   overflow: hidden;
 }
 
-.card::before {
-  content: "";
-  position: absolute;
-  top: -80px;
-  right: -80px;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  background: var(--color-primary);
-  opacity: 0.08;
-}
+
 
 .header {
   position: relative;
@@ -28,31 +18,14 @@
   margin-bottom: 36px;
 }
 
-.eyebrow {
-  display: inline-block;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--color-primary-dark);
-  margin-bottom: 10px;
-}
-
 .heading {
   font-family: var(--font-heading);
   font-size: 32px;
   font-weight: 700;
   line-height: 1.2;
-  color: var(--color-text-dark);
+  color: #fff;
   margin: 0;
   max-width: 480px;
-}
-
-.subheading {
-  margin: 12px 0 0;
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--color-text-gray);
-  max-width: 460px;
 }
 
 .form {
