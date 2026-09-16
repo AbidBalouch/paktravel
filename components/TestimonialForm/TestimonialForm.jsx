@@ -181,11 +181,7 @@ export default function TestimonialForm() {
                   className={styles.input}
                 />
               </div>
-            </div>
-          </div>
-
-          {/* ---------------- Review text ---------------- */}
-          <div className={styles.field}>
+            <div className={styles.field}>
             <label htmlFor="testimonial-review" className={styles.label}>
               Your review
             </label>
@@ -199,6 +195,10 @@ export default function TestimonialForm() {
               required
             />
           </div>
+            </div>
+          </div>
+
+          {/* ---------------- Review text ---------------- */}
 
           {/* ---------------- Star rating ---------------- */}
           <div className={styles.ratingField}>
