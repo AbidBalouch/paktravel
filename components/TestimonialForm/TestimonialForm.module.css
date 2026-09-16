@@ -195,7 +195,7 @@
 }
 
 .starFilled {
-  color: var(--color-primary-dark);
+  color: #edc661;
 }
 
 .starEmpty {
@@ -209,7 +209,7 @@
   padding: 15px 36px;
   border: none;
   border-radius: 999px;
-  background: var(--color-primary-dark);
+  background: var(--color-primary-light);
   color: var(--color-white);
   font-size: 15px;
   font-weight: 700;
