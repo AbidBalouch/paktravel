@@ -142,7 +142,7 @@
 .label {
   font-size: 14px;
   font-weight: 600;
-  color: var(--color-text-dark);
+  color: var(--color-white);
 }
 
 .input ,.textarea{
