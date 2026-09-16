@@ -104,7 +104,6 @@ export default function TestimonialForm() {
   const displayRating = hoverRating || rating;
 
   return (
-    <section className={styles.section}>
       <div className={styles.card}>
         <div className={styles.header}>
           <span className={styles.eyebrow}>Share Your Experience</span>
@@ -194,11 +193,10 @@ export default function TestimonialForm() {
               rows={4}
               required
             />
-          </div>
+            </div>
             </div>
           </div>
 
-          {/* ---------------- Review text ---------------- */}
 
           {/* ---------------- Star rating ---------------- */}
           <div className={styles.ratingField}>
@@ -248,6 +246,5 @@ export default function TestimonialForm() {
           )}
         </form>
       </div>
-    </section>
   );
 }

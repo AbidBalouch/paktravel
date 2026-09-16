@@ -230,22 +230,9 @@ export default async function AttractionDetailPage({ params }) {
                                 </section>
                             )}
 
-                            {attraction.photographyTips.length > 0 && (
                                 <section className={`${styles.card} ${styles.photoCard}`}>
-                                    <div className={styles.photoIconBadge}>
-                                        <Camera size={26} color="#0f3d24" strokeWidth={1.5} />
-                                    </div>
-                                    <h2 className={styles.photoTitle}>Photography Tips</h2>
-                                    <ul className={styles.checkList}>
-                                        {attraction.photographyTips.map((tip, i) => (
-                                            <li key={i} className={styles.photoTip}>{tip}</li>
-                                        ))}
-                                    </ul>
-                                    <a href="#gallery" className={styles.viewGalleryBtn}>
-                                        View Gallery
-                                    </a>
+                                    <TestimonialForm />
                                 </section>
-                            )}
                         </div>
                     </div>
                 </div>
