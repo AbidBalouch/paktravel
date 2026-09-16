@@ -1,14 +1,16 @@
 "use client";
 // components/ProvinceExplorer/ProvinceExplorer.jsx
 // ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 
 import { useState, useMemo } from "react";
 import Image from "next/image";
 import DivisionCard from "@/components/DivisionCard/DivisionCard";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import styles from "./ProvinceExplorer.module.css";
 
 export default function ProvinceExplorer({ province }) {
-  const { heroImage, badge, title, tagline, description, divisions = [] } = province;
+  const { heroImage, badge, title, tagline, description, divisions = [], breadcrumb } = province;
   const [query, setQuery] = useState("");
 
   const filtered = useMemo(() => {
@@ -22,6 +24,8 @@ export default function ProvinceExplorer({ province }) {
 
   return (
     <>
+
+
       {/* ================= Hero / Banner (search bar included) ================= */}
       <section className={styles.hero}>
         <div className={styles.heroBg}>
@@ -76,13 +80,25 @@ export default function ProvinceExplorer({ province }) {
       {/* ================= Divisions Grid (separate section, plain bg) ================= */}
       <section className={styles.section}>
         <div className="container">
-          
+      {/* ================= Breadcrumb ================= */}
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/" },
+          // Ye sirf Division page use-case mein aata hai — Province page ke
+          // liye "province" object mein "breadcrumb" key hi nahi hoti.
+          breadcrumb?.province && {
+            label: breadcrumb.province.name,
+            href: `/provinces/${breadcrumb.province.slug}`,
+          },
+          { label: title },
+        ].filter(Boolean)}
+      />          
           {divisions.length === 0 ? (
             <p className={styles.noResults}>
-              “No divisions have been added for this province yet.”
+              "No divisions have been added for this province yet."
             </p>
           ) : filtered.length === 0 ? (
-            <p className={styles.noResults}>“No destination was found with this name.”</p>
+            <p className={styles.noResults}>"No destination was found with this name."</p>
           ) : (
             <div className={styles.grid}>
               {filtered.map((division) => (
