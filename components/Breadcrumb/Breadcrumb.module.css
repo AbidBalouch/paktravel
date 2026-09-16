@@ -1,7 +1,7 @@
 /* components/Breadcrumb/Breadcrumb.module.css */
 
 .breadcrumb {
-  padding: 16px var(--container-padding) 0;
+  padding: 20px 0px;
 }
 
 .list {
