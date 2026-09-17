@@ -37,7 +37,12 @@
   width: 100%;
   height: 100%;
   /* 100% Pure white par end hoga taake bottom se blend ho jaye */
-  background: color-mix(in oklab, #000 40%, transparent);
+  background: linear-gradient(
+    0deg,
+    #fbf9f4 0%,
+    rgba(0, 50, 21, 0.3) 50%,
+    rgba(0, 50, 21, 0.1) 100%
+  );
   z-index: 2;
 }
 
