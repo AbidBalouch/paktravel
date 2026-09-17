@@ -283,7 +283,7 @@
   display: grid;
   grid-template-columns: 898fr 320fr;
   gap: 24px;
-  align-items: stretch;
+  align-items: flex-start;
 }
 @media (max-width: 1024px) {
   .weatherPhotoGrid {
