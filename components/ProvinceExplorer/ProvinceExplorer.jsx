@@ -59,7 +59,7 @@ export default function ProvinceExplorer({ province }) {
           <div className={styles.searchBarWrap}>
             <div className={styles.searchBar}>
               <span className={styles.searchIconLeft} aria-hidden="true">
-                🍃
+                
               </span>
               <input
                 type="text"
