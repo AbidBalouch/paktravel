@@ -23,7 +23,12 @@ export async function POST(request) {
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code, email, new_password: password }),
+        body: JSON.stringify({
+          code,
+          email,
+          new_password: password,
+          AUTH_KEY: process.env.WP_JWT_AUTH_KEY,
+        }),
       },
     );
 

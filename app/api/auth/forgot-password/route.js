@@ -26,7 +26,7 @@ export async function POST(request) {
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, AUTH_KEY: process.env.WP_JWT_AUTH_KEY }),
       },
     );
 
