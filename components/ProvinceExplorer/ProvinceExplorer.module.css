@@ -61,7 +61,7 @@
 
 .heroInner {
   max-width: 1200px;
-  margin: 40px auto 0;
+  margin: 20px auto 0;
   padding: 0 var(--container-padding);
   position: relative;
   z-index: 3;
@@ -93,7 +93,7 @@
 /* ---------------- Search bar (banner ke andar) ---------------- */
 
 .searchBarWrap {
-  margin-top: 32px;
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
