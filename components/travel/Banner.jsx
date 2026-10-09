@@ -7,7 +7,7 @@ export default function Banner() {
  const { menuOpen, favCount, favN, navItems, menuColumns, menuCta, menuAll, heroChips, mapRegions, mapPins, feat, stats, modes, placeholder, submitLabel, query, onQuery, onSubmit, showResults, results, aiAnswer, suggestChips, interests, regionTabs, divisionItems, districtItems, districtTitle, districtAttractions, districtFootnote, breadcrumb, popularTitle, popular, heroImg, nearImg, footerImg, districtImg, routes, utilities, seasons, footerColumns } = useTravel();
  return (<section className="tp-style-32" id="top">
 <div className="tp-style-33">
-<img className="tp-image" src={heroImg} alt={"Drop a mountain and lake photo"} />
+<img className="tp-image" src="https://paktravel.hammanitechdemos.com/wp-content/uploads/2026/10/banner.png" alt={"Drop a mountain and lake photo"} />
 </div>
 <div className="tp-style-34"></div>
 <div className="tp-style-35">
