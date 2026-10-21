@@ -1,155 +1,113 @@
 // components/Footer/Footer.jsx
+// Global dynamic footer (server component) — design maujooda homepage wala
+// hi hai (tp-style classes, travel.css), lekin saara content WordPress se:
+//   Menus / brand / socials / app links : /wp-json/travel-pakistan/v1/footer
+//   Regions column                     : destination taxonomy (Region terms)
+import { getFooterData, getDestinationTreeData, safe } from "@/lib/api";
+import "./footer-global.css";
 
-import Image from "next/image";
-import { getFooterData } from "@/lib/api";
-import styles from "./Footer.module.css";
+// Design wali footer photo ka fallback (TravelModel bhi yahi use karta tha)
+const FOOTER_PHOTO_FALLBACK = "https://loremflickr.com/1600/700/mountain,snow?lock=45";
 
-// Small inline social icons — no extra icon library required
-const SOCIAL_ICONS = {
-  facebook: (
-    <svg
-      viewBox="0 0 24 24"
-      width="20"
-      height="20"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      <path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z" />
-    </svg>
-  ),
-
-  instagram: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      width="20"
-      height="20"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0-3-3Zm5.25-3.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z" />
-    </svg>
-  ),
-};
+const SOCIAL_LABELS = { facebook: "Facebook", x: "X", twitter: "X", instagram: "Instagram", youtube: "YouTube" };
 
 export default async function Footer() {
-  const data = await getFooterData();
+  const [data, tree] = await Promise.all([
+    safe(getFooterData, null),
+    safe(getDestinationTreeData, null),
+  ]);
+
+  const regions = tree?.regions || [];
+  const menus = data?.menus || [];
+  const otherMenu = menus.find((m) => /other/i.test(m.title || ""));
+
+  // Columns: pehle Regions (taxonomy), phir WordPress footer menus
+  const columns = [
+    ...(regions.length
+      ? [
+          {
+            title: "Regions",
+            links: regions.map((r) => ({ label: r.name, url: `/provinces/${r.slug}` })),
+          },
+        ]
+      : []),
+    ...menus.map((menu) => ({
+      title: menu.title,
+      links: (menu.items || []).map((item) => ({
+        label: item.label,
+        url: item.url,
+        target: item.target || "_self",
+      })),
+    })),
+  ];
+
+  const description =
+    data?.brand?.description ||
+    "Travel Pakistan — a free guide to every district in the country.";
+  const year = new Date().getFullYear();
 
   return (
-    <footer className={styles.footer}>
-      <div className={`container ${styles.top}`}>
-        {/* Brand column */}
-        <div className={styles.brand}>
-          <div className={styles.brandHeading}>
-            {data.brand?.logo && (
-              <Image
-                src={data.brand.logo}
-                alt="Travel Pakistan"
-                width={140}
-                height={26}
-                className={styles.brandLogo}
-              />
-            )}
-          </div>
-
-          <p className={styles.brandDesc}>
-            {data.brand?.description}
-          </p>
-
-          {/* Download App */}
-          {data.download_app?.title && (
-            <p className={styles.downloadTitle}>
-              {data.download_app.title}
-            </p>
-          )}
-
-          <div className={styles.storeButtons}>
-            {/* App Store */}
-            {data.download_app?.app_store_url && (
-              <a
-                href={data.download_app.app_store_url}
-                className={styles.storeBtn}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Download on the App Store"
-              >
-                <Image
-                  src="/images/appstore.svg"
-                  alt="Download on the App Store"
-                  width={140}
-                  height={42}
-                  className={styles.storeImage}
-                />
-              </a>
-            )}
-
-            {/* Google Play */}
-            {data.download_app?.google_play_url && (
-              <a
-                href={data.download_app.google_play_url}
-                className={styles.storeBtn}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Get it on Google Play"
-              >
-                <Image
-                  src="/images/goggle.svg"
-                  alt="Get it on Google Play"
-                  width={140}
-                  height={42}
-                  className={styles.storeImage}
-                />
-              </a>
-            )}
-          </div>
-        </div>
-
-        {/* Menu columns — WordPress menus render dynamically */}
-        <div className={styles.menus}>
-          {data.menus?.map((menu) => (
-            <div key={menu.menu_id} className={styles.menuCol}>
-              <h4 className={styles.menuTitle}>
-                {menu.title}
-              </h4>
-
-              <ul>
-                {menu.items?.map((item) => (
-                  <li key={item.id}>
-                    <a
-                      href={item.url}
-                      target={item.target || "_self"}
-                      rel={
-                        item.target === "_blank"
-                          ? "noopener noreferrer"
-                          : undefined
-                      }
-                    >
-                      {item.label}
-                    </a>
-                  </li>
+    <footer className="tp-style-160">
+      <div className="tp-style-161">
+        <img className="tp-image" src={FOOTER_PHOTO_FALLBACK} alt="Footer photo" />
+      </div>
+      <div className="tp-style-162"></div>
+      <div className="tp-style-163">
+        <div className="tp-style-164">
+          {columns.map((col, i) => (
+            <div key={i} className="tp-style-87">
+              <div className="tp-style-165">{col.title}</div>
+              <div className="tp-style-166">
+                {col.links.map((link, j) => (
+                  <a
+                    key={j}
+                    className="tp-style-167"
+                    href={link.url}
+                    target={link.target || "_self"}
+                    rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
+                  >
+                    {link.label}
+                  </a>
                 ))}
-              </ul>
+              </div>
             </div>
           ))}
         </div>
-      </div>
 
-      {/* Social bar */}
-      <div className={styles.socialBar}>
-        <div className={`container ${styles.socialInner}`}>
-          {data.socials?.map((social) => (
-            <a
-              key={social.platform}
-              href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={social.platform}
-              className={styles.socialIcon}
-            >
-              {SOCIAL_ICONS[social.icon] ||
-                social.platform?.charAt(0)}
-            </a>
-          ))}
+        {/* Download app — WordPress footer endpoint se */}
+        {(data?.download_app?.app_store_url || data?.download_app?.google_play_url) && (
+          <div className="gf-apps">
+            <span className="gf-apps-title">{data.download_app.title || "Download App"}</span>
+            {data.download_app.app_store_url && (
+              <a href={data.download_app.app_store_url} target="_blank" rel="noopener noreferrer">App Store</a>
+            )}
+            {data.download_app.google_play_url && (
+              <a href={data.download_app.google_play_url} target="_blank" rel="noopener noreferrer">Google Play</a>
+            )}
+          </div>
+        )}
+
+        <div className="tp-style-168 gf-bottom">
+          <span>{description}</span>
+          <span className="gf-bottom-right">
+            <span>
+              © {year}
+              {otherMenu?.items?.length
+                ? otherMenu.items.map((item, i) => (
+                    <span key={i}> · <a href={item.url}>{item.label}</a></span>
+                  ))
+                : <> · <a href="/privacy-policy">Privacy</a> · <a href="/terms-conditions">Terms</a> · <a href="/contact">Contact</a></>}
+            </span>
+            {data?.socials?.length > 0 && (
+              <span className="gf-socials">
+                {data.socials.map((s, i) => (
+                  <a key={i} href={s.url} target="_blank" rel="noopener noreferrer" aria-label={s.platform}>
+                    {SOCIAL_LABELS[String(s.icon || s.platform || "").toLowerCase()] || s.platform}
+                  </a>
+                ))}
+              </span>
+            )}
+          </span>
         </div>
       </div>
     </footer>

@@ -4,14 +4,14 @@ import { useTravel } from "./TravelProvider";
 import { Button } from "./Button";
 
 export default function MapInteraction() {
- const { menuOpen, favCount, favN, navItems, menuColumns, menuCta, menuAll, heroChips, mapRegions, mapPins, feat, stats, modes, placeholder, submitLabel, query, onQuery, onSubmit, showResults, results, aiAnswer, suggestChips, interests, regionTabs, divisionItems, districtItems, districtTitle, districtAttractions, districtFootnote, breadcrumb, popularTitle, popular, heroImg, nearImg, footerImg, districtImg, routes, utilities, seasons, footerColumns } = useTravel();
+ const { homeHeadings, menuOpen, favCount, favN, navItems, menuColumns, menuCta, menuAll, heroChips, mapRegions, mapPins, feat, stats, modes, placeholder, submitLabel, query, onQuery, onSubmit, showResults, results, aiAnswer, suggestChips, interests, regionTabs, divisionItems, districtItems, districtTitle, districtAttractions, districtFootnote, breadcrumb, popularTitle, popular, heroImg, nearImg, footerImg, districtImg, routes, utilities, seasons, footerColumns } = useTravel();
  return (<section className="tp-style-62" id="regionmap">
 <div className="tp-style-63">
 <div>
-<div className="tp-style-64">Explore by map</div>
-<h2 className="tp-style-65">Pick a region on the map</h2>
+<div className="tp-style-64">{homeHeadings?.mapBadge || "Explore by map"}</div>
+<h2 className="tp-style-65">{homeHeadings?.mapHeading || "Pick a region on the map"}</h2>
 </div>
-<span className="tp-style-66">Tap a region or a city dot. The card on the right changes.</span>
+<span className="tp-style-66">{homeHeadings?.mapDescription || "Tap a region or a city dot. The card on the right changes."}</span>
 </div>
 <div className="tp-style-67">
 <div className="tp-style-68">

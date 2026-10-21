@@ -2,7 +2,23 @@ import { travelAssets } from "./travelAssets";
 
 export class TravelModel {
   _idx;
-  constructor(notify) { this.notify = notify; }
+  constructor(notify, dynamic = null) {
+    this.notify = notify;
+    // WordPress se aaya hua dynamic data (server-side fetch, app/page.jsx).
+    // Jahan WP data maujood ho wahan hardcoded fallback replace ho jata hai;
+    // jahan WP khali ho wahan purana design data hi chalta rehta hai.
+    this.dynamic = dynamic || {};
+    if (Array.isArray(this.dynamic.explorerRegions) && this.dynamic.explorerRegions.length) {
+      this.regions = this.dynamic.explorerRegions;
+    }
+    if (this.dynamic.placesByDistrict && Object.keys(this.dynamic.placesByDistrict).length) {
+      const wpPlaces = {};
+      for (const [district, items] of Object.entries(this.dynamic.placesByDistrict)) {
+        wpPlaces[district] = items.map(i => i.name + "|" + (i.type || "Place")).join(";");
+      }
+      this.places = { ...this.places, ...wpPlaces };
+    }
+  }
   setState(patch) { this.state = { ...this.state, ...(typeof patch === "function" ? patch(this.state) : patch) }; this.notify?.(); }
   state = {
     region: "Gilgit-Baltistan", division: "Gilgit", district: "Hunza",
@@ -230,7 +246,7 @@ export class TravelModel {
     if (this._idx) return this._idx;
     const out = [];
     this.regions.forEach(r => {
-      out.push({ kind: "Region", name: r.name, where: r.meta.split(" · ")[0], region: r.name, division: Object.keys(r.divisions)[0], district: r.divisions[Object.keys(r.divisions)[0]][0] });
+      out.push({ kind: "Region", name: r.name, where: r.meta.split(" · ")[0], region: r.name, division: Object.keys(r.divisions)[0], district: (r.divisions[Object.keys(r.divisions)[0]] || [])[0] });
       Object.keys(r.divisions).forEach(dv => {
         out.push({ kind: "Division", name: dv + " Division", where: r.name, region: r.name, division: dv, district: r.divisions[dv][0] });
         r.divisions[dv].forEach(ds => {
@@ -311,14 +327,17 @@ export class TravelModel {
     });
   }
   featured(sel) {
-    const i = this.mapRegionInfo[sel], r = this.region(sel === "Azad Jammu & Kashmir" ? "Gilgit-Baltistan" : sel), reg = this.regions.find(x => x.name === sel);
+    const base = this.mapRegionInfo[sel];
+    const wpInfo = (this.dynamic.regionInfo || {})[sel];
+    const i = wpInfo ? { ...base, desc: wpInfo.desc || base.desc, picks: wpInfo.picks || base.picks } : base;
+    const r = this.region(sel === "Azad Jammu & Kashmir" ? "Gilgit-Baltistan" : sel), reg = this.regions.find(x => x.name === sel);
     const dn = reg ? Object.keys(reg.divisions) : [];
     const nd = reg ? dn.reduce((a, d) => a + reg.divisions[d].length, 0) : 0;
     return {
       name: sel, desc: i.desc, picks: i.picks, slot: "map-" + this.slug(sel),
       meta: reg ? dn.length + " divisions · " + nd + " districts" : "Region guide coming soon",
-      img: this.photo(sel, this.img(i.tags, i.lock, 1000, 900)),
-      onExplore: () => { if (reg) this.setState({ region: sel, division: dn[0], district: reg.divisions[dn[0]][0] }); const el = document.getElementById("explorer"); if (el) el.scrollIntoView({ behavior: "smooth" }); }
+      img: wpInfo?.img || this.photo(sel, this.img(i.tags, i.lock, 1000, 900)),
+      onExplore: () => { if (reg) this.setState({ region: sel, division: dn[0], district: (reg.divisions[dn[0]] || [])[0] }); const el = document.getElementById("explorer"); if (el) el.scrollIntoView({ behavior: "smooth" }); }
     };
   }
 
@@ -346,20 +365,39 @@ export class TravelModel {
       : [];
 
     const interest = s.interest;
-    const popular = this.popularDefs
+    const wpPopular = Array.isArray(this.dynamic.popular) ? this.dynamic.popular : [];
+    const popularDefs = wpPopular.length
+      ? wpPopular.map(p => ({
+          name: p.name, where: p.where, tag: p.tag, season: p.season || "",
+          k: this.interestDefs.map(d => d.key).includes(p.typeName) ? [p.typeName] : [],
+          tags: "pakistan,travel", imgOverride: p.img || null, link: p.link || null
+        }))
+      : this.popularDefs;
+    const popular = popularDefs
       .filter(p => interest === "All" || p.k.includes(interest))
       .slice(0, 8)
       .map((p, i) => ({
         name: p.name, where: p.where, tag: p.tag, season: p.season,
         slot: "att-" + this.slug(p.name),
-        img: this.photo(p.name, this.img(p.tags, 100 + i, 640, 420)),
+        img: p.imgOverride || this.photo(p.name, this.img(p.tags, 100 + i, 640, 420)),
         favColor: s.favs[p.name] ? "var(--tp-color-13)" : "var(--tp-color-52)",
         onFav: () => this.setState(st => ({ favs: Object.assign({}, st.favs, { [p.name]: !st.favs[p.name] }) }))
       }));
 
     const interestLabel = (this.interestDefs.find(i => i.key === interest) || {}).label || "All places";
 
+    const wpBanner = this.dynamic.banner || null;
+    const wpSeasons = Array.isArray(this.dynamic.timeToGo) && this.dynamic.timeToGo.length ? this.dynamic.timeToGo : null;
     return {
+      banner: wpBanner,
+      homeHeadings: {
+        likeHeading: wpBanner?.likeHeading || "",
+        likeDescription: wpBanner?.likeDescription || "",
+        mapBadge: wpBanner?.mapBadge || "",
+        mapHeading: wpBanner?.mapHeading || "",
+        mapDescription: wpBanner?.mapDescription || "",
+        attractionsBadge: wpBanner?.attractionsBadge || ""
+      },
       menuOpen: s.menuOpen,
       favCount: Object.values(s.favs).filter(Boolean).length + " saved",
       favN: Object.values(s.favs).filter(Boolean).length,
@@ -402,7 +440,7 @@ export class TravelModel {
         ? { bd: "var(--tp-color-4)", fg: "var(--tp-color-1)", scrim: "linear-gradient(to top,var(--tp-color-53),var(--tp-color-54))" }
         : { bd: "var(--tp-color-7)", fg: "var(--tp-color-1)", scrim: "linear-gradient(to top,var(--tp-color-55),var(--tp-color-17))" })),
 
-      regionTabs: this.regions.map(r => Object.assign({ name: r.name, meta: r.meta, onClick: go({ region: r.name, division: Object.keys(r.divisions)[0], district: r.divisions[Object.keys(r.divisions)[0]][0] }) }, sel(r.name === s.region))),
+      regionTabs: this.regions.map(r => Object.assign({ name: r.name, meta: r.meta, onClick: go({ region: r.name, division: Object.keys(r.divisions)[0], district: (r.divisions[Object.keys(r.divisions)[0]] || [])[0] }) }, sel(r.name === s.region))),
       divisionItems: divNames.map(d => Object.assign({ name: d, n: reg.divisions[d].length, onClick: go({ division: d, district: reg.divisions[d][0] }) }, d === division ? { bg: "var(--tp-color-3)", fg: "var(--tp-color-1)", w: "700" } : { bg: "transparent", fg: "var(--tp-color-11)", w: "500" })),
       districtItems: dists.map(d => Object.assign({ name: d, tag: (this.parse(d).length || 0) + " places", onClick: go({ district: d }) }, d === district ? { bg: "var(--tp-color-13)", fg: "var(--tp-color-1)", w: "700", tagFg: "var(--tp-color-56)" } : { bg: "transparent", fg: "var(--tp-color-11)", w: "500", tagFg: "var(--tp-color-13)" })),
       districtTitle: district,
@@ -426,7 +464,7 @@ export class TravelModel {
         { glyph: "⛰", title: "Papers and passes", body: "Some areas need a permit. See which ones, and which roads are open.", cta: "Check now" },
         { glyph: "⌁", title: "How to get there", body: "Flights, buses, jeep rates and how long each drive takes.", cta: "See travel help" }
       ],
-      seasons: [
+      seasons: wpSeasons || [
         { months: "April to June", where: "Gilgit-Baltistan, Swat", note: "Flowers and open valleys" },
         { months: "July to September", where: "Deosai, Neelum, Kumrat", note: "All high roads open" },
         { months: "October to November", where: "Hunza, Skardu", note: "Best colours, less crowd" },
