@@ -8,6 +8,9 @@ export class TravelModel {
     // Jahan WP data maujood ho wahan hardcoded fallback replace ho jata hai;
     // jahan WP khali ho wahan purana design data hi chalta rehta hai.
     this.dynamic = dynamic || {};
+    // Static design data ko fallback ke liye sambhal kar rakho — WP me kisi region
+    // (masalan Islamabad) ki divisions na hon to map card phir bhi sahi dikhe.
+    this.fallbackRegions = this.regions;
     if (Array.isArray(this.dynamic.explorerRegions) && this.dynamic.explorerRegions.length) {
       this.regions = this.dynamic.explorerRegions;
     }
@@ -48,11 +51,11 @@ export class TravelModel {
   photo(key, fallback) { return travelAssets[key] || fallback; }
 
   regions = [
-    { name: "Gilgit-Baltistan", meta: "3 divisions · 10 districts · peaks and lakes", divisions: {
+    { name: "Gilgit-Baltistan", meta: "3 divisions · 14 districts · peaks and lakes", divisions: {
       Gilgit: ["Gilgit", "Hunza", "Nagar", "Ghizer", "Gupis-Yasin"],
       Baltistan: ["Skardu", "Shigar", "Kharmang", "Ghanche", "Roundu"],
       Diamer: ["Diamer (Chilas)", "Astore", "Darel", "Tangir"] } },
-    { name: "Punjab", meta: "9 divisions · 41 districts · forts and shrines", divisions: {
+    { name: "Punjab", meta: "9 divisions · 38 districts · forts and shrines", divisions: {
       Lahore: ["Lahore", "Kasur", "Nankana Sahib", "Sheikhupura"],
       Rawalpindi: ["Rawalpindi", "Murree", "Attock", "Chakwal", "Jhelum", "Talagang"],
       Bahawalpur: ["Bahawalpur", "Bahawalnagar", "Rahim Yar Khan"],
@@ -62,7 +65,7 @@ export class TravelModel {
       Sargodha: ["Sargodha", "Khushab", "Mianwali", "Bhakkar"],
       Sahiwal: ["Sahiwal", "Okara", "Pakpattan"],
       "Dera Ghazi Khan": ["Dera Ghazi Khan", "Rajanpur", "Layyah", "Muzaffargarh"] } },
-    { name: "Khyber Pakhtunkhwa", meta: "7 divisions · 38 districts · valleys and old ruins", divisions: {
+    { name: "Khyber Pakhtunkhwa", meta: "7 divisions · 32 districts · valleys and old ruins", divisions: {
       Malakand: ["Swat", "Chitral Lower", "Chitral Upper", "Dir Upper", "Dir Lower", "Buner", "Shangla", "Bajaur"],
       Hazara: ["Abbottabad", "Mansehra", "Haripur", "Battagram", "Torghar", "Kolai-Palas"],
       Peshawar: ["Peshawar", "Charsadda", "Nowshera", "Khyber", "Mohmand"],
@@ -70,14 +73,14 @@ export class TravelModel {
       Kohat: ["Kohat", "Hangu", "Karak", "Kurram", "Orakzai"],
       Bannu: ["Bannu", "Lakki Marwat", "North Waziristan"],
       "Dera Ismail Khan": ["Dera Ismail Khan", "Tank", "South Waziristan"] } },
-    { name: "Sindh", meta: "6 divisions · 30 districts · sea and old cities", divisions: {
+    { name: "Sindh", meta: "6 divisions · 28 districts · sea and old cities", divisions: {
       Karachi: ["Karachi South", "Karachi East", "Karachi West", "Karachi Central", "Korangi", "Malir", "Keamari"],
       Hyderabad: ["Hyderabad", "Thatta", "Jamshoro", "Dadu", "Badin", "Sujawal", "Matiari"],
       Sukkur: ["Sukkur", "Khairpur", "Ghotki"],
       Larkana: ["Larkana", "Shikarpur", "Jacobabad", "Kashmore", "Qambar Shahdadkot"],
       "Mirpur Khas": ["Mirpur Khas", "Tharparkar", "Umerkot"],
       "Shaheed Benazirabad": ["Nawabshah", "Naushahro Feroze", "Sanghar"] } },
-    { name: "Balochistan", meta: "8 divisions · 36 districts · desert and coast", divisions: {
+    { name: "Balochistan", meta: "8 divisions · 33 districts · desert and coast", divisions: {
       Quetta: ["Quetta", "Pishin", "Killa Abdullah", "Chaman"],
       Kalat: ["Kalat", "Khuzdar", "Mastung", "Lasbela", "Hub", "Awaran"],
       Makran: ["Gwadar", "Kech (Turbat)", "Panjgur"],
@@ -332,14 +335,21 @@ export class TravelModel {
     const wpInfo = (this.dynamic.regionInfo || {})[sel];
     const i = wpInfo ? { ...base, desc: wpInfo.desc || base.desc, picks: wpInfo.picks || base.picks } : base;
     const canon = sel === "Azad Jammu & Kashmir" ? "Azad Kashmir" : sel;
-    const r = this.region(canon), reg = this.regions.find(x => x.name === canon) || this.regions.find(x => x.name === sel) || (sel === "Islamabad" ? this.regions.find(x => x.name === "Islamabad Capital Territory") : null);
+    let reg = this.regions.find(x => x.name === canon) || this.regions.find(x => x.name === sel) || (sel === "Islamabad" ? this.regions.find(x => x.name === "Islamabad Capital Territory") : null);
+    const inExplorer = !!reg;
+    if (!reg) {
+      // WP me is region ki divisions na hon (masalan Islamabad) to static fallback istemal karo
+      const fb = this.fallbackRegions || [];
+      reg = fb.find(x => x.name === sel) || (sel === "Islamabad" ? fb.find(x => x.name === "Islamabad Capital Territory") : null);
+    }
     const dn = reg ? Object.keys(reg.divisions) : [];
     const nd = reg ? dn.reduce((a, d) => a + reg.divisions[d].length, 0) : 0;
+    const plural = (n, w) => n + " " + w + (n === 1 ? "" : "s");
     return {
       name: sel, desc: i.desc, picks: i.picks, slot: "map-" + this.slug(sel),
-      meta: reg ? dn.length + " divisions · " + nd + " districts" : "Region guide coming soon",
+      meta: reg ? plural(dn.length, "division") + " · " + plural(nd, "district") : "Region guide coming soon",
       img: wpInfo?.img || this.photo(sel, this.img(i.tags, i.lock, 1000, 900)),
-      onExplore: () => { if (reg) this.setState({ region: reg.name, division: dn[0], district: (reg.divisions[dn[0]] || [])[0] }); const el = document.getElementById("explorer"); if (el) el.scrollIntoView({ behavior: "smooth" }); }
+      onExplore: () => { if (inExplorer && reg) this.setState({ region: reg.name, division: dn[0], district: (reg.divisions[dn[0]] || [])[0] }); const el = document.getElementById("explorer"); if (el) el.scrollIntoView({ behavior: "smooth" }); }
     };
   }
 
