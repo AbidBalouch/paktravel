@@ -298,14 +298,15 @@ export class TravelModel {
     ];
   }
 
-  mapData = {"paths": {"Gilgit-Baltistan": "M454.0 32.0 L534.0 25.4 L623.6 93.6 L598.0 128.8 L550.0 133.2 L521.2 120.0 L498.8 115.6 L479.6 120.0 L463.6 102.4 L450.8 80.4 L457.2 54.0Z", "Khyber Pakhtunkhwa": "M425.2 32.0 L454.0 32.0 L457.2 54.0 L450.8 80.4 L463.6 102.4 L479.6 120.0 L470.0 137.6 L450.8 164.0 L434.8 177.2 L431.6 212.4 L406.0 252.0 L383.6 278.4 L370.8 252.0 L380.4 221.2 L351.6 203.6 L374.0 164.0 L409.2 155.2 L409.2 128.8 L425.2 93.6 L418.8 71.6Z", "Azad Jammu & Kashmir": "M470.0 137.6 L479.6 120.0 L498.8 115.6 L521.2 120.0 L511.6 150.8 L505.2 181.6 L495.6 194.8 L486.0 181.6 L473.2 168.4Z", "Punjab": "M431.6 212.4 L434.8 177.2 L450.8 164.0 L470.0 137.6 L473.2 168.4 L486.0 181.6 L495.6 194.8 L505.2 203.6 L518.0 216.8 L530.8 243.2 L521.2 265.2 L514.8 287.2 L498.8 296.0 L502.0 313.6 L470.0 340.0 L438.0 366.4 L409.2 406.0 L390.0 428.0 L374.0 423.6 L354.8 406.0 L361.2 370.8 L370.8 318.0 L383.6 278.4 L406.0 252.0Z", "Sindh": "M374.0 423.6 L390.0 428.0 L402.8 436.8 L380.4 472.0 L377.2 511.6 L380.4 533.6 L374.0 560.0 L358.0 595.2 L322.8 612.8 L290.8 599.6 L284.4 564.4 L268.4 538.0 L268.4 511.6 L284.4 489.6 L294.0 450.0 L310.0 428.0 L335.6 414.8 L354.8 406.0Z", "Balochistan": "M82.8 340.0 L114.8 357.6 L150.0 357.6 L185.2 362.0 L217.2 353.2 L255.6 340.0 L258.8 296.0 L303.6 269.6 L342.0 260.8 L370.8 252.0 L383.6 278.4 L370.8 318.0 L361.2 370.8 L354.8 406.0 L335.6 414.8 L310.0 428.0 L294.0 450.0 L284.4 489.6 L268.4 511.6 L268.4 538.0 L252.4 538.0 L207.6 542.4 L166.0 542.4 L127.6 546.8 L105.2 546.8 L105.2 502.8 L127.6 489.6 L156.4 458.8 L143.6 414.8 L111.6 392.8 L86.0 366.4Z"}, "pins": {"Hunza": {"x": 521.2, "y": 58.4, "r": "Gilgit-Baltistan"}, "Skardu": {"x": 553.2, "y": 102.4, "r": "Gilgit-Baltistan"}, "Swat": {"x": 450.8, "y": 106.8, "r": "Khyber Pakhtunkhwa"}, "Peshawar": {"x": 422.0, "y": 159.6, "r": "Khyber Pakhtunkhwa"}, "Muzaffarabad": {"x": 486.0, "y": 142.0, "r": "Azad Jammu & Kashmir"}, "Islamabad": {"x": 473.2, "y": 172.8, "r": "Punjab"}, "Lahore": {"x": 511.6, "y": 267.4, "r": "Punjab"}, "Bahawalpur": {"x": 428.4, "y": 362.0, "r": "Punjab"}, "Quetta": {"x": 278.0, "y": 326.8, "r": "Balochistan"}, "Gwadar": {"x": 127.6, "y": 551.2, "r": "Balochistan"}, "Karachi": {"x": 278.0, "y": 560.0, "r": "Sindh"}, "Mohenjo-daro": {"x": 313.2, "y": 454.4, "r": "Sindh"}}};
+  mapData = {"paths": {"Gilgit-Baltistan": "M454.0 32.0 L534.0 25.4 L623.6 93.6 L598.0 128.8 L550.0 133.2 L521.2 120.0 L498.8 115.6 L479.6 120.0 L463.6 102.4 L450.8 80.4 L457.2 54.0Z", "Khyber Pakhtunkhwa": "M425.2 32.0 L454.0 32.0 L457.2 54.0 L450.8 80.4 L463.6 102.4 L479.6 120.0 L470.0 137.6 L450.8 164.0 L434.8 177.2 L431.6 212.4 L406.0 252.0 L383.6 278.4 L370.8 252.0 L380.4 221.2 L351.6 203.6 L374.0 164.0 L409.2 155.2 L409.2 128.8 L425.2 93.6 L418.8 71.6Z", "Azad Jammu & Kashmir": "M470.0 137.6 L479.6 120.0 L498.8 115.6 L521.2 120.0 L511.6 150.8 L505.2 181.6 L495.6 194.8 L486.0 181.6 L473.2 168.4Z", "Punjab": "M431.6 212.4 L434.8 177.2 L450.8 164.0 L470.0 137.6 L473.2 168.4 L486.0 181.6 L495.6 194.8 L505.2 203.6 L518.0 216.8 L530.8 243.2 L521.2 265.2 L514.8 287.2 L498.8 296.0 L502.0 313.6 L470.0 340.0 L438.0 366.4 L409.2 406.0 L390.0 428.0 L374.0 423.6 L354.8 406.0 L361.2 370.8 L370.8 318.0 L383.6 278.4 L406.0 252.0Z", "Sindh": "M374.0 423.6 L390.0 428.0 L402.8 436.8 L380.4 472.0 L377.2 511.6 L380.4 533.6 L374.0 560.0 L358.0 595.2 L322.8 612.8 L290.8 599.6 L284.4 564.4 L268.4 538.0 L268.4 511.6 L284.4 489.6 L294.0 450.0 L310.0 428.0 L335.6 414.8 L354.8 406.0Z", "Balochistan": "M82.8 340.0 L114.8 357.6 L150.0 357.6 L185.2 362.0 L217.2 353.2 L255.6 340.0 L258.8 296.0 L303.6 269.6 L342.0 260.8 L370.8 252.0 L383.6 278.4 L370.8 318.0 L361.2 370.8 L354.8 406.0 L335.6 414.8 L310.0 428.0 L294.0 450.0 L284.4 489.6 L268.4 511.6 L268.4 538.0 L252.4 538.0 L207.6 542.4 L166.0 542.4 L127.6 546.8 L105.2 546.8 L105.2 502.8 L127.6 489.6 L156.4 458.8 L143.6 414.8 L111.6 392.8 L86.0 366.4Z", "Islamabad": "M455 158 L472 152 L482 162 L480 178 L468 186 L456 178 Z"}, "pins": {"Hunza": {"x": 521.2, "y": 58.4, "r": "Gilgit-Baltistan"}, "Skardu": {"x": 553.2, "y": 102.4, "r": "Gilgit-Baltistan"}, "Swat": {"x": 450.8, "y": 106.8, "r": "Khyber Pakhtunkhwa"}, "Peshawar": {"x": 422.0, "y": 159.6, "r": "Khyber Pakhtunkhwa"}, "Muzaffarabad": {"x": 486.0, "y": 142.0, "r": "Azad Jammu & Kashmir"}, "Islamabad": {"x": 473.2, "y": 172.8, "r": "Islamabad"}, "Lahore": {"x": 511.6, "y": 267.4, "r": "Punjab"}, "Bahawalpur": {"x": 428.4, "y": 362.0, "r": "Punjab"}, "Quetta": {"x": 278.0, "y": 326.8, "r": "Balochistan"}, "Gwadar": {"x": 127.6, "y": 551.2, "r": "Balochistan"}, "Karachi": {"x": 278.0, "y": 560.0, "r": "Sindh"}, "Mohenjo-daro": {"x": 313.2, "y": 454.4, "r": "Sindh"}}};
   mapRegionInfo = {
     "Gilgit-Baltistan": { fill: "var(--tp-color-46)", lab: [655, 40], anc: [568, 85], desc: "Majestic mountains, crystal clear lakes and unforgettable adventures.", tags: "mountains,lake", lock: 61, picks: "Hunza, Skardu, Fairy Meadows" },
     "Khyber Pakhtunkhwa": { fill: "var(--tp-color-47)", lab: [14, 70], anc: [452, 120], desc: "Green valleys, ancient Gandhara ruins and warm mountain hospitality.", tags: "valley,river", lock: 62, picks: "Swat, Kumrat, Chitral" },
     "Azad Jammu & Kashmir": { fill: "var(--tp-color-48)", lab: [655, 150], anc: [508, 142], desc: "Emerald river valleys, alpine lakes and lush forests.", tags: "kashmir,lake", lock: 63, picks: "Neelum Valley, Ratti Gali, Rawalakot" },
     "Punjab": { fill: "var(--tp-color-49)", lab: [655, 290], anc: [518, 285], desc: "Mughal forts, grand mosques, shrines and the best food in the country.", tags: "mosque,lahore", lock: 64, picks: "Lahore, Bahawalpur, Multan" },
     "Sindh": { fill: "var(--tp-color-50)", lab: [655, 470], anc: [350, 480], desc: "Ancient Indus ruins, shrines, the sea and a lively port city.", tags: "ruins,desert", lock: 65, picks: "Karachi, Mohenjo-daro, Thatta" },
-    "Balochistan": { fill: "var(--tp-color-51)", lab: [14, 330], anc: [215, 380], desc: "Wild coastline, dramatic rock formations and wide open desert.", tags: "coast,desert", lock: 66, picks: "Gwadar, Hingol, Quetta" }
+    "Balochistan": { fill: "var(--tp-color-51)", lab: [14, 330], anc: [215, 380], desc: "Wild coastline, dramatic rock formations and wide open desert.", tags: "coast,desert", lock: 66, picks: "Gwadar, Hingol, Quetta" },
+    "Islamabad": { fill: "var(--tp-color-52)", lab: [655, 205], anc: [470, 172], desc: "The green capital — Margalla Hills, Faisal Mosque and leafy boulevards.", tags: "mosque,hills", lock: 67, picks: "Faisal Mosque, Daman-e-Koh, Saidpur Village" }
   };
   mapRegionList(sel) {
     return Object.keys(this.mapRegionInfo).map(n => {
@@ -330,14 +331,15 @@ export class TravelModel {
     const base = this.mapRegionInfo[sel];
     const wpInfo = (this.dynamic.regionInfo || {})[sel];
     const i = wpInfo ? { ...base, desc: wpInfo.desc || base.desc, picks: wpInfo.picks || base.picks } : base;
-    const r = this.region(sel === "Azad Jammu & Kashmir" ? "Gilgit-Baltistan" : sel), reg = this.regions.find(x => x.name === sel);
+    const canon = sel === "Azad Jammu & Kashmir" ? "Azad Kashmir" : sel;
+    const r = this.region(canon), reg = this.regions.find(x => x.name === canon) || this.regions.find(x => x.name === sel) || (sel === "Islamabad" ? this.regions.find(x => x.name === "Islamabad Capital Territory") : null);
     const dn = reg ? Object.keys(reg.divisions) : [];
     const nd = reg ? dn.reduce((a, d) => a + reg.divisions[d].length, 0) : 0;
     return {
       name: sel, desc: i.desc, picks: i.picks, slot: "map-" + this.slug(sel),
       meta: reg ? dn.length + " divisions · " + nd + " districts" : "Region guide coming soon",
       img: wpInfo?.img || this.photo(sel, this.img(i.tags, i.lock, 1000, 900)),
-      onExplore: () => { if (reg) this.setState({ region: sel, division: dn[0], district: (reg.divisions[dn[0]] || [])[0] }); const el = document.getElementById("explorer"); if (el) el.scrollIntoView({ behavior: "smooth" }); }
+      onExplore: () => { if (reg) this.setState({ region: reg.name, division: dn[0], district: (reg.divisions[dn[0]] || [])[0] }); const el = document.getElementById("explorer"); if (el) el.scrollIntoView({ behavior: "smooth" }); }
     };
   }
 
@@ -397,7 +399,7 @@ export class TravelModel {
         mapHeading: wpBanner?.mapHeading || "",
         mapDescription: wpBanner?.mapDescription || "",
         attractionsBadge: wpBanner?.attractionsBadge || "",
-        popularHeading: wpBanner?.attractionsTitle || "",
+        popularHeading: wpBanner?.favoritePlacesHeading || wpBanner?.attractionsTitle || "",
         timeToGoHeading: wpBanner?.timeToGoHeading || "",
         timeToGoDescription: wpBanner?.timeToGoDescription || ""
       },
@@ -456,7 +458,7 @@ export class TravelModel {
       heroImg: this.photo("$hero", this.img("lake,mountains", 7, 1600, 900)),
       nearImg: this.photo("$near", this.img("desert,dunes", 33, 900, 600)),
       footerImg: this.photo("$footer", this.img("mountain,snow", 45, 1600, 700)),
-      districtImg: this.photo(district, this.img("valley,green", 21, 1200, 800)),
+      districtImg: (this.dynamic.regionInfo || {})[s.region]?.img || this.photo(district, this.img("valley,green", 21, 1200, 800)),
       routes: [
         { name: "The mountain highway", days: "7 days · Islamabad to Khunjerab", stops: "Besham · Chilas · Gilgit · Hunza · Passu", slot: "route-kkh", img: this.photo("The mountain highway", this.img("karakoram,mountain,road", 501, 900, 620)) },
         { name: "Desert and old palaces", days: "4 days · around Bahawalpur", stops: "Noor Mahal · Derawar · Lal Suhanra · Uch Sharif", slot: "route-cholistan", img: this.photo("Desert and old palaces", this.img("desert,fort,palace", 502, 900, 620)) },
