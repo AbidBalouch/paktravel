@@ -396,7 +396,10 @@ export class TravelModel {
         mapBadge: wpBanner?.mapBadge || "",
         mapHeading: wpBanner?.mapHeading || "",
         mapDescription: wpBanner?.mapDescription || "",
-        attractionsBadge: wpBanner?.attractionsBadge || ""
+        attractionsBadge: wpBanner?.attractionsBadge || "",
+        popularHeading: wpBanner?.attractionsTitle || "",
+        timeToGoHeading: wpBanner?.timeToGoHeading || "",
+        timeToGoDescription: wpBanner?.timeToGoDescription || ""
       },
       menuOpen: s.menuOpen,
       favCount: Object.values(s.favs).filter(Boolean).length + " saved",

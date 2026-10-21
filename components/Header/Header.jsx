@@ -8,6 +8,21 @@ import { getHeaderData, getDestinationTreeData, buildMenuTree, safe } from "@/li
 import HeaderClient from "./HeaderClient";
 
 const REGION_ICONS = ["#ic-mountain", "#ic-fort", "#ic-mosque", "#ic-hiker", "#ic-compass", "#ic-pin"];
+// Har province/region ka apna icon — uski pehchan ke hisaab se:
+// Gilgit-Baltistan = pahar, Punjab = qilay, Sindh = masjid/maqbaray,
+// KPK = hiker (valleys/treks), Balochistan = compass (coast/desert),
+// AJK = pin (lakes/valleys), Islamabad = Faisal Mosque
+const REGION_ICON_BY_SLUG = {
+  "gilgit-baltistan": "#ic-mountain",
+  punjab: "#ic-fort",
+  sindh: "#ic-mosque",
+  "khyber-pakhtunkhwa": "#ic-hiker",
+  balochistan: "#ic-compass",
+  "azad-kashmir": "#ic-pin",
+  "azad-jammu-kashmir": "#ic-pin",
+  islamabad: "#ic-mosque",
+  "islamabad-capital-territory": "#ic-mosque",
+};
 
 export default async function Header() {
   const [header, tree] = await Promise.all([
@@ -50,7 +65,7 @@ export default async function Header() {
       mega[item.id] = regions.slice(0, 6).map((region, i) => ({
         title: region.name,
         url: `/provinces/${region.slug}`,
-        icon: REGION_ICONS[i % REGION_ICONS.length],
+        icon: REGION_ICON_BY_SLUG[region.slug] || REGION_ICONS[i % REGION_ICONS.length],
         links: region.divisions.slice(0, 5).map((d) => ({
           label: d.name,
           url: `/provinces/${region.slug}/${d.slug}`,

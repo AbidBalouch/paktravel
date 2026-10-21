@@ -4,10 +4,10 @@ import { useTravel } from "./TravelProvider";
 import { Button } from "./Button";
 
 export default function MostLovedPlaces() {
- const { menuOpen, favCount, favN, navItems, menuColumns, menuCta, menuAll, heroChips, mapRegions, mapPins, feat, stats, modes, placeholder, submitLabel, query, onQuery, onSubmit, showResults, results, aiAnswer, suggestChips, interests, regionTabs, divisionItems, districtItems, districtTitle, districtAttractions, districtFootnote, breadcrumb, popularTitle, popular, heroImg, nearImg, footerImg, districtImg, routes, utilities, seasons, footerColumns } = useTravel();
+ const { homeHeadings, menuOpen, favCount, favN, navItems, menuColumns, menuCta, menuAll, heroChips, mapRegions, mapPins, feat, stats, modes, placeholder, submitLabel, query, onQuery, onSubmit, showResults, results, aiAnswer, suggestChips, interests, regionTabs, divisionItems, districtItems, districtTitle, districtAttractions, districtFootnote, breadcrumb, popularTitle, popular, heroImg, nearImg, footerImg, districtImg, routes, utilities, seasons, footerColumns } = useTravel();
  return (<section className="tp-style-116" id="popular">
 <div className="tp-style-117">
-<h2 className="tp-style-118">{popularTitle}</h2>
+<h2 className="tp-style-118">{homeHeadings?.popularHeading || popularTitle}</h2>
 <a className="tp-style-119" href="#">See all places →</a>
 </div>
 <div className="tp-style-120">
