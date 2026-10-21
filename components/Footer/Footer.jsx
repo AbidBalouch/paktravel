@@ -27,7 +27,7 @@ export default async function Footer() {
       ? [
           {
             title: "Regions",
-            links: regions.map((r) => ({ label: r.name, url: `/provinces/${r.slug}` })),
+            links: regions.slice(0, 5).map((r) => ({ label: r.name, url: `/provinces/${r.slug}` })),
           },
         ]
       : []),

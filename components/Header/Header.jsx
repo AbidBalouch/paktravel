@@ -34,14 +34,14 @@ export default async function Header() {
             title: child.label,
             url: child.url,
             icon: REGION_ICONS[i % REGION_ICONS.length],
-            links: child.children.map((gc) => ({ label: gc.label, url: gc.url })),
+            links: child.children.slice(0, 5).map((gc) => ({ label: gc.label, url: gc.url })),
           }))
         : [
             {
               title: item.label,
               url: item.url,
               icon: "#ic-compass",
-              links: item.children.map((c) => ({ label: c.label, url: c.url })),
+              links: item.children.slice(0, 5).map((c) => ({ label: c.label, url: c.url })),
             },
           ];
     } else if (isDestinations && regions.length) {
@@ -51,7 +51,7 @@ export default async function Header() {
         title: region.name,
         url: `/provinces/${region.slug}`,
         icon: REGION_ICONS[i % REGION_ICONS.length],
-        links: region.divisions.map((d) => ({
+        links: region.divisions.slice(0, 5).map((d) => ({
           label: d.name,
           url: `/provinces/${region.slug}/${d.slug}`,
         })),

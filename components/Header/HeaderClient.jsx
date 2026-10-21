@@ -179,13 +179,6 @@ export default function HeaderClient({ logo, items = [], mega = {}, buttons = []
                 </div>
               ))}
             </div>
-            <div className="tp-style-26">
-              <svg width="34" height="34" viewBox="0 0 48 48" fill="none" stroke="#0E5C36" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><use href="#ic-pin" /></svg>
-              <div className="tp-style-27">Have a destination in mind?</div>
-              <a className="tp-style-29" href={openItem.url || "/provinces"} onClick={() => setOpenId(null)}>
-                View all {openItem.label} →
-              </a>
-            </div>
           </div>
         </div>
       )}
