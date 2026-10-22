@@ -478,7 +478,7 @@ export class TravelModel {
             const on = s.interest === key;
             return {
               label: c.name, count: String(c.count), slot: "int-" + c.slug,
-              img: this.categoryImages[c.slug] || null,
+              img: c.img || this.categoryImages[c.slug] || null,
               onClick: go({ interest: key }),
               bd: on ? "var(--tp-color-4)" : "var(--tp-color-7)", fg: "var(--tp-color-1)",
               scrim: on ? "linear-gradient(to top,var(--tp-color-53),var(--tp-color-54))" : "linear-gradient(to top,var(--tp-color-55),var(--tp-color-17))",
@@ -508,11 +508,19 @@ export class TravelModel {
       nearImg: this.photo("$near", this.img("desert,dunes", 33, 900, 600)),
       footerImg: this.photo("$footer", this.img("mountain,snow", 45, 1600, 700)),
       districtImg: (this.dynamic.regionInfo || {})[s.region]?.img || this.photo(district, this.img("valley,green", 21, 1200, 800)),
-      routes: [
-        { name: "The mountain highway", days: "7 days · Islamabad to Khunjerab", stops: "Besham · Chilas · Gilgit · Hunza · Passu", slot: "route-kkh", img: this.photo("The mountain highway", this.img("karakoram,mountain,road", 501, 900, 620)) },
-        { name: "Desert and old palaces", days: "4 days · around Bahawalpur", stops: "Noor Mahal · Derawar · Lal Suhanra · Uch Sharif", slot: "route-cholistan", img: this.photo("Desert and old palaces", this.img("desert,fort,palace", 502, 900, 620)) },
-        { name: "Drive by the sea", days: "5 days · Karachi to Gwadar", stops: "Kund Malir · Hingol · Ormara · Astola", slot: "route-makran", img: this.photo("Drive by the sea", this.img("coast,sea,road", 503, 900, 620)) }
-      ],
+      tripsHeading: this.dynamic.tripsHeading || "",
+      // Ready-made trips: WP Home repeater (dynamic.readyTrips) pehle; warna static fallback
+      routes: (this.dynamic.readyTrips && this.dynamic.readyTrips.length ? this.dynamic.readyTrips : [
+        { name: "The mountain highway", days: "7 days · Islamabad to Khunjerab", stops: "Besham · Chilas · Gilgit · Hunza · Passu", img: "" },
+        { name: "Desert and old palaces", days: "4 days · around Bahawalpur", stops: "Noor Mahal · Derawar · Lal Suhanra · Uch Sharif", img: "" },
+        { name: "Drive by the sea", days: "5 days · Karachi to Gwadar", stops: "Kund Malir · Hingol · Ormara · Astola", img: "" }
+      ]).map((r, i) => ({
+        name: r.name,
+        days: r.days,
+        stops: r.stops,
+        slot: ["route-kkh", "route-cholistan", "route-makran"][i] || ("route-" + i),
+        img: r.img || this.photo(r.name, this.img(["karakoram,mountain,road", "desert,fort,palace", "coast,sea,road"][i] || "pakistan,travel", 501 + i, 900, 620))
+      })),
       utilities: [
         { glyph: "♥", title: "Your saved places", body: "Save any place you like. Come back and make a trip from them.", cta: "See saved" },
         { glyph: "⛰", title: "Papers and passes", body: "Some areas need a permit. See which ones, and which roads are open.", cta: "Check now" },

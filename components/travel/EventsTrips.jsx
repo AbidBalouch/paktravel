@@ -3,9 +3,9 @@ import { Fragment } from "react";
 import { useTravel } from "./TravelProvider";
 
 export default function EventsTrips() {
- const { menuOpen, favCount, favN, navItems, menuColumns, menuCta, menuAll, heroChips, mapRegions, mapPins, feat, stats, modes, placeholder, submitLabel, query, onQuery, onSubmit, showResults, results, aiAnswer, suggestChips, interests, regionTabs, divisionItems, districtItems, districtTitle, districtAttractions, districtFootnote, breadcrumb, popularTitle, popular, heroImg, nearImg, footerImg, districtImg, routes, utilities, seasons, footerColumns } = useTravel();
+ const { menuOpen, favCount, favN, navItems, menuColumns, menuCta, menuAll, heroChips, mapRegions, mapPins, feat, stats, modes, placeholder, submitLabel, query, onQuery, onSubmit, showResults, results, aiAnswer, suggestChips, interests, regionTabs, divisionItems, districtItems, districtTitle, districtAttractions, districtFootnote, breadcrumb, popularTitle, popular, heroImg, nearImg, footerImg, districtImg, routes, utilities, seasons, footerColumns, tripsHeading } = useTravel();
  return (<section className="tp-style-116">
-<h2 className="tp-style-131">Ready-made trips</h2>
+<h2 className="tp-style-131">{tripsHeading || "Ready-made trips"}</h2>
 <div className="tp-style-132">
 {routes.map((r, itemIndex) => <Fragment key={itemIndex}>
 <a className="tp-style-133" href="/provinces" style={{textDecoration:"none",color:"inherit"}}>

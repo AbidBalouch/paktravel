@@ -4,6 +4,7 @@ import {
   getDestinationTreeData,
   getHomeAttractionsData,
   getAttractionCategories,
+  getReadyMadeTrips,
   safe,
 } from "@/lib/api";
 
@@ -18,11 +19,12 @@ export const metadata = {
 export const revalidate = 60;
 
 export default async function HomePage() {
-  const [banner, tree, homeAttractions, categoriesData] = await Promise.all([
+  const [banner, tree, homeAttractions, categoriesData, readyTripsData] = await Promise.all([
     safe(getBannerData, null),
     safe(getDestinationTreeData, null),
     safe(getHomeAttractionsData, null),
     safe(getAttractionCategories, null),
+    safe(getReadyMadeTrips, null),
   ]);
 
   // Homepage ke dynamic hisse — TravelModel inhe istemal karta hai, jahan
@@ -41,6 +43,8 @@ export default async function HomePage() {
     timeToGo: banner?.timeToGo || [],
     categories: categoriesData?.categories || [],
     totalAttractions: categoriesData?.totalAttractions || 0,
+    readyTrips: readyTripsData?.trips || [],
+    tripsHeading: readyTripsData?.heading || "",
   };
 
   return <TravelHome dynamic={dynamic} />;
