@@ -8,7 +8,7 @@ export default function EventsTrips() {
 <h2 className="tp-style-131">{tripsHeading || "Ready-made trips"}</h2>
 <div className="tp-style-132">
 {routes.map((r, itemIndex) => <Fragment key={itemIndex}>
-<a className="tp-style-133" href="/provinces" style={{textDecoration:"none",color:"inherit"}}>
+<div className="tp-style-133">
 <img className="tp-image" src={r.img} alt={r.name} />
 <div className="tp-style-134"></div>
 <div className="tp-style-135">
@@ -16,7 +16,7 @@ export default function EventsTrips() {
 <div className="tp-style-136">{r.name}</div>
 <div className="tp-style-137">{r.stops}</div>
 </div>
-</a>
+</div>
 </Fragment>)}
 </div>
 </section>);
