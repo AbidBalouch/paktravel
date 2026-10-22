@@ -1,5 +1,6 @@
 "use client";
 import { Fragment } from "react";
+import Link from "next/link";
 import { useTravel } from "./TravelProvider";
 
 export default function MostLovedPlaces() {
@@ -11,7 +12,7 @@ export default function MostLovedPlaces() {
 </div>
 <div className="tp-style-120">
 {popular.map((p, itemIndex) => <Fragment key={itemIndex}>
-<a className="tp-style-121" href={p.link || "/provinces"} style={{textDecoration:"none",color:"inherit"}}>
+<Link className="tp-style-121" href={p.link || "/provinces"} style={{textDecoration:"none",color:"inherit"}}>
 <div className="tp-style-122">
 <img className="tp-image" src={p.img} alt={p.name} />
 <span className="tp-style-123" role="button" aria-label="Save place" onClick={(e) => { e.preventDefault(); e.stopPropagation(); p.onFav(); }} style={{"--tp-dynamic-0":p.favColor, cursor:"pointer"}}>♥</span>
@@ -20,12 +21,12 @@ export default function MostLovedPlaces() {
 <div className="tp-style-125">
 <div className="tp-style-126">{p.name}</div>
 <div className="tp-style-127">{p.where}</div>
-<div className="tp-style-128">
-<span className="tp-style-129">Best time: {p.season}</span>
-<span className="tp-style-130">Open →</span>
+<div className="tp-ml-seasonwrap">
+<p className="tp-ml-season"><strong>Best time:</strong> {p.season || "All year"}</p>
 </div>
+<div className="tp-ml-view"><span>View place</span><span aria-hidden="true">→</span></div>
 </div>
-</a>
+</Link>
 </Fragment>)}
 </div>
 </section>);

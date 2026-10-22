@@ -1,4 +1,4 @@
-import { getAttractionBySlug, weatherCodeLabel } from "@/lib/api";
+import { getAttractionBySlug, getAllAttractionSlugs, safe, weatherCodeLabel } from "@/lib/api";
 import TestimonialForm from "@/components/TestimonialForm/TestimonialForm";
 import { notFound } from "next/navigation";
 import { FaFacebook, FaInstagram, FaYoutube, FaTiktok } from "react-icons/fa6";
@@ -10,6 +10,15 @@ import styles from "./attractions.module.css";
 import {
     Sun, CloudSun, Cloud, CloudFog, CloudDrizzle, CloudRain, CloudSnow, CloudLightning, Camera, BookOpen, Footprints, ShoppingBag, ClipboardList, HeartPulse, Signpost,
 } from "lucide-react";
+
+export const revalidate = 60; // WordPress se har 60s baad fresh data (ISR)
+
+// SSG: sab attractions ke pages build time par bana do — click karte hi
+// page cache se khulta hai, WordPress ka wait nahi karna padta
+export async function generateStaticParams() {
+    const slugs = await safe(getAllAttractionSlugs, []);
+    return slugs.map((slug) => ({ slug }));
+}
 
 export default async function AttractionDetailPage({ params }) {
     const { slug } = params;
