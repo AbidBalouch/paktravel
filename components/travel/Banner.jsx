@@ -18,7 +18,7 @@ export default function Banner() {
 <div className="tp-style-40">
 <div className="tp-style-41">
 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6E7B73" strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></svg>
-<input className="tp-style-42" value={query} onChange={onQuery} placeholder="Search a city, district or attraction" />
+<input className="tp-style-42" value={query} onChange={onQuery} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); onSubmit(); } }} placeholder="Search a city, district or attraction" />
 <Button className="tp-style-43" onClick={onSubmit} type="button">Search</Button>
 </div>
 {Boolean(showResults) && <>

@@ -20,6 +20,10 @@ export class TravelModel {
         wpPlaces[district] = items.map(i => i.name + "|" + (i.type || "Place")).join(";");
       }
       this.places = { ...this.places, ...wpPlaces };
+      this.placeLinks = {};
+      for (const items of Object.values(this.dynamic.placesByDistrict)) {
+        for (const i of items) if (i.link) this.placeLinks[i.name] = i.link;
+      }
     }
   }
   setState(patch) { this.state = { ...this.state, ...(typeof patch === "function" ? patch(this.state) : patch) }; this.notify?.(); }
@@ -249,14 +253,20 @@ export class TravelModel {
     if (this._idx) return this._idx;
     const out = [];
     this.regions.forEach(r => {
-      out.push({ kind: "Region", name: r.name, where: r.meta.split(" · ")[0], region: r.name, division: Object.keys(r.divisions)[0], district: (r.divisions[Object.keys(r.divisions)[0]] || [])[0] });
+      const rSlug = this.slug(r.name);
+      out.push({ kind: "Region", name: r.name, where: r.meta.split(" · ")[0], region: r.name, division: Object.keys(r.divisions)[0], district: (r.divisions[Object.keys(r.divisions)[0]] || [])[0], href: `/provinces/${rSlug}` });
       Object.keys(r.divisions).forEach(dv => {
-        out.push({ kind: "Division", name: dv + " Division", where: r.name, region: r.name, division: dv, district: r.divisions[dv][0] });
+        out.push({ kind: "Division", name: dv + " Division", where: r.name, region: r.name, division: dv, district: r.divisions[dv][0], href: `/provinces/${rSlug}/${this.slug(dv)}` });
         r.divisions[dv].forEach(ds => {
-          out.push({ kind: "District", name: ds, where: dv + " · " + r.name, region: r.name, division: dv, district: ds });
-          this.parse(ds).forEach(a => out.push({ kind: a.type, name: a.name, where: ds + " · " + r.name, region: r.name, division: dv, district: ds }));
+          const dHref = `/provinces/${rSlug}/${this.slug(dv)}/${this.slug(ds)}`;
+          out.push({ kind: "District", name: ds, where: dv + " · " + r.name, region: r.name, division: dv, district: ds, href: dHref });
+          this.parse(ds).forEach(a => out.push({ kind: a.type, name: a.name, where: ds + " · " + r.name, region: r.name, division: dv, district: ds, href: (this.placeLinks || {})[a.name] || dHref }));
         });
       });
+    });
+    // WordPress attractions (Most Loved wali) bhi search me — seedha unke page par
+    (this.dynamic.popular || []).forEach(p => {
+      if (p.link && !out.some(o => o.name === p.name)) out.push({ kind: p.typeName || "Attraction", name: p.name, where: p.where || "", href: p.link });
     });
     this._idx = out;
     return out;
@@ -349,7 +359,7 @@ export class TravelModel {
       name: sel, desc: i.desc, picks: i.picks, slot: "map-" + this.slug(sel),
       meta: reg ? plural(dn.length, "division") + " · " + plural(nd, "district") : "Region guide coming soon",
       img: wpInfo?.img || this.photo(sel, this.img(i.tags, i.lock, 1000, 900)),
-      onExplore: () => { if (inExplorer && reg) this.setState({ region: reg.name, division: dn[0], district: (reg.divisions[dn[0]] || [])[0] }); const el = document.getElementById("explorer"); if (el) el.scrollIntoView({ behavior: "smooth" }); }
+      onExplore: () => { window.location.href = "/provinces/" + this.slug(canon); }
     };
   }
 
@@ -371,8 +381,8 @@ export class TravelModel {
     const q = s.query.trim().toLowerCase();
     const results = (!ai && q.length > 1)
       ? this.index().filter(i => i.name.toLowerCase().includes(q)).slice(0, 8).map(i => ({
-          kind: i.kind, name: i.name, where: i.where,
-          onClick: go({ region: i.region, division: i.division, district: i.district, query: "" })
+          kind: i.kind, name: i.name, where: i.where, href: i.href,
+          onClick: () => { window.location.href = i.href || "/provinces"; }
         }))
       : [];
 
@@ -392,6 +402,7 @@ export class TravelModel {
         name: p.name, where: p.where, tag: p.tag, season: p.season,
         slot: "att-" + this.slug(p.name),
         img: p.imgOverride || this.photo(p.name, this.img(p.tags, 100 + i, 640, 420)),
+        link: p.link || null,
         favColor: s.favs[p.name] ? "var(--tp-color-13)" : "var(--tp-color-52)",
         onFav: () => this.setState(st => ({ favs: Object.assign({}, st.favs, { [p.name]: !st.favs[p.name] }) }))
       }));
@@ -424,7 +435,7 @@ export class TravelModel {
       menuColumns: this.menuData(s.menuOpen).map((c, i) => Object.assign({}, c, { br: (i % 3 === 2) ? "0" : "1px solid var(--tp-color-2)", bb: i < 3 ? "1px solid var(--tp-color-2)" : "0" })),
       menuCta: s.menuOpen === "Things to Do" ? "Find things to do →" : s.menuOpen === "Places to Go" ? "Find places to go →" : "Plan my trip →",
       menuAll: s.menuOpen === "Things to Do" ? "View all things to do →" : s.menuOpen === "Places to Go" ? "View all places →" : "View all travel guides →",
-      heroChips: [{ label: "Bahawalpur", pin: true }, { label: "Gilgit" }, { label: "Skardu" }].map(c => Object.assign(c, { onClick: () => this.setState({ query: c.label, ai: null }) })),
+      heroChips: [{ label: "Bahawalpur", pin: true }, { label: "Gilgit" }, { label: "Skardu" }].map(c => Object.assign(c, { onClick: () => { const hit = this.index().find(i => i.name.toLowerCase().includes(c.label.toLowerCase())); if (hit) window.location.href = hit.href || "/provinces"; else this.setState({ query: c.label, ai: null }); } })),
       mapRegions: this.mapRegionList(s.mapSel),
       mapPins: this.mapPinList(s.mapSel),
       feat: this.featured(s.mapSel),
@@ -437,7 +448,7 @@ export class TravelModel {
       submitLabel: ai ? "Ask" : "Search",
       query: s.query,
       onQuery: (e) => this.setState({ query: e.target.value, ai: null }),
-      onSubmit: () => { if (ai && s.query.trim()) this.setState({ ai: this.runAi(s.query) }); else if (results.length) results[0].onClick(); },
+      onSubmit: () => { if (ai && s.query.trim()) this.setState({ ai: this.runAi(s.query) }); else if (results.length) results[0].onClick(); else if (s.query.trim()) window.location.href = "/provinces"; },
       showResults: results.length > 0,
       results,
       aiAnswer: s.ai,
@@ -459,7 +470,8 @@ export class TravelModel {
       divisionItems: divNames.map(d => Object.assign({ name: d, n: reg.divisions[d].length, onClick: go({ division: d, district: reg.divisions[d][0] }) }, d === division ? { bg: "var(--tp-color-3)", fg: "var(--tp-color-1)", w: "700" } : { bg: "transparent", fg: "var(--tp-color-11)", w: "500" })),
       districtItems: dists.map(d => Object.assign({ name: d, tag: (this.parse(d).length || 0) + " places", onClick: go({ district: d }) }, d === district ? { bg: "var(--tp-color-13)", fg: "var(--tp-color-1)", w: "700", tagFg: "var(--tp-color-56)" } : { bg: "transparent", fg: "var(--tp-color-11)", w: "500", tagFg: "var(--tp-color-13)" })),
       districtTitle: district,
-      districtAttractions: atts.length ? atts : [{ name: "Nothing added yet", type: "Add a place" }],
+      districtAttractions: atts.length ? atts.map(a => ({ ...a, link: (this.placeLinks || {})[a.name] || null })) : [{ name: "Nothing added yet", type: "Add a place", link: null }],
+      districtHref: `/provinces/${this.slug(reg.name)}/${this.slug(division)}/${this.slug(district)}`,
       districtFootnote: district + " · " + division + " Division · " + reg.name + " — " + atts.length + " places listed",
       breadcrumb: reg.name + " › " + division + " › " + district,
 

@@ -4,7 +4,7 @@ import { useTravel } from "./TravelProvider";
 import { Button } from "./Button";
 
 export default function Destinations() {
- const { menuOpen, favCount, favN, navItems, menuColumns, menuCta, menuAll, heroChips, mapRegions, mapPins, feat, stats, modes, placeholder, submitLabel, query, onQuery, onSubmit, showResults, results, aiAnswer, suggestChips, interests, regionTabs, divisionItems, districtItems, districtTitle, districtAttractions, districtFootnote, breadcrumb, popularTitle, popular, heroImg, nearImg, footerImg, districtImg, routes, utilities, seasons, footerColumns } = useTravel();
+ const { menuOpen, favCount, favN, navItems, menuColumns, menuCta, menuAll, heroChips, mapRegions, mapPins, feat, stats, modes, placeholder, submitLabel, query, onQuery, onSubmit, showResults, results, aiAnswer, suggestChips, interests, regionTabs, divisionItems, districtItems, districtTitle, districtAttractions, districtFootnote, districtHref, breadcrumb, popularTitle, popular, heroImg, nearImg, footerImg, districtImg, routes, utilities, seasons, footerColumns } = useTravel();
  return (<section className="tp-style-85" id="explorer">
 <div className="tp-style-86">
 <div className="tp-style-87">
@@ -54,14 +54,17 @@ export default function Destinations() {
 <div className="tp-style-108">Places in</div>
 <div className="tp-style-109">{districtTitle}</div>
 </div>
-<a className="tp-style-110" href="#">Open this district →</a>
+<a className="tp-style-110" href={districtHref}>Open this district →</a>
 </div>
 <div className="tp-style-111">
 {districtAttractions.map((at, itemIndex) => <Fragment key={itemIndex}>
-<div className="tp-style-112">
+{at.link ? <a className="tp-style-112" href={at.link} style={{textDecoration:"none",color:"inherit"}}>
 <div className="tp-style-113">{at.name}</div>
 <div className="tp-style-114">{at.type}</div>
-</div>
+</a> : <div className="tp-style-112">
+<div className="tp-style-113">{at.name}</div>
+<div className="tp-style-114">{at.type}</div>
+</div>}
 </Fragment>)}
 </div>
 <div className="tp-style-115">{districtFootnote}</div>
