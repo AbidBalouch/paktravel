@@ -1,4 +1,4 @@
-import { getAttractionBySlug, getAllAttractionSlugs, safe, weatherCodeLabel } from "@/lib/api";
+import { getAttractionBySlug, weatherCodeLabel } from "@/lib/api";
 import TestimonialForm from "@/components/TestimonialForm/TestimonialForm";
 import { notFound } from "next/navigation";
 import { FaFacebook, FaInstagram, FaYoutube, FaTiktok } from "react-icons/fa6";
@@ -13,11 +13,14 @@ import {
 
 export const revalidate = 60; // WordPress se har 60s baad fresh data (ISR)
 
-// SSG: sab attractions ke pages build time par bana do — click karte hi
-// page cache se khulta hai, WordPress ka wait nahi karna padta
+// ISR on-demand: attraction pages pehli visit par bante hain aur phir
+// cache se foran khulte hain. Build time par sab pages banana Vercel
+// build ko bohat slow kar raha tha (har page = kai WordPress calls),
+// is liye generateStaticParams jaan bujh kar khali hai — pages
+// runtime par generate + cache hote hain (homepage cards ke prefetch
+// se aksar pehle hi cache ho jate hain).
 export async function generateStaticParams() {
-    const slugs = await safe(getAllAttractionSlugs, []);
-    return slugs.map((slug) => ({ slug }));
+    return [];
 }
 
 export default async function AttractionDetailPage({ params }) {
