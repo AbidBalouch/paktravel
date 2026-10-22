@@ -14,7 +14,7 @@ export default function WhatYouLike() {
 <div className="tp-style-56">
 {interests.map((it, itemIndex) => <Fragment key={itemIndex}>
 <Button className="tp-style-57" onClick={it.onClick} type="button" style={{"--tp-dynamic-0":"1.5px solid " + String(it.bd),"--tp-dynamic-1":it.fg}}>
-<img className="tp-image" src={it.img} alt={it.label} />
+{it.img ? <img className="tp-image" src={it.img} alt={it.label} /> : null}
 <span className="tp-style-58" style={{"--tp-dynamic-0":it.scrim}}></span>
 <span className="tp-style-59">
 <span className="tp-style-60">{it.label}</span>

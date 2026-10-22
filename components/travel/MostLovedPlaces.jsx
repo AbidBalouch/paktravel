@@ -22,7 +22,7 @@ export default function MostLovedPlaces() {
 <div className="tp-style-126">{p.name}</div>
 <div className="tp-style-127">{p.where}</div>
 <div className="tp-ml-seasonwrap">
-<p className="tp-ml-season"><strong>Best time:</strong> {p.season || "All year"}</p>
+<p className="tp-ml-season">{p.desc || p.season || ""}</p>
 </div>
 <div className="tp-ml-view"><span>View place</span><span aria-hidden="true">→</span></div>
 </div>

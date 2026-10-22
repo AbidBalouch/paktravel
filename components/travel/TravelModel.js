@@ -207,6 +207,18 @@ export class TravelModel {
     Islamabad: "Faisal Mosque|Mosque;Daman-e-Koh|Viewpoint;Pakistan Monument|Heritage;Trail 5 Margalla|Trek;Saidpur Village|Heritage;Rawal Lake View Park|Park;Lok Virsa Museum|Museum"
   };
 
+  // Category tile images — generate ki hui tasaveer repo me rakhi hain,
+  // WordPress term ke slug se match hoti hain
+  categoryImages = {
+    all: "/images/categories/all.jpg",
+    mosque: "/images/categories/mosque.jpg",
+    "national-park": "/images/categories/national-park.jpg",
+    "forts-palaces": "/images/categories/forts-palaces.jpg",
+    "lakes-valleys": "/images/categories/lakes-valleys.jpg",
+    "hills-viewpoints": "/images/categories/hills-viewpoints.jpg",
+    historical: "/images/categories/historical.jpg",
+  };
+
   interestDefs = [
     { label: "All places", glyph: "◈", count: "900+", key: "All", tags: "landscape,pakistan" },
     { label: "Hills and peaks", glyph: "▲", count: "180", key: "Peak", tags: "mountain,snow,peak" },
@@ -391,7 +403,8 @@ export class TravelModel {
     const popularDefs = wpPopular.length
       ? wpPopular.map(p => ({
           name: p.name, where: p.where, tag: p.tag, season: p.season || "",
-          k: this.interestDefs.map(d => d.key).includes(p.typeName) ? [p.typeName] : [],
+          k: p.typeName ? [p.typeName] : [],
+          desc: p.desc || "",
           tags: "pakistan,travel", imgOverride: p.img || null, link: p.link || null
         }))
       : this.popularDefs;
@@ -399,7 +412,7 @@ export class TravelModel {
       .filter(p => interest === "All" || p.k.includes(interest))
       .slice(0, 8)
       .map((p, i) => ({
-        name: p.name, where: p.where, tag: p.tag, season: p.season,
+        name: p.name, where: p.where, tag: p.tag, season: p.season, desc: p.desc || "",
         slot: "att-" + this.slug(p.name),
         img: p.imgOverride || this.photo(p.name, this.img(p.tags, 100 + i, 640, 420)),
         link: p.link || null,
@@ -407,7 +420,9 @@ export class TravelModel {
         onFav: () => this.setState(st => ({ favs: Object.assign({}, st.favs, { [p.name]: !st.favs[p.name] }) }))
       }));
 
-    const interestLabel = (this.interestDefs.find(i => i.key === interest) || {}).label || "All places";
+    const dynCats = Array.isArray(this.dynamic.categories) ? this.dynamic.categories : [];
+    const interestLabel = (dynCats.find(c => c.name === interest) || {}).name
+      || (this.interestDefs.find(i => i.key === interest) || {}).label || "All places";
 
     const wpBanner = this.dynamic.banner || null;
     const wpSeasons = Array.isArray(this.dynamic.timeToGo) && this.dynamic.timeToGo.length ? this.dynamic.timeToGo : null;
@@ -457,14 +472,26 @@ export class TravelModel {
         : ["Hunza", "Skardu", "Swat", "Cholistan", "Neelum Valley", "Gwadar"]
       ).map(c => ({ label: c, onClick: () => this.setState({ query: c, ai: null }) })),
 
-      interests: this.interestDefs.map((i, n) => Object.assign({
-        label: i.label, glyph: i.glyph, count: i.count,
-        slot: "int-" + this.slug(i.label),
-        img: this.photo(i.label, this.img(i.tags, 300 + n, 400, 260)),
-        onClick: go({ interest: i.key })
-      }, s.interest === i.key
-        ? { bd: "var(--tp-color-4)", fg: "var(--tp-color-1)", scrim: "linear-gradient(to top,var(--tp-color-53),var(--tp-color-54))" }
-        : { bd: "var(--tp-color-7)", fg: "var(--tp-color-1)", scrim: "linear-gradient(to top,var(--tp-color-55),var(--tp-color-17))" })),
+      interests: dynCats.length
+        ? [{ name: "All places", slug: "all", count: this.dynamic.totalAttractions || 0 }, ...dynCats].map((c) => {
+            const key = c.slug === "all" ? "All" : c.name;
+            const on = s.interest === key;
+            return {
+              label: c.name, count: String(c.count), slot: "int-" + c.slug,
+              img: this.categoryImages[c.slug] || null,
+              onClick: go({ interest: key }),
+              bd: on ? "var(--tp-color-4)" : "var(--tp-color-7)", fg: "var(--tp-color-1)",
+              scrim: on ? "linear-gradient(to top,var(--tp-color-53),var(--tp-color-54))" : "linear-gradient(to top,var(--tp-color-55),var(--tp-color-17))",
+            };
+          })
+        : this.interestDefs.map((i, n) => Object.assign({
+            label: i.label, glyph: i.glyph, count: i.count,
+            slot: "int-" + this.slug(i.label),
+            img: this.photo(i.label, this.img(i.tags, 300 + n, 400, 260)),
+            onClick: go({ interest: i.key })
+          }, s.interest === i.key
+            ? { bd: "var(--tp-color-4)", fg: "var(--tp-color-1)", scrim: "linear-gradient(to top,var(--tp-color-53),var(--tp-color-54))" }
+            : { bd: "var(--tp-color-7)", fg: "var(--tp-color-1)", scrim: "linear-gradient(to top,var(--tp-color-55),var(--tp-color-17))" })),
 
       regionTabs: this.regions.map(r => Object.assign({ name: r.name, meta: r.meta, onClick: go({ region: r.name, division: Object.keys(r.divisions)[0], district: (r.divisions[Object.keys(r.divisions)[0]] || [])[0] }) }, sel(r.name === s.region))),
       divisionItems: divNames.map(d => Object.assign({ name: d, n: reg.divisions[d].length, onClick: go({ division: d, district: reg.divisions[d][0] }) }, d === division ? { bg: "var(--tp-color-3)", fg: "var(--tp-color-1)", w: "700" } : { bg: "transparent", fg: "var(--tp-color-11)", w: "500" })),
