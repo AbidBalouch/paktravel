@@ -251,13 +251,13 @@ export default async function AttractionDetailPage({ params }) {
               </section>
             )}
 
-            {/* About */}
-            {a.description && (
+            {/* About — timeline ab About text ke baghair bhi dikhta hai */}
+            {(a.description || a.timeline.length > 0) && (
               <section>
                 <div className={styles.sectionHead}>
                   <h2 className={styles.h2}>About {a.title}</h2>
                 </div>
-                <AboutText title={a.title} text={a.description} />
+                {a.description && <AboutText title={a.title} text={a.description} />}
                 {a.timeline.length > 0 && (
                   <div className={styles.timeline}>
                     {a.timeline.map((t, i) => (
