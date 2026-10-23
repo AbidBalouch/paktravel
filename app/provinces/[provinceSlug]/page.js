@@ -5,8 +5,7 @@
 import { notFound } from "next/navigation";
 import { getProvinceArchiveData, getAllProvinceSlugs, safe } from "@/lib/api";
 import ProvinceExplorer from "@/components/ProvinceExplorer/ProvinceExplorer";
-import BrandsCarousel from "@/components/BrandsCarousel/BrandsCarousel";
-import Newsletter from "@/components/Newsletter/Newsletter";
+import NewsletterBand from "@/components/AttractionDetail/NewsletterBand";
 import styles from "./province.module.css";
 
 export const revalidate = 60; // WordPress se har 60s baad fresh data (ISR)
@@ -59,8 +58,8 @@ export default async function ProvincePage({ params }) {
       <main>
         {/* ---------------- Hero/Banner + Search + Divisions Grid ---------------- */}
         <ProvinceExplorer province={province} />
-        <BrandsCarousel />
-        <Newsletter />
+        
+        <NewsletterBand />
       </main>
     </div>
   );

@@ -3,7 +3,7 @@ import { getDestinationTerms, getAttractionTypes, getContributePageData, getRece
 import ContributeForm from "./ContributeForm";
 import Image from "next/image";
 import OverlayCard from "@/components/Cards/OverlayCard";
-import Newsletter from "@/components/Newsletter/Newsletter";
+import NewsletterBand from "@/components/AttractionDetail/NewsletterBand";
 import styles from "./contribute.module.css";
 
 
@@ -115,7 +115,7 @@ export default async function ContributePage() {
                 </section>
             )}
 
-            <Newsletter />
+            <NewsletterBand />
         </>
     );
 }

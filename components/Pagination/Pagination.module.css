@@ -42,7 +42,7 @@
 
 .arrow:hover:not(:disabled),
 .page:hover {
-  border-color: var(--color-primary-dark, #1a5d1a);
+  border-color: var(--color-primary-dark, #0E6B45);
   color: #fff;
 }
 
@@ -52,8 +52,8 @@
 }
 
 .pageActive {
-  background: var(--color-primary-dark, #1a5d1a);
-  border-color: var(--color-primary-dark, #1a5d1a);
+  background: var(--color-primary-dark, #0E6B45);
+  border-color: var(--color-primary-dark, #0E6B45);
   color: #fff;
   font-weight: 700;
 }

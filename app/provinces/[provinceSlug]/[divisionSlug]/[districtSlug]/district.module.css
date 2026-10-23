@@ -26,6 +26,6 @@
 }
 
 .breadcrumbCurrent {
-  color: var(--color-primary-dark, #1a5d1a);
+  color: var(--color-primary-dark, #0E6B45);
   font-weight: 600;
 }

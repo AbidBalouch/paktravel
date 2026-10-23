@@ -2,8 +2,7 @@
 import Image from "next/image";
 import Destinations from "@/components/Destinations/Destinations";
 import Testimonials from "@/components/Testimonials/Testimonials";
-import Newsletter from "@/components/Newsletter/Newsletter";
-import BrandsCarousel from "@/components/BrandsCarousel/BrandsCarousel";
+import NewsletterBand from "@/components/AttractionDetail/NewsletterBand";
 import { getProvinceBannerData, safe } from "@/lib/api";
 import styles from "./provinces.module.css"; // ya jo bhi aapka CSS module hai
 
@@ -66,8 +65,8 @@ export default async function DestinationsPage() {
           <Destinations />
         </div>
         <Testimonials />
-        <BrandsCarousel />
-        <Newsletter />
+        
+        <NewsletterBand />
       </main>
     </div>
   );

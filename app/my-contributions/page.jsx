@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import MyContributionsList from "./MyContributionsList";
 import styles from "./my-contributions.module.css";
 import { getMyContributionsPageData, safe } from "@/lib/api";
-import Newsletter from "@/components/Newsletter/Newsletter";
+import NewsletterBand from "@/components/AttractionDetail/NewsletterBand";
 
 async function getLoginStatus() {
     const WP_BASE_URL = process.env.NEXT_PUBLIC_WP_API_URL || "http://localhost/travel-pak";
@@ -55,7 +55,7 @@ export default async function MyContributionsPage() {
                 )}
             </section>
             <MyContributionsList />
-            <Newsletter />
+            <NewsletterBand />
         </>
     );
 }

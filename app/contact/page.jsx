@@ -8,7 +8,7 @@
 import Image from "next/image";
 import { getContactPageData, getContactFormFields, getNewsletterData, safe } from "@/lib/api";
 import ContactForm from "./ContactForm";
-import Newsletter from "@/components/Newsletter/Newsletter";
+import NewsletterBand from "@/components/AttractionDetail/NewsletterBand";
 import styles from "./contact.module.css";
 
 // TODO: move to an ACF field once one exists for it — hardcoded for now
@@ -63,10 +63,7 @@ export default async function ContactPage() {
                 )}
             </section>
 
-            <Newsletter
-                badge={newsletter?.badge}
-                heading={newsletter?.heading}
-            />
+            <NewsletterBand />
         </>
     );
 }

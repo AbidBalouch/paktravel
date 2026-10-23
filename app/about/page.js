@@ -1,6 +1,5 @@
 import Image from "next/image";
-import BrandsCarousel from "@/components/BrandsCarousel/BrandsCarousel";
-import Newsletter from "@/components/Newsletter/Newsletter";
+import NewsletterBand from "@/components/AttractionDetail/NewsletterBand";
 // Header/Footer yahan import nahi karne — ye pehle se app/layout.js mein
 // globally render ho rahe hain (sab pages ko wrap karte hain), dobara yahan
 // laga dete to page par Header/Footer 2x dikhta.
@@ -202,8 +201,8 @@ export default async function AboutPage() {
             </div>
           </div>
         </section>
-        <BrandsCarousel />
-        <Newsletter />
+        
+        <NewsletterBand />
       </main>
     </div>
   );

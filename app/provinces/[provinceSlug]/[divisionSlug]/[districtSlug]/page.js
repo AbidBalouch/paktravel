@@ -10,7 +10,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getDistrictPageData, getAllDistrictParams, safe } from "@/lib/api";
 import DistrictExplorer from "@/components/DistrictExplorer/DistrictExplorer";
-import Newsletter from "@/components/Newsletter/Newsletter";
+import NewsletterBand from "@/components/AttractionDetail/NewsletterBand";
 import styles from "./district.module.css";
 
 export const revalidate = 60;
@@ -52,7 +52,7 @@ export default async function DistrictPage({ params }) {
       <main>
         {/* ---------------- Hero/Banner + Search + Collage + Tabs/Filters/Grid ---------------- */}
         <DistrictExplorer district={district} />
-        <Newsletter />
+        <NewsletterBand />
 
         {/* ---------------- JSON-LD structured data (SEO) ---------------- */}
         <script

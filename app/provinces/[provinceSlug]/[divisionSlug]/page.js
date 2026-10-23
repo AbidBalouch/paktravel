@@ -10,8 +10,7 @@
 import { notFound } from "next/navigation";
 import { getDivisionArchiveData, getAllDivisionParams, safe } from "@/lib/api";
 import ProvinceExplorer from "@/components/ProvinceExplorer/ProvinceExplorer";
-import BrandsCarousel from "@/components/BrandsCarousel/BrandsCarousel";
-import Newsletter from "@/components/Newsletter/Newsletter";
+import NewsletterBand from "@/components/AttractionDetail/NewsletterBand";
 import styles from "./division.module.css";
 
 export const revalidate = 60; // WordPress se har 60s baad fresh data (ISR)
@@ -65,8 +64,8 @@ export default async function DivisionPage({ params }) {
       <main>
         {/* ---------------- Hero/Banner + Search + Districts Grid ---------------- */}
         <ProvinceExplorer province={division} />
-        <BrandsCarousel />
-        <Newsletter />
+        
+        <NewsletterBand />
       </main>
     </div>
   );

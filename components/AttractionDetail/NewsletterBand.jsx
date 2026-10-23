@@ -4,7 +4,7 @@
 // wali hi proven integration), sirf look nayi design ki hai.
 import { useState } from "react";
 import { Mail, CheckCircle2, AlertCircle } from "lucide-react";
-import styles from "@/app/attractions/[slug]/attraction-new.module.css";
+import styles from "./newsletter-band.module.css";
 
 const CF7_FORM_ID = 467;
 const CF7_EMAIL_FIELD_NAME = "your-email";
@@ -51,6 +51,7 @@ export default function NewsletterBand() {
   }
 
   return (
+    <div className={styles.newsWrap}>
     <section className={styles.newsBand}>
       <div className={styles.newsText}>
         <h2 className={styles.newsTitle}>Get travel updates</h2>
@@ -80,5 +81,6 @@ export default function NewsletterBand() {
         )}
       </div>
     </section>
+    </div>
   );
 }

@@ -483,9 +483,7 @@ export default async function AttractionDetailPage({ params }) {
       </div>
 
       {/* Newsletter — design wala band, WP CF7 form se connected */}
-      <div className={styles.wrap} style={{ paddingTop: 72, paddingBottom: 8 }}>
-        <NewsletterBand />
-      </div>
+      <NewsletterBand />
     </div>
   );
 }
