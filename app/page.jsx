@@ -1,5 +1,6 @@
 import TravelHome from "../components/travel/TravelHome";
 import {
+  getRankMathSeo,
   getBannerData,
   getDestinationTreeData,
   getHomeAttractionsData,
@@ -8,12 +9,19 @@ import {
   safe,
 } from "@/lib/api";
 
-export const metadata = {
-  title: "Travel Pakistan — Discover, Explore, Experience",
-  description: "Explore Pakistan’s regions, districts, most loved places, trips and best travel seasons.",
-  openGraph: { title: "Travel Pakistan", description: "Find your place in Pakistan.", type: "website" },
-  twitter: { card: "summary_large_image" },
-};
+// SEO title/description WordPress ke Home page (ID 6) ke Rank Math fields se
+// ate hain — WP me badlo, frontend meta khud update ho jayega.
+export async function generateMetadata() {
+  const seo = await getRankMathSeo("pages", 6);
+  return {
+    title: seo?.title || "Travel Pakistan — Discover, Explore, Experience",
+    description:
+      seo?.description ||
+      "Explore Pakistan’s regions, districts, most loved places, trips and best travel seasons.",
+    openGraph: { title: "Travel Pakistan", description: "Find your place in Pakistan.", type: "website" },
+    twitter: { card: "summary_large_image" },
+  };
+}
 
 // WordPress se har 60s fresh data (ISR) — WP me change karo, Vercel par khud ajayega
 export const revalidate = 60;

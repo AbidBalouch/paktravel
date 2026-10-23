@@ -6,7 +6,7 @@ import {
   CloudFog, CloudDrizzle, CloudRain, CloudSnow, CloudLightning, ShieldCheck,
   Camera, ClipboardList, HeartPulse, Navigation, ChevronRight, Sparkles,
 } from "lucide-react";
-import { getAttractionBySlug, weatherCodeLabel } from "@/lib/api";
+import { getAttractionBySlug, getPostSeoBySlug, weatherCodeLabel } from "@/lib/api";
 import AttractionMap from "@/components/AttractionMap/AttractionMap";
 import NewsletterBand from "@/components/AttractionDetail/NewsletterBand";
 import GalleryMosaic from "@/components/AttractionDetail/GalleryMosaic";
@@ -120,6 +120,18 @@ function WeatherIcon({ code, size = 22 }) {
   if ([71, 73, 75].includes(code)) return <CloudSnow {...p} />;
   if (code === 95) return <CloudLightning {...p} />;
   return <Cloud {...p} />;
+}
+
+// SEO: Rank Math fields hon to wo, warna post title + excerpt.
+// stripTags HTML entities bhi decode karta hai.
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const seo = await getPostSeoBySlug("attraction", slug);
+  if (!seo) return {};
+  return {
+    title: seo.title || (seo.name ? `${seo.name} — Travel Pakistan` : undefined),
+    description: seo.description || seo.excerpt.slice(0, 160) || undefined,
+  };
 }
 
 export default async function AttractionDetailPage({ params }) {

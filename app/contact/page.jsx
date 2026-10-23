@@ -6,13 +6,24 @@
 // ---------------------------------------------------------------------------
 
 import Image from "next/image";
-import { getContactPageData, getContactFormFields, getNewsletterData, safe } from "@/lib/api";
+import { getContactPageData, getContactFormFields, getNewsletterData, getRankMathSeo, safe } from "@/lib/api";
 import ContactForm from "./ContactForm";
 import NewsletterBand from "@/components/AttractionDetail/NewsletterBand";
 import styles from "./contact.module.css";
 
 // TODO: move to an ACF field once one exists for it — hardcoded for now
 const CF7_FORM_ID = 372;
+
+// SEO: WordPress Contact page (ID 368) ke Rank Math fields se
+export async function generateMetadata() {
+    const seo = await getRankMathSeo("pages", 368);
+    return {
+        title: seo?.title || "Contact Us — Travel Pakistan",
+        description:
+            seo?.description ||
+            "Questions, corrections or a place we should add? Contact the Travel Pakistan team — we welcome messages from travellers, contributors and partners.",
+    };
+}
 
 export default async function ContactPage() {
     const [data, formSchema, newsletter] = await Promise.all([

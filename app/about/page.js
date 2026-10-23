@@ -3,10 +3,21 @@ import NewsletterBand from "@/components/AttractionDetail/NewsletterBand";
 // Header/Footer yahan import nahi karne — ye pehle se app/layout.js mein
 // globally render ho rahe hain (sab pages ko wrap karte hain), dobara yahan
 // laga dete to page par Header/Footer 2x dikhta.
-import { getAboutPageData, safe, stripHtml } from "@/lib/api";
+import { getAboutPageData, getRankMathSeo, safe, stripHtml } from "@/lib/api";
 import styles from "./about.module.css";
 
 export const revalidate = 60; // WordPress se har 60s baad fresh data (ISR)
+
+// SEO: WordPress About page (ID 242) ke Rank Math fields se
+export async function generateMetadata() {
+  const seo = await getRankMathSeo("pages", 242);
+  return {
+    title: seo?.title || "About Travel Pakistan — Built by Travellers, for Travellers",
+    description:
+      seo?.description ||
+      "Travel Pakistan is built by travellers, for travellers: real photos, local knowledge and on-the-ground essentials for exploring Pakistan's mountains, forts and valleys.",
+  };
+}
 
 export default async function AboutPage() {
   const about = await safe(getAboutPageData, null);

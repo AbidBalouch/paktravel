@@ -23,6 +23,8 @@ const plusJakarta = Plus_Jakarta_Sans({
 export async function generateMetadata() {
   const site = await safe(getSiteSettings, null);
   return {
+    // Testing phase: poori site noindex/nofollow — live karne par Henry index karega
+    robots: { index: false, follow: false },
     title: site?.title || "Travel Pakistan",
     description:
       site?.tagline ||
