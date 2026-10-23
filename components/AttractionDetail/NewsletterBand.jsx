@@ -1,13 +1,10 @@
 "use client";
-// Design wala newsletter band — peeche WordPress ka maujooda CF7
-// "Newsletter" form (ID 467) hi call hota hai (pehle wale component
-// wali hi proven integration), sirf look nayi design ki hai.
+// Design wala newsletter band — peeche WordPress ka CF7 "Newsletter"
+// form (ID 467) hai, lekin call server wale raste (/api/newsletter)
+// se jati hai taake browser-side env par inhisaar na ho.
 import { useState } from "react";
 import { Mail, CheckCircle2, AlertCircle } from "lucide-react";
 import styles from "./newsletter-band.module.css";
-
-const CF7_FORM_ID = 467;
-const CF7_EMAIL_FIELD_NAME = "your-email";
 
 export default function NewsletterBand() {
   const [email, setEmail] = useState("");
@@ -24,17 +21,13 @@ export default function NewsletterBand() {
     setStatus("loading");
     setMessage("");
     try {
-      const formData = new FormData();
-      formData.append(CF7_EMAIL_FIELD_NAME, email);
-      formData.append("_wpcf7", CF7_FORM_ID);
-      formData.append("_wpcf7_version", "5.9");
-      formData.append("_wpcf7_locale", "en_US");
-      formData.append("_wpcf7_unit_tag", `wpcf7-f${CF7_FORM_ID}-p0-o1`);
-      formData.append("_wpcf7_container_post", "0");
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/contact-form-7/v1/contact-forms/${CF7_FORM_ID}/feedback`,
-        { method: "POST", body: formData },
-      );
+      // Server wale raste se — seedha WP call NEXT_PUBLIC_WP_URL na hone
+      // par gir jata tha (Vercel par wo variable set nahi hai).
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
       const data = await res.json();
       if (data.status === "mail_sent") {
         setStatus("success");
