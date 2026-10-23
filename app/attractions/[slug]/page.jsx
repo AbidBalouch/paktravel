@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { getAttractionBySlug, weatherCodeLabel } from "@/lib/api";
 import AttractionMap from "@/components/AttractionMap/AttractionMap";
-import Newsletter from "@/components/Newsletter/Newsletter";
+import NewsletterBand from "@/components/AttractionDetail/NewsletterBand";
 import GalleryMosaic from "@/components/AttractionDetail/GalleryMosaic";
 import MonthChart from "@/components/AttractionDetail/MonthChart";
 import Facilities from "@/components/AttractionDetail/Facilities";
@@ -224,7 +224,7 @@ export default async function AttractionDetailPage({ params }) {
           <main className={styles.main}>
             {/* Quick facts */}
             {facts.length > 0 && (
-              <section id="overview" className={styles.facts}>
+              <section id="overview" className={styles.facts} data-count={facts.length}>
                 {facts.map((f, i) => (
                   <div key={i} className={styles.fact}>
                     <span className={styles.factIcon}><f.Icon size={19} color="#0E6B45" /></span>
@@ -466,11 +466,26 @@ export default async function AttractionDetailPage({ params }) {
                 </Link>
               ))}
             </div>
+            {district && (
+              <div className={styles.ctaBanner}>
+                <span className={styles.ctaIcon}><MapPin size={24} color="#fff" /></span>
+                <div className={styles.ctaBody}>
+                  <div className={styles.ctaTitle}>One day in {district.name}</div>
+                  <div className={styles.ctaText}>{[a.title, ...a.related.map((r) => r.title)].join(" · ")}</div>
+                </div>
+                <Link className={styles.ctaBtn} href={`/provinces/${a.destinationPath.map((s) => s.slug).join("/")}`}>
+                  See itinerary <ChevronRight size={16} />
+                </Link>
+              </div>
+            )}
           </section>
         )}
       </div>
 
-      <Newsletter />
+      {/* Newsletter — design wala band, WP CF7 form se connected */}
+      <div className={styles.wrap} style={{ paddingTop: 72, paddingBottom: 8 }}>
+        <NewsletterBand />
+      </div>
     </div>
   );
 }
