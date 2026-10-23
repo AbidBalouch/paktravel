@@ -6,7 +6,7 @@ import {
   CloudFog, CloudDrizzle, CloudRain, CloudSnow, CloudLightning, ShieldCheck,
   Camera, ClipboardList, HeartPulse, Navigation, ChevronRight, Sparkles,
 } from "lucide-react";
-import { getAttractionBySlug, getPostSeoBySlug, weatherCodeLabel } from "@/lib/api";
+import { getAttractionBySlug, weatherCodeLabel } from "@/lib/api";
 import AttractionMap from "@/components/AttractionMap/AttractionMap";
 import NewsletterBand from "@/components/AttractionDetail/NewsletterBand";
 import GalleryMosaic from "@/components/AttractionDetail/GalleryMosaic";
@@ -126,13 +126,14 @@ function WeatherIcon({ code, size = 22 }) {
 // stripTags HTML entities bhi decode karta hai.
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const seo = await getPostSeoBySlug("attraction", slug);
-  if (!seo) return {};
-  // WP head ka title attractions par Rank Math ka default (site title) ata
-  // hai — is liye yahan hamesha post name + excerpt hi istemal hoga.
+  // Page body wala hi data function — jo page render kar sakta hai,
+  // usi se metadata bhi pakka banta hai.
+  const a = await getAttractionBySlug(slug).catch(() => null);
+  if (!a) return {};
+  const desc = String(a.excerpt || "").replace(/<[^>]+>/g, "").trim();
   return {
-    title: seo.name ? `${seo.name} — Travel Pakistan` : undefined,
-    description: seo.excerpt.slice(0, 160) || undefined,
+    title: a.title ? `${a.title} — Travel Pakistan` : undefined,
+    description: desc.slice(0, 160) || undefined,
   };
 }
 
