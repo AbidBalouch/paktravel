@@ -128,9 +128,11 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const seo = await getPostSeoBySlug("attraction", slug);
   if (!seo) return {};
+  // WP head ka title attractions par Rank Math ka default (site title) ata
+  // hai — is liye yahan hamesha post name + excerpt hi istemal hoga.
   return {
-    title: seo.title || (seo.name ? `${seo.name} — Travel Pakistan` : undefined),
-    description: seo.description || seo.excerpt.slice(0, 160) || undefined,
+    title: seo.name ? `${seo.name} — Travel Pakistan` : undefined,
+    description: seo.excerpt.slice(0, 160) || undefined,
   };
 }
 
