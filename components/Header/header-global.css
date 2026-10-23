@@ -31,5 +31,8 @@
   .gh-mobile-sub { color: #41544a; text-decoration: none; font-size: 14px; padding: 2px 0 2px 12px; }
   .gh-mobile-actions { display: flex; gap: 14px; align-items: center; padding-top: 14px; }
   .gh-auth-placeholder { width: 0; }
+  /* Mobile: top bar par Login/Sign Up NAHI — sirf menu (gh-mobile) ke andar.
+     (.gh-actions scope is liye ke menu wale buttons class share karte hain.) */
+  .gh-actions .gh-login, .gh-actions .gh-signup { display: none; }
   .gh-account-name { display: none; }
 }

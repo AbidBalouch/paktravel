@@ -1,7 +1,7 @@
 :root{--tp-color-1:oklch(0.999999993 0.000000037 89.875563 / 1);--tp-color-2:oklch(0.941669586 0.010791894 158.838809 / 1);--tp-color-3:oklch(0.270303401 0.050844514 160.558166 / 1);--tp-color-4:oklch(0.420070015 0.095666942 155.911240 / 1);--tp-color-5:oklch(0.957980190 0.013222696 159.914067 / 1);--tp-color-6:oklch(0.999999993 0.000000037 89.875563 / 1);--tp-color-7:oklch(0.922744159 0.016665771 156.893466 / 1);--tp-color-8:oklch(0.815568082 0.020581508 159.643426 / 1);--tp-color-9:oklch(0.461288582 0.019684758 162.072823 / 1);--tp-color-10:oklch(0.270303401 0.050844514 160.558166 / 0.18);--tp-color-11:oklch(0.363136120 0.023784394 161.669427 / 1);--tp-color-12:oklch(0.893177622 0.024294130 159.096844 / 1);--tp-color-13:oklch(0.621627810 0.151352803 153.835994 / 1);--tp-color-14:oklch(0.000000000 0.000000000 0.000000 / 1);--tp-color-15:oklch(0.999999993 0.000000037 89.875563 / 0.0);--tp-color-16:oklch(0.270303401 0.050844514 160.558166 / 0.14);--tp-color-17:oklch(0.270303401 0.050844514 160.558166 / 0.2);--tp-color-18:oklch(0.943915656 0.016573407 156.903966 / 1);--tp-color-19:oklch(0.569634913 0.019642674 158.734692 / 1);--tp-color-20:oklch(0.270303401 0.050844514 160.558166 / 0.94);--tp-color-21:oklch(0.270303401 0.050844514 160.558166 / 0.55);--tp-color-22:oklch(0.270303401 0.050844514 160.558166 / 0.05);--tp-color-23:oklch(0.999999993 0.000000037 89.875563 / 0.88);--tp-color-24:oklch(0.805613312 0.116025645 156.021173 / 1);--tp-color-25:oklch(0.999999993 0.000000037 89.875563 / 0.75);--tp-color-26:oklch(0.270303401 0.050844514 160.558166 / 0.96);--tp-color-27:oklch(0.270303401 0.050844514 160.558166 / 0.78);--tp-color-28:oklch(0.805613312 0.116025645 156.021173 / 0.45);--tp-color-29:oklch(0.999999993 0.000000037 89.875563 / 0.18);--tp-color-30:oklch(0.999999993 0.000000037 89.875563 / 0.08);--tp-color-31:oklch(0.999999993 0.000000037 89.875563 / 0.65);--tp-color-32:oklch(0.953447199 0.011619886 153.669093 / 1);--tp-color-33:oklch(0.999999993 0.000000037 89.875563 / 0.94);--tp-color-34:oklch(0.270303401 0.050844514 160.558166 / 0.85);--tp-color-35:oklch(0.270303401 0.050844514 160.558166 / 0.1);--tp-color-36:oklch(0.999999993 0.000000037 89.875563 / 0.8);--tp-color-37:oklch(0.420070015 0.095666942 155.911240 / 0.8);--tp-color-38:oklch(0.999999993 0.000000037 89.875563 / 0.85);--tp-color-39:oklch(0.999999993 0.000000037 89.875563 / 0.15);--tp-color-40:oklch(0.974520592 0.006595105 160.077511 / 1);--tp-color-41:oklch(0.270303401 0.050844514 160.558166 / 0.9);--tp-color-42:oklch(0.270303401 0.050844514 160.558166 / 0.98);--tp-color-43:oklch(0.953447199 0.011619886 153.669093 / 0.78);--tp-color-44:oklch(0.953447199 0.011619886 153.669093 / 0.18);--tp-color-45:oklch(0.953447199 0.011619886 153.669093 / 0.62);--tp-color-46:oklch(0.580306217 0.112481379 165.349179 / 1);--tp-color-47:oklch(0.703420115 0.111415545 161.951196 / 1);--tp-color-48:oklch(0.632324362 0.102996602 178.177241 / 1);--tp-color-49:oklch(0.655854698 0.117974462 161.628080 / 1);--tp-color-50:oklch(0.868464361 0.059144563 156.415839 / 1);--tp-color-51:oklch(0.798891926 0.089007675 156.478697 / 1);--tp-color-52:oklch(0.848772887 0.022067897 158.509752 / 1);--tp-color-53:oklch(0.420070015 0.095666942 155.911240 / 0.95);--tp-color-54:oklch(0.420070015 0.095666942 155.911240 / 0.55);--tp-color-55:oklch(0.270303401 0.050844514 160.558166 / 0.88);--tp-color-56:oklch(0.999999993 0.000000037 89.875563 / 0.9);}
 /* latin-ext */
 @font-face {
-  font-family: 'Instrument Serif';
+  font-family: 'Plus Jakarta Sans';
   font-style: italic;
   font-weight: 400;
   font-display: swap;
@@ -10,7 +10,7 @@
 }
 /* latin */
 @font-face {
-  font-family: 'Instrument Serif';
+  font-family: 'Plus Jakarta Sans';
   font-style: italic;
   font-weight: 400;
   font-display: swap;
@@ -19,7 +19,7 @@
 }
 /* latin-ext */
 @font-face {
-  font-family: 'Instrument Serif';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -28,7 +28,7 @@
 }
 /* latin */
 @font-face {
-  font-family: 'Instrument Serif';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -37,7 +37,7 @@
 }
 /* cyrillic-ext */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -46,7 +46,7 @@
 }
 /* cyrillic */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -55,7 +55,7 @@
 }
 /* greek */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -64,7 +64,7 @@
 }
 /* vietnamese */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -73,7 +73,7 @@
 }
 /* latin-ext */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -82,7 +82,7 @@
 }
 /* latin */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -91,7 +91,7 @@
 }
 /* cyrillic-ext */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
@@ -100,7 +100,7 @@
 }
 /* cyrillic */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
@@ -109,7 +109,7 @@
 }
 /* greek */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
@@ -118,7 +118,7 @@
 }
 /* vietnamese */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
@@ -127,7 +127,7 @@
 }
 /* latin-ext */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
@@ -136,7 +136,7 @@
 }
 /* latin */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
@@ -145,7 +145,7 @@
 }
 /* cyrillic-ext */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
@@ -154,7 +154,7 @@
 }
 /* cyrillic */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
@@ -163,7 +163,7 @@
 }
 /* greek */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
@@ -172,7 +172,7 @@
 }
 /* vietnamese */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
@@ -181,7 +181,7 @@
 }
 /* latin-ext */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
@@ -190,7 +190,7 @@
 }
 /* latin */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
@@ -199,7 +199,7 @@
 }
 /* cyrillic-ext */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
@@ -208,7 +208,7 @@
 }
 /* cyrillic */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
@@ -217,7 +217,7 @@
 }
 /* greek */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
@@ -226,7 +226,7 @@
 }
 /* vietnamese */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
@@ -235,7 +235,7 @@
 }
 /* latin-ext */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
@@ -244,7 +244,7 @@
 }
 /* latin */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
@@ -253,7 +253,7 @@
 }
 /* cyrillic-ext */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 800;
   font-display: swap;
@@ -262,7 +262,7 @@
 }
 /* cyrillic */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 800;
   font-display: swap;
@@ -271,7 +271,7 @@
 }
 /* greek */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 800;
   font-display: swap;
@@ -280,7 +280,7 @@
 }
 /* vietnamese */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 800;
   font-display: swap;
@@ -289,7 +289,7 @@
 }
 /* latin-ext */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 800;
   font-display: swap;
@@ -298,7 +298,7 @@
 }
 /* latin */
 @font-face {
-  font-family: 'Manrope';
+  font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 800;
   font-display: swap;
@@ -323,7 +323,7 @@
 .tp-style-2{position:sticky;top:0;z-index:40;background:var(--tp-color-1);border-bottom:1px solid var(--tp-color-2)}
 .tp-style-3{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:stretch;gap:28px;height:68px}
 .tp-style-4{display:flex;align-items:center;gap:10px;flex-shrink:0;color:var(--tp-color-3)}
-.tp-style-5{font-family:'Instrument Serif',serif;font-size:25px;line-height:1;letter-spacing:0.005em}
+.tp-style-5{font-family:'Plus Jakarta Sans',serif;font-size:25px;line-height:1;letter-spacing:0.005em}
 .tp-style-6{color:var(--tp-color-4)}
 .tp-style-7{display:flex;align-items:stretch;gap:2px;font-size:14.5px;font-weight:600;flex:1;min-width:0}
 .tp-style-8{border:0;border-bottom:var(--tp-dynamic-0);background:var(--tp-dynamic-1);font:inherit;cursor:pointer;padding:0 16px;color:var(--tp-dynamic-2);display:flex;align-items:center;gap:7px;white-space:nowrap}
@@ -360,7 +360,7 @@
 .tp-style-35{position:relative;max-width:1280px;margin:0 auto;padding:78px 24px 70px;pointer-events:none}
 .tp-style-36{max-width:600px}
 .tp-style-37{font-size:12.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--tp-color-4);font-weight:700}
-.tp-style-38{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,5.6vw,72px);line-height:1.04;margin:18px 0 14px;letter-spacing:-0.015em;color:var(--tp-color-3)}
+.tp-style-38{font-family:'Plus Jakarta Sans',serif;font-weight:400;font-size:clamp(44px,5.6vw,72px);line-height:1.04;margin:18px 0 14px;letter-spacing:-0.015em;color:var(--tp-color-3)}
 .tp-style-39{margin:0;font-size:18px;line-height:1.5;color:var(--tp-color-9)}
 .tp-style-40{margin-top:30px;pointer-events:auto;position:relative}
 .tp-style-41{display:flex;align-items:center;gap:6px;background:var(--tp-color-1);border:1px solid var(--tp-color-7);border-radius:14px;padding:7px 7px 7px 18px;box-shadow:0 14px 40px var(--tp-color-16)}
@@ -381,7 +381,7 @@
 .tp-style-52{background:var(--tp-color-1);border-bottom:1px solid var(--tp-color-7)}
 .tp-style-53{max-width:1280px;margin:0 auto;padding:22px 24px}
 .tp-style-54{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:14px;flex-wrap:wrap}
-.tp-style-55{margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:26px}
+.tp-style-55{margin:0;font-family:'Plus Jakarta Sans',serif;font-weight:400;font-size:26px}
 .tp-style-56{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
 .tp-style-57{position:relative;overflow:hidden;border:var(--tp-dynamic-0);background:var(--tp-color-1);color:var(--tp-dynamic-1);font:inherit;cursor:pointer;border-radius:14px;padding:0;text-align:left;min-width:0;height:96px}
 .tp-style-57:hover{border-color:var(--tp-color-13);}
@@ -392,7 +392,7 @@
 .tp-style-62{max-width:1280px;margin:0 auto;padding:44px 24px 0}
 .tp-style-63{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:18px}
 .tp-style-64{font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--tp-color-13);font-weight:700}
-.tp-style-65{margin:6px 0 0;font-family:'Instrument Serif',serif;font-weight:400;font-size:34px}
+.tp-style-65{margin:6px 0 0;font-family:'Plus Jakarta Sans',serif;font-weight:400;font-size:34px}
 .tp-style-66{font-size:13px;color:var(--tp-color-19)}
 .tp-style-67{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:stretch}
 .tp-style-68{grid-column:span 1;background:var(--tp-color-1);border:1px solid var(--tp-color-7);border-radius:22px;padding:14px;min-width:0}
@@ -407,7 +407,7 @@
 .tp-style-77{position:absolute;inset:0;background:linear-gradient(to top,var(--tp-color-20) 0%,var(--tp-color-21) 45%,var(--tp-color-22) 100%);pointer-events:none}
 .tp-style-78{position:absolute;left:0;right:0;bottom:0;padding:30px;pointer-events:none;animation:tpFade 0.3s ease}
 .tp-style-79{display:inline-block;background:var(--tp-color-4);color:var(--tp-color-1);border-radius:99px;padding:6px 14px;font-size:12.5px;font-weight:700}
-.tp-style-80{font-family:'Instrument Serif',serif;font-size:clamp(36px,4vw,50px);line-height:1.05;margin:14px 0 8px}
+.tp-style-80{font-family:'Plus Jakarta Sans',serif;font-size:clamp(36px,4vw,50px);line-height:1.05;margin:14px 0 8px}
 .tp-style-81{margin:0;font-size:15.5px;line-height:1.55;color:var(--tp-color-23);max-width:36ch}
 .tp-style-82{margin-top:12px;font-size:13px;color:var(--tp-color-24);font-weight:600}
 .tp-style-83{margin-top:6px;font-size:12.5px;color:var(--tp-color-25)}
@@ -416,7 +416,7 @@
 .tp-style-85{max-width:1280px;margin:0 auto;padding:40px 24px 8px}
 .tp-style-86{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:16px}
 .tp-style-87{min-width:0}
-.tp-style-88{margin:8px 0 6px;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(28px,3.4vw,40px);line-height:1.05}
+.tp-style-88{margin:8px 0 6px;font-family:'Plus Jakarta Sans',serif;font-weight:400;font-size:clamp(28px,3.4vw,40px);line-height:1.05}
 .tp-style-89{margin:0;font-size:14.5px;color:var(--tp-color-9);max-width:60ch}
 .tp-style-90{font-size:13px;color:var(--tp-color-9);border:1px solid var(--tp-color-7);border-radius:12px;padding:10px 14px;background:var(--tp-color-1)}
 .tp-style-91{color:var(--tp-color-3)}
@@ -440,7 +440,7 @@
 .tp-style-106{position:relative;padding:18px 18px 16px;color:var(--tp-color-1);pointer-events:none}
 .tp-style-107{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
 .tp-style-108{font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--tp-color-24);font-weight:700}
-.tp-style-109{font-family:'Instrument Serif',serif;font-size:30px;line-height:1.1;margin-top:5px}
+.tp-style-109{font-family:'Plus Jakarta Sans',serif;font-size:30px;line-height:1.1;margin-top:5px}
 .tp-style-110{pointer-events:auto;color:var(--tp-color-24);font-size:12.5px;font-weight:700;border:1px solid var(--tp-color-28);border-radius:10px;padding:8px 12px}
 .tp-style-111{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px;margin-top:16px}
 .tp-style-112{border:1px solid var(--tp-color-29);border-radius:12px;padding:11px 12px;background:var(--tp-color-30);min-width:0}
@@ -449,7 +449,7 @@
 .tp-style-115{margin-top:14px;font-size:12px;color:var(--tp-color-31)}
 .tp-style-116{max-width:1280px;margin:0 auto;padding:40px 24px 0}
 .tp-style-117{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px}
-.tp-style-118{margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(26px,3vw,36px)}
+.tp-style-118{margin:0;font-family:'Plus Jakarta Sans',serif;font-weight:400;font-size:clamp(26px,3vw,36px)}
 .tp-style-119{font-size:13px;font-weight:700;color:var(--tp-color-13)}
 .tp-style-120{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
 .tp-style-121{background:var(--tp-color-1);border:1px solid var(--tp-color-7);border-radius:16px;overflow:hidden;min-width:0}
@@ -463,18 +463,18 @@
 .tp-style-128{display:flex;justify-content:space-between;align-items:center;margin-top:11px;padding-top:10px;border-top:1px solid var(--tp-color-32)}
 .tp-style-129{font-size:11.5px;color:var(--tp-color-9)}
 .tp-style-130{font-size:12px;font-weight:700;color:var(--tp-color-4)}
-.tp-style-131{margin:0 0 16px;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(26px,3vw,36px)}
+.tp-style-131{margin:0 0 16px;font-family:'Plus Jakarta Sans',serif;font-weight:400;font-size:clamp(26px,3vw,36px)}
 .tp-style-132{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
 .tp-style-133{position:relative;border-radius:18px;overflow:hidden;min-height:230px;background:var(--tp-color-3);min-width:0}
 .tp-style-134{position:absolute;inset:0;background:linear-gradient(to top,var(--tp-color-20) 12%,var(--tp-color-35) 62%);pointer-events:none}
 .tp-style-135{position:absolute;left:16px;right:16px;bottom:14px;color:var(--tp-color-1);pointer-events:none}
-.tp-style-136{font-family:'Instrument Serif',serif;font-size:25px;line-height:1.12;margin-top:5px}
+.tp-style-136{font-family:'Plus Jakarta Sans',serif;font-size:25px;line-height:1.12;margin-top:5px}
 .tp-style-137{font-size:12.5px;color:var(--tp-color-36);margin-top:6px}
 .tp-style-138{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
 .tp-style-139{position:relative;overflow:hidden;border-radius:18px;padding:0;min-width:0;min-height:190px;background:var(--tp-color-4)}
 .tp-style-140{position:absolute;inset:0;background:linear-gradient(130deg,var(--tp-color-20),var(--tp-color-37));pointer-events:none}
 .tp-style-141{position:relative;padding:20px;color:var(--tp-color-1)}
-.tp-style-142{font-family:'Instrument Serif',serif;font-size:23px}
+.tp-style-142{font-family:'Plus Jakarta Sans',serif;font-size:23px}
 .tp-style-143{margin:8px 0 14px;font-size:13.5px;color:var(--tp-color-38);line-height:1.5}
 .tp-style-144{display:flex;gap:8px;background:var(--tp-color-39);border-radius:12px;padding:6px 6px 6px 12px;align-items:center}
 .tp-style-145{flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:13.5px;color:var(--tp-color-1);outline:none}
@@ -487,7 +487,7 @@
 .tp-style-151{font-size:12.5px;font-weight:700;color:var(--tp-color-4)}
 .tp-style-152{background:var(--tp-color-1);border:1px solid var(--tp-color-7);border-radius:18px;padding:20px 22px}
 .tp-style-153{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:14px}
-.tp-style-154{margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:25px}
+.tp-style-154{margin:0;font-family:'Plus Jakarta Sans',serif;font-weight:400;font-size:25px}
 .tp-style-155{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
 .tp-style-156{border:1px solid var(--tp-color-32);border-radius:12px;padding:12px;background:var(--tp-color-40);min-width:0}
 .tp-style-157{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--tp-color-13);font-weight:700}

@@ -43,7 +43,7 @@ export default function SignupForm() {
                 return;
             }
 
-            window.location.href = "/";
+            window.location.href = "/contribute"; // login ke baad seedha inventory (contribute) page — jahan attractions create hoti hain
         } catch {
             setStatus("error");
             setError("Network error — please try again.");
