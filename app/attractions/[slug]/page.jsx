@@ -187,9 +187,9 @@ export default async function AttractionDetailPage({ params }) {
               {a.typeName && <span className={styles.badge}>{a.typeName}</span>}
             </div>
             <h1 className={styles.h1}>{a.title}</h1>
-            {(district || region) && (
+            {a.destinationPath.length > 0 && (
               <div className={styles.subline}>
-                <MapPin size={15} style={{ verticalAlign: "-2px" }} /> {[district?.name, region?.name].filter(Boolean).join(", ")}
+                <MapPin size={15} style={{ verticalAlign: "-2px" }} /> {[...new Set(a.destinationPath.map((s) => s.name).filter(Boolean))].reverse().join(", ")}
               </div>
             )}
             <div className={styles.metaRow}>
