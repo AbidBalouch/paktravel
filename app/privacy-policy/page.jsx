@@ -1,5 +1,15 @@
 import { getSimplePageData, safe } from "@/lib/api";
+import { getRankMathSeo } from "@/lib/api";
 import styles from "@/app/contact/contact.module.css"; // Hero styles reuse
+
+// SEO: WordPress page (ID 3) ke Rank Math fields se
+export async function generateMetadata() {
+  const seo = await getRankMathSeo("pages", 3);
+  return {
+    title: seo?.title || "Privacy Policy — Travel Pakistan",
+    description: seo?.description || "How Travel Pakistan collects, uses and protects your information when you use our website and services.",
+  };
+}
 
 export default async function PrivacyPolicyPage() {
     const data = await safe(() => getSimplePageData("privacy-policy"), null);

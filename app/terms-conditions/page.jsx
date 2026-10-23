@@ -1,5 +1,15 @@
 import { getSimplePageData, safe } from "@/lib/api";
+import { getRankMathSeo } from "@/lib/api";
 import styles from "@/app/contact/contact.module.css";
+
+// SEO: WordPress page (ID 469) ke Rank Math fields se
+export async function generateMetadata() {
+  const seo = await getRankMathSeo("pages", 469);
+  return {
+    title: seo?.title || "Terms & Conditions — Travel Pakistan",
+    description: seo?.description || "The terms for using Travel Pakistan: content, contributions, bookings information and your responsibilities as a visitor.",
+  };
+}
 
 export default async function TermsPage() {
     const data = await safe(() => getSimplePageData("terms-conditions"), null);
