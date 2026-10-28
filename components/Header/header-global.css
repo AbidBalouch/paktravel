@@ -36,3 +36,7 @@
   .gh-actions .gh-login, .gh-actions .gh-signup { display: none; }
   .gh-account-name { display: none; }
 }
+
+/* gh-navlink override: koi item har page par highlighted na rahe */
+.gh-navlink { background: transparent !important; border-bottom: 3px solid transparent; }
+.gh-navlink:hover { background: #EEF6F1 !important; }

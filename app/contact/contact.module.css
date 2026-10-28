@@ -233,3 +233,15 @@
     min-height: 240px;
   }
 }
+
+/* ===== HERO — home-page standard =====
+   Photo par halki parat; text left-aligned, ink rang, hamesha readable. */
+.hero { background-color: #F7FAF7; color: #1C2B24; text-align: left; align-items: flex-start; justify-content: center; padding: 88px max(24px, calc((100% - 1200px) / 2)); }
+.heroOverlay { background: linear-gradient(100deg, #F7FAF7 26%, rgba(247, 250, 247, 0.88) 52%, rgba(247, 250, 247, 0.45) 100%); }
+.heroBadge { width: auto; max-width: none; border: 0; padding: 0; margin-bottom: 14px; color: var(--color-primary); font-size: 12.5px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; text-align: left; }
+.heroTitle { color: #1C2B24; font-size: clamp(36px, 4.6vw, 54px); font-weight: 400; line-height: 1.05; letter-spacing: -0.015em; text-align: left; text-transform: none; margin-bottom: 14px; max-width: 640px; }
+.heroSubtitle { color: #52615A; font-size: 17.5px; font-weight: 400; line-height: 1.55; text-align: left; max-width: 560px; }
+@media (max-width: 768px) {
+  .hero { padding: 56px 20px; }
+  .heroTitle { font-size: 33px; line-height: 1.1; }
+}

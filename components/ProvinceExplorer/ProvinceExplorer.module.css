@@ -188,3 +188,29 @@
   }
   .searchInput{font-size: 16px;}
 }
+
+/* ===== HERO — home-page standard (light split hero) =====
+   Home banner jaisi zabaan: halki background, left par text,
+   right par photo jo left ki taraf fade hoti hai. */
+.hero { background: #F7FAF7; color: #1C2B24; text-align: left; padding: 68px 0 76px; }
+.heroBg { left: auto; right: 0; width: 58%; z-index: 0; -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 45%); mask-image: linear-gradient(to right, transparent 0%, #000 45%); }
+.heroBg::after { background: linear-gradient(to right, #F7FAF7 0%, rgba(247, 250, 247, 0) 42%); }
+.heroTop { max-width: 1280px; margin: 0 auto; padding: 0 40px; justify-content: flex-start; position: relative; z-index: 2; }
+.heroBadge { border: 0; background: none; padding: 0; width: auto; max-width: none; justify-content: flex-start; color: var(--color-primary); font-size: 12.5px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; }
+.heroInner { max-width: 1280px; margin: 16px auto 0; padding: 0 40px; position: relative; z-index: 2; }
+.heroTitle { color: #1C2B24; font-weight: 400; font-size: clamp(38px, 4.6vw, 58px); line-height: 1.05; letter-spacing: -0.015em; max-width: 680px; }
+.heroTitleAccent { color: var(--color-primary); }
+.heroText { color: #52615A; font-size: 17.5px; line-height: 1.55; font-weight: 400; max-width: 560px; margin: 16px 0 0; }
+.section { padding: 72px 0; }
+@media (max-width: 860px) {
+  .hero { padding: 46px 0 52px; }
+  .heroBg { width: 100%; opacity: 0.22; -webkit-mask-image: none; mask-image: none; }
+  .heroBg::after { background: linear-gradient(180deg, rgba(247, 250, 247, 0.35), #F7FAF7); }
+  .heroTop, .heroInner { padding: 0 20px; }
+  .heroTitle { font-size: 33px; }
+  .section { padding: 52px 0; }
+}
+
+.searchBarWrap { justify-content: flex-start; margin-top: 26px; }
+.searchBar { background: #fff; border: 1px solid #E1E8E4; box-shadow: 0 10px 30px rgba(11, 61, 42, 0.08); }
+.searchInput { color: #1C2B24; }
